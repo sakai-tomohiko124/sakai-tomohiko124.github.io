@@ -20,17 +20,19 @@ LOGDIR = WORKDIR / "logs"
 LOGFILE = LOGDIR / "scraper.log"
 CRON_MARKER = "# scrape_hourly_job"
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler(LOGFILE),
-        logging.StreamHandler(sys.stdout),
-    ],
-)
-
 def ensure_logdir():
     LOGDIR.mkdir(parents=True, exist_ok=True)
+
+def setup_logging():
+    ensure_logdir()
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(message)s",
+        handlers=[
+            logging.FileHandler(LOGFILE),
+            logging.StreamHandler(sys.stdout),
+        ],
+    )
 
 def run_script(path: Path) -> int:
     if not path.exists():
@@ -47,7 +49,6 @@ def run_script(path: Path) -> int:
     return proc.returncode
 
 def run_once() -> int:
-    ensure_logdir()
     logging.info("開始: scraper2.py と scrape_train.py を順次実行します")
     rc = run_script(SCRIPT_A)
     if rc != 0:
@@ -113,8 +114,8 @@ def parse_args():
     return p.parse_args()
 
 def main():
+    setup_logging()
     args = parse_args()
-    ensure_logdir()
     if args.install_cron:
         rc = install_cron()
         sys.exit(rc)
