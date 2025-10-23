@@ -20,7 +20,8 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
-      - name: Make changes (例: ファイルの更新など)
+      - name: Make changes
+        # ここで任意のファイル更新処理を記述できます
         run: |
           echo "$(date) update" >> logs/auto_commit.log
 
