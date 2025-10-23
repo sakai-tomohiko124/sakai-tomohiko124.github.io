@@ -1,0 +1,563 @@
+
+[
+  {
+    "page": "p54",
+    "term": "SELECT",
+    "category": "文 (DML)",
+    "usage_example": "SELECT id, name FROM users WHERE age >= 20 ORDER BY id DESC;",
+    "explanation": "テーブルからデータを検索（取得）する。例：20歳以上のユーザーをIDの降順で取得する。"
+  },
+  {
+    "page": "p57",
+    "term": "UPDATE",
+    "category": "文 (DML)",
+    "usage_example": "UPDATE users SET name = 'Jiro' WHERE id = 1;",
+    "explanation": "テーブルの既存のデータを更新する。例：idが1の行のnameを'Jiro'に更新する。WHEREを忘れると全行が更新されるので注意。"
+  },
+  {
+    "page": "p59",
+    "term": "DELETE",
+    "category": "文 (DML)",
+    "usage_example": "DELETE FROM users WHERE id = 1;",
+    "explanation": "テーブルからデータを削除する。例：idが1の行を削除する。WHEREを忘れると全行が削除されるので注意。"
+  },
+  {
+    "page": "p61",
+    "term": "INSERT",
+    "category": "文 (DML)",
+    "usage_example": "INSERT INTO users (id, name) VALUES (1, 'Taro');",
+    "explanation": "テーブルに新しいデータを追加（挿入）する。"
+  },
+  {
+    "page": "p77",
+    "term": "WHERE",
+    "category": "句",
+    "usage_example": "SELECT * FROM users WHERE age >= 20;",
+    "explanation": "SELECT、UPDATE、DELETE文などで処理対象の行を絞り込む条件を指定する。"
+  },
+  {
+    "page": "p83",
+    "term": "IS NULL",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE email IS NULL;",
+    "explanation": "値がNULLであることを判定する。"
+  },
+  {
+    "page": "p83",
+    "term": "IS NOT NULL",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE email IS NOT NULL;",
+    "explanation": "値がNULLでないことを判定する。"
+  },
+  {
+    "page": "p85",
+    "term": "LIKE",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE name LIKE '山田%';",
+    "explanation": "文字列の部分一致検索（パターンマッチング）を行う。"
+  },
+  {
+    "page": "p87",
+    "term": "BETWEEN",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM products WHERE price BETWEEN 100 AND 500;",
+    "explanation": "値が指定した範囲内にあるかどうかを判定する。"
+  },
+  {
+    "page": "p87",
+    "term": "IN",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE pref IN ('東京都', '大阪府', '福岡県');",
+    "explanation": "値がリスト内のいずれかの値と一致するかどうかを判定する。"
+  },
+  {
+    "page": "p89",
+    "term": "ANY",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM t1 WHERE col1 > ANY (SELECT col2 FROM t2);",
+    "explanation": "サブクエリが返す値リストのいずれかと比較して、条件が真であれば真を返す。"
+  },
+  {
+    "page": "p89",
+    "term": "ALL",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM t1 WHERE col1 > ALL (SELECT col2 FROM t2);",
+    "explanation": "サブクエリが返す値リストのすべてと比較して、条件が真であれば真を返す。"
+  },
+  {
+    "page": "p91",
+    "term": "AND",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE age >= 20 AND pref = '東京都';",
+    "explanation": "複数の条件式を「かつ」で結合する。両方の条件が真の場合に真となる。"
+  },
+  {
+    "page": "p91",
+    "term": "OR",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE pref = '東京都' OR pref = '大阪府';",
+    "explanation": "複数の条件式を「または」で結合する。どちらかの条件が真の場合に真となる。"
+  },
+  {
+    "page": "p92",
+    "term": "NOT",
+    "category": "演算子",
+    "usage_example": "SELECT * FROM users WHERE NOT pref = '東京都';",
+    "explanation": "条件式の真偽値を逆転させる。"
+  },
+  {
+    "page": "p110",
+    "term": "DISTINCT",
+    "category": "演算子",
+    "usage_example": "SELECT DISTINCT pref FROM users;",
+    "explanation": "検索結果から重複する行を除外する。"
+  },
+  {
+    "page": "p112",
+    "term": "ORDER BY",
+    "category": "句",
+    "usage_example": "SELECT * FROM users ORDER BY age DESC;",
+    "explanation": "検索結果を指定した列の値に基づいて並べ替える。"
+  },
+  {
+    "page": "p117",
+    "term": "OFFSET FETCH",
+    "category": "句",
+    "usage_example": "SELECT * FROM users ORDER BY id OFFSET 5 ROWS FETCH NEXT 10 ROWS ONLY;",
+    "explanation": "検索結果の取得開始位置（OFFSET）と取得行数（FETCH）を指定する。例：5行スキップして、次の10行を取得する。"
+  },
+  {
+    "page": "p122",
+    "term": "UNION",
+    "category": "集合演算子",
+    "usage_example": "SELECT name FROM users_tokyo UNION SELECT name FROM users_osaka;",
+    "explanation": "2つのSELECT文の結果を結合し、和集合（重複を除外）を求める。"
+  },
+  {
+    "page": "p125",
+    "term": "EXCEPT",
+    "category": "集合演算子",
+    "usage_example": "SELECT id FROM users EXCEPT SELECT user_id FROM retired_users;",
+    "explanation": "最初のSELECT結果から、2番目のSELECT結果に含まれる行を除外し、差集合を求める。"
+  },
+  {
+    "page": "p127",
+    "term": "INTERSECT",
+    "category": "集合演算子",
+    "usage_example": "SELECT student_id FROM baseball_club INTERSECT SELECT student_id FROM soccer_club;",
+    "explanation": "2つのSELECT文の結果の両方に存在する行のみを返し、積集合を求める。"
+  },
+  {
+    "page": "p145",
+    "term": "CASE (評価式)",
+    "category": "演算子",
+    "usage_example": "SELECT name, CASE gender WHEN '1' THEN '男性' WHEN '2' THEN '女性' ELSE '不明' END FROM users;",
+    "explanation": "CASE演算子の利用構文(1)。式の値に応じて返す値を分岐する。"
+  },
+  {
+    "page": "p146",
+    "term": "CASE (条件式)",
+    "category": "演算子",
+    "usage_example": "SELECT name, CASE WHEN score >= 80 THEN 'A' WHEN score >= 60 THEN 'B' ELSE 'C' END FROM results;",
+    "explanation": "CASE演算子の利用構文(2)。条件に応じて返す値を分岐する。"
+  },
+  {
+    "page": "p153",
+    "term": "LENGTH",
+    "category": "関数",
+    "usage_example": "SELECT LENGTH(name) FROM users;",
+    "explanation": "文字列の長さをバイト数で取得する関数。"
+  },
+  {
+    "page": "p153",
+    "term": "LEN",
+    "category": "関数",
+    "usage_example": "SELECT LEN(name) FROM users;",
+    "explanation": "文字列の長さを文字数で取得する関数（SQL Serverなど）。"
+  },
+  {
+    "page": "p154",
+    "term": "TRIM",
+    "category": "関数",
+    "usage_example": "SELECT TRIM('  abc  ');",
+    "explanation": "文字列の左右から空白を除去する関数。"
+  },
+  {
+    "page": "p154",
+    "term": "LTRIM",
+    "category": "関数",
+    "usage_example": "SELECT LTRIM('  abc  ');",
+    "explanation": "文字列の左側から空白を除去する関数。"
+  },
+  {
+    "page": "p154",
+    "term": "RTRIM",
+    "category": "関数",
+    "usage_example": "SELECT RTRIM('  abc  ');",
+    "explanation": "文字列の右側から空白を除去する関数。"
+  },
+  {
+    "page": "p155",
+    "term": "REPLACE",
+    "category": "関数",
+    "usage_example": "SELECT REPLACE('東京都千代田区', '東京都', 'Tokyo');",
+    "explanation": "文字列内の一部を別の文字列に置換する。"
+  },
+  {
+    "page": "p155",
+    "term": "SUBSTRING",
+    "category": "関数",
+    "usage_example": "SELECT SUBSTRING(name, 1, 3) FROM users;",
+    "explanation": "文字列の一部を抽出する。"
+  },
+  {
+    "page": "p155",
+    "term": "SUBSTR",
+    "category": "関数",
+    "usage_example": "SELECT SUBSTR(name, 1, 3) FROM users;",
+    "explanation": "SUBSTRINGの同義語。文字列の一部を抽出する。"
+  },
+  {
+    "page": "p156",
+    "term": "CONCAT",
+    "category": "関数",
+    "usage_example": "SELECT CONCAT(last_name, first_name) FROM users;",
+    "explanation": "複数の文字列を連結する。"
+  },
+  {
+    "page": "p157",
+    "term": "ROUND",
+    "category": "関数",
+    "usage_example": "SELECT ROUND(123.456, 2);",
+    "explanation": "数値を指定した桁で四捨五入する。"
+  },
+  {
+    "page": "p158",
+    "term": "TRUNC",
+    "category": "関数",
+    "usage_example": "SELECT TRUNC(123.456, 2);",
+    "explanation": "数値を指定した桁で切り捨てる。"
+  },
+  {
+    "page": "p158",
+    "term": "POWER",
+    "category": "関数",
+    "usage_example": "SELECT POWER(2, 10);",
+    "explanation": "数値のべき乗を計算する。"
+  },
+  {
+    "page": "p159",
+    "term": "CURRENT_TIMESTAMP",
+    "category": "関数",
+    "usage_example": "SELECT CURRENT_TIMESTAMP;",
+    "explanation": "現在の日時（年月日、時分秒）を取得する。"
+  },
+  {
+    "page": "p159",
+    "term": "CURRENT_DATE",
+    "category": "関数",
+    "usage_example": "SELECT CURRENT_DATE;",
+    "explanation": "現在の日付（年月日）を取得する。"
+  },
+  {
+    "page": "p159",
+    "term": "CURRENT_TIME",
+    "category": "関数",
+    "usage_example": "SELECT CURRENT_TIME;",
+    "explanation": "現在の時刻（時分秒）を取得する。"
+  },
+  {
+    "page": "p160",
+    "term": "CAST",
+    "category": "関数",
+    "usage_example": "SELECT CAST('123' AS INTEGER);",
+    "explanation": "あるデータ型の値を別のデータ型に変換する。"
+  },
+  {
+    "page": "p161",
+    "term": "COALESCE",
+    "category": "関数",
+    "usage_example": "SELECT COALESCE(tel, 'N/A') FROM users;",
+    "explanation": "引数リストの中で、最初に現れたNULLでない値を返す。"
+  },
+  {
+    "page": "p174",
+    "term": "SUM",
+    "category": "集計関数",
+    "usage_example": "SELECT SUM(price) FROM products;",
+    "explanation": "合計を求める集計関数。"
+  },
+  {
+    "page": "p174",
+    "term": "MAX",
+    "category": "集計関数",
+    "usage_example": "SELECT MAX(score) FROM results;",
+    "explanation": "最大値を求める集計関数。"
+  },
+  {
+    "page": "p174",
+    "term": "MIN",
+    "category": "集計関数",
+    "usage_example": "SELECT MIN(score) FROM results;",
+    "explanation": "最小値を求める集計関数。"
+  },
+  {
+    "page": "p174",
+    "term": "AVG",
+    "category": "集計関数",
+    "usage_example": "SELECT AVG(score) FROM results;",
+    "explanation": "平均値を求める集計関数。"
+  },
+  {
+    "page": "p175",
+    "term": "COUNT(*)",
+    "category": "集計関数",
+    "usage_example": "SELECT COUNT(*) FROM users;",
+    "explanation": "検索結果の行数を数える集計関数。"
+  },
+  {
+    "page": "p175",
+    "term": "COUNT(列)",
+    "category": "集計関数",
+    "usage_example": "SELECT COUNT(email) FROM users;",
+    "explanation": "検索結果の指定列について、NULLでない値の行数を数える集計関数。"
+  },
+  {
+    "page": "p183",
+    "term": "GROUP BY",
+    "category": "句",
+    "usage_example": "SELECT pref, COUNT(*) FROM users GROUP BY pref;",
+    "explanation": "指定した列の値が同じ行をグループ化し、集計関数を適用する。例：都道府県(pref)ごとにユーザー数を集計する。"
+  },
+  {
+    "page": "p187",
+    "term": "HAVING",
+    "category": "句",
+    "usage_example": "SELECT pref, COUNT(*) FROM users GROUP BY pref HAVING COUNT(*) >= 100;",
+    "explanation": "GROUP BYでグループ化された結果に対して、さらに絞り込み条件を指定する。例：ユーザー数が100人以上の都道府県のみを抽出する。"
+  },
+  {
+    "page": "p189",
+    "term": "SELECT (基本構文)",
+    "category": "句",
+    "usage_example": "SELECT ... FROM ... [WHERE ...] [GROUP BY ...] [HAVING ...] [ORDER BY ...];",
+    "explanation": "SELECT文を構成する主要な句の基本的な順序。"
+  },
+  {
+    "page": "p240",
+    "term": "JOIN (INNER JOIN)",
+    "category": "句",
+    "usage_example": "SELECT u.name, o.item FROM users u JOIN orders o ON u.id = o.user_id;",
+    "explanation": "2つのテーブルを結合する。内部結合(INNER JOIN)が基本で、両方のテーブルに存在するデータのみを返す。"
+  },
+  {
+    "page": "p251",
+    "term": "LEFT JOIN",
+    "category": "句",
+    "usage_example": "SELECT u.name, o.item FROM users u LEFT JOIN orders o ON u.id = o.user_id;",
+    "explanation": "左外部結合。左側のテーブルの全行と、右側のテーブルの一致する行を結合する。例：注文履歴がないユーザーも含めて全ユーザーを取得する。"
+  },
+  {
+    "page": "p252",
+    "term": "RIGHT JOIN",
+    "category": "句",
+    "usage_example": "SELECT u.name, o.item FROM users u RIGHT JOIN orders o ON u.id = o.user_id;",
+    "explanation": "右外部結合。右側のテーブルの全行と、左側のテーブルの一致する行を結合する。"
+  },
+  {
+    "page": "p252",
+    "term": "FULL JOIN",
+    "category": "句",
+    "usage_example": "SELECT u.name, o.item FROM users u FULL JOIN orders o ON u.id = o.user_id;",
+    "explanation": "完全外部結合。左右両方のテーブルの全行を結合し、一致しない場合はNULLで補う。"
+  },
+  {
+    "page": "p274",
+    "term": "BEGIN",
+    "category": "文 (TCL)",
+    "usage_example": "BEGIN TRANSACTION;",
+    "explanation": "トランザクションの開始を宣言する。"
+  },
+  {
+    "page": "p274",
+    "term": "COMMIT",
+    "category": "文 (TCL)",
+    "usage_example": "COMMIT;",
+    "explanation": "トランザクションの変更を確定する。"
+  },
+  {
+    "page": "p274",
+    "term": "ROLLBACK",
+    "category": "文 (TCL)",
+    "usage_example": "ROLLBACK;",
+    "explanation": "トランザクションの変更を取り消し、開始前の状態に戻す。"
+  },
+  {
+    "page": "p282",
+    "term": "SET TRANSACTION ISOLATION LEVEL",
+    "category": "文",
+    "usage_example": "SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;",
+    "explanation": "トランザクションの分離レベル（他のトランザクションからの影響度）を設定する。"
+  },
+  {
+    "page": "p285",
+    "term": "SELECT FOR UPDATE",
+    "category": "文",
+    "usage_example": "SELECT * FROM products WHERE id = 1 FOR UPDATE;",
+    "explanation": "行をロックし、他のトランザクションからの更新を防ぐ（悲観的ロック）。"
+  },
+  {
+    "page": "p286",
+    "term": "LOCK TABLE",
+    "category": "文",
+    "usage_example": "LOCK TABLE products IN EXCLUSIVE MODE;",
+    "explanation": "テーブル全体を明示的にロックする。"
+  },
+  {
+    "page": "p301",
+    "term": "GRANT",
+    "category": "文 (DCL)",
+    "usage_example": "GRANT SELECT, UPDATE ON users TO 'user1';",
+    "explanation": "ユーザーにデータベースオブジェクトへの操作権限を与える。"
+  },
+  {
+    "page": "p301",
+    "term": "REVOKE",
+    "category": "文 (DCL)",
+    "usage_example": "REVOKE UPDATE ON users FROM 'user1';",
+    "explanation": "ユーザーから操作権限を剥奪する。"
+  },
+  {
+    "page": "p302",
+    "term": "CREATE TABLE",
+    "category": "文 (DDL)",
+    "usage_example": "CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50) NOT NULL, email VARCHAR(100) UNIQUE);",
+    "explanation": "新しいテーブルを作成する。列の名前、データ型、制約を定義する。"
+  },
+  {
+    "page": "p304",
+    "term": "DEFAULT",
+    "category": "制約",
+    "usage_example": "CREATE TABLE users (id INT, registered_date DATE DEFAULT CURRENT_DATE);",
+    "explanation": "列のデフォルト値を指定する。INSERT時に値が指定されなかった場合に自動で入る。"
+  },
+  {
+    "page": "p305",
+    "term": "DROP TABLE",
+    "category": "文 (DDL)",
+    "usage_example": "DROP TABLE users;",
+    "explanation": "既存のテーブルをデータごと完全に削除する。"
+  },
+  {
+    "page": "p306",
+    "term": "ALTER TABLE (ADD)",
+    "category": "文 (DDL)",
+    "usage_example": "ALTER TABLE users ADD COLUMN age INT;",
+    "explanation": "既存のテーブルに新しい列を追加する。"
+  },
+  {
+    "page": "p306",
+    "term": "ALTER TABLE (DROP)",
+    "category": "文 (DDL)",
+    "usage_example": "ALTER TABLE users DROP COLUMN age;",
+    "explanation": "既存のテーブルから列を削除する。"
+  },
+  {
+    "page": "p309",
+    "term": "制約の指定",
+    "category": "その他",
+    "usage_example": "CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50) NOT NULL);",
+    "explanation": "テーブル作成時に列に制約（PRIMARY KEY, NOT NULLなど）を指定すること。"
+  },
+  {
+    "page": "p311",
+    "term": "NOT NULL",
+    "category": "制約",
+    "usage_example": "CREATE TABLE users (id INT, name VARCHAR(50) NOT NULL);",
+    "explanation": "列にNULL値が入ることを許可しない制約。"
+  },
+  {
+    "page": "p313",
+    "term": "PRIMARY KEY",
+    "category": "制約",
+    "usage_example": "CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50));",
+    "explanation": "テーブル内で各行を一意に識別するための主キー制約。NOT NULLとUNIQUEを兼ねる。"
+  },
+  {
+    "page": "p314",
+    "term": "UNIQUE",
+    "category": "制約",
+    "usage_example": "CREATE TABLE users (id INT, email VARCHAR(100) UNIQUE);",
+    "explanation": "列の値がテーブル内で重複しないことを保証する一意キー制約。"
+  },
+  {
+    "page": "p318",
+    "term": "REFERENCES",
+    "category": "制約",
+    "usage_example": "CREATE TABLE orders (id INT, user_id INT REFERENCES users(id));",
+    "explanation": "外部キー制約を指定する。他のテーブルの列を参照する。"
+  },
+  {
+    "page": "p318",
+    "term": "FOREIGN KEY",
+    "category": "制約",
+    "usage_example": "CREATE TABLE orders (id INT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(id));",
+    "explanation": "外部キー制約を指定する別の構文。複合キーの場合などに使用する。"
+  },
+  {
+    "page": "p324",
+    "term": "TRUNCATE TABLE",
+    "category": "文 (DDL)",
+    "usage_example": "TRUNCATE TABLE users;",
+    "explanation": "テーブルの全データを高速に削除する。DELETEと異なり、ロールバックできない場合が多い。"
+  },
+  {
+    "page": "p328",
+    "term": "CREATE INDEX",
+    "category": "文 (DDL)",
+    "usage_example": "CREATE INDEX idx_name ON users (name);",
+    "explanation": "テーブルの列にインデックスを作成し、検索速度を向上させる。"
+  },
+  {
+    "page": "p328",
+    "term": "DROP INDEX",
+    "category": "文 (DDL)",
+    "usage_example": "DROP INDEX idx_name;",
+    "explanation": "既存のインデックスを削除する。"
+  },
+  {
+    "page": "p335",
+    "term": "CREATE VIEW",
+    "category": "文 (DDL)",
+    "usage_example": "CREATE VIEW v_users AS SELECT id, name FROM users;",
+    "explanation": "頻繁に使うSELECT文の結果を仮想的なテーブル（ビュー）として定義する。"
+  },
+  {
+    "page": "p335",
+    "term": "DROP VIEW",
+    "category": "文 (DDL)",
+    "usage_example": "DROP VIEW v_users;",
+    "explanation": "既存のビューを削除する。"
+  },
+  {
+    "page": "p341",
+    "term": "CREATE SEQUENCE",
+    "category": "文 (DDL)",
+    "usage_example": "CREATE SEQUENCE user_id_seq;",
+    "explanation": "一連の連続した数値を生成するオブジェクト（シーケンス）を作成する。"
+  },
+  {
+    "page": "p341",
+    "term": "DROP SEQUENCE",
+    "category": "文 (DDL)",
+    "usage_example": "DROP SEQUENCE user_id_seq;",
+    "explanation": "既存のシーケンスを削除する。"
+  },
+  {
+    "page": "p384",
+    "term": "関数従属性",
+    "category": "その他",
+    "usage_example": "（理論的な概念）",
+    "explanation": "データベースの正規化で使われる概念。「ある列Aの値が決まれば、おのずと列Bの値も決まる」という関係。"
+  }
+]

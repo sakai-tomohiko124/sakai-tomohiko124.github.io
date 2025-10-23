@@ -1,0 +1,10 @@
+
+[
+  {
+    "page": "MISC-01",
+    "term": "API",
+    "category": "概念",
+    "usage_example": "REST API, Web API",
+    "explanation": "アプリケーションプログラミングインターフェースの略。ソフトウェアコンポーネントが互いに通信するためのインターフェースです。"
+  }
+]
