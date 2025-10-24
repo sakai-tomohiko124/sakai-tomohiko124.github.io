@@ -38,16 +38,16 @@
     {
       "iso_time": "2025-10-24T21:00:00",
       "time": "21:00",
-      "weather": "雨",
+      "weather": "コード650",
       "temp": "13",
-      "precip": 1
+      "precip": 0.5
     },
     {
       "iso_time": "2025-10-24T22:00:00",
       "time": "22:00",
-      "weather": "雨",
+      "weather": "コード650",
       "temp": "13",
-      "precip": 1
+      "precip": 0.5
     },
     {
       "iso_time": "2025-10-24T23:00:00",
