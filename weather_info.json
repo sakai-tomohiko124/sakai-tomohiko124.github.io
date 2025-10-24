@@ -29,32 +29,25 @@
   ],
   "hourly_forecast": [
     {
-      "iso_time": "2025-10-24T20:00:00",
-      "time": "20:00",
+      "iso_time": "2025-10-24T21:00:00",
+      "time": "21:00",
       "weather": "コード650",
       "temp": "12",
       "precip": 0.5
     },
     {
-      "iso_time": "2025-10-24T21:00:00",
-      "time": "21:00",
-      "weather": "コード650",
-      "temp": "13",
-      "precip": 0.5
-    },
-    {
       "iso_time": "2025-10-24T22:00:00",
       "time": "22:00",
-      "weather": "コード650",
-      "temp": "13",
-      "precip": 0.5
+      "weather": "雨",
+      "temp": "12",
+      "precip": 1
     },
     {
       "iso_time": "2025-10-24T23:00:00",
       "time": "23:00",
-      "weather": "くもり",
-      "temp": "14",
-      "precip": 0
+      "weather": "雨",
+      "temp": "13",
+      "precip": 1
     },
     {
       "iso_time": "2025-10-25T00:00:00",
@@ -528,6 +521,13 @@
     {
       "iso_time": "2025-10-27T19:00:00",
       "time": "19:00",
+      "weather": "晴れ",
+      "temp": "15",
+      "precip": 0
+    },
+    {
+      "iso_time": "2025-10-27T20:00:00",
+      "time": "20:00",
       "weather": "晴れ",
       "temp": "15",
       "precip": 0
