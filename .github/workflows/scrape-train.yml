@@ -38,6 +38,7 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add train_info.json
           if [[ -n $(git status --porcelain) ]]; then
+            git pull --rebase
             git commit -m "Update train_info.json"
             git push
           else
