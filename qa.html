@@ -101,17 +101,14 @@
             <h2>フィードバックをお聞かせください</h2>
             <form class="survey-form" id="surveyForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                 <div class="form-group">
-                    <label for="name">お名前</label>
+                    <label for="name">お名前（必須）</label>
                     <input type="text" id="name" name="name" required placeholder="お名前を入力してください">
                 </div>
 
                 <div class="form-group">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" id="email" name="email" required placeholder="メールアドレスを入力してください">
+                    <label for="email">メールアドレス（任意）</label>
+                    <input type="email" id="email" name="email" placeholder="example@example.com">
                 </div>
-
-                <div class="form-group">
-                    <label for="age">年齢</label>
                     <select id="age" name="age" required>
                         <option value="">選択してください</option>
                         <option value="under20">20歳未満</option>
