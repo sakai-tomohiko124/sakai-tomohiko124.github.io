@@ -25,6 +25,7 @@ jobs:
       - name: Make changes
         # ここで任意のファイル更新処理を記述できます
         run: |
+          mkdir -p logs
           echo "$(date) update" >> logs/auto_commit.log
 
       - name: Commit changes
