@@ -31,15 +31,15 @@
     {
       "iso_time": "2025-10-24T21:00:00",
       "time": "21:00",
-      "weather": "コード650",
+      "weather": "雨",
       "temp": "12",
-      "precip": 0.5
+      "precip": 1
     },
     {
       "iso_time": "2025-10-24T22:00:00",
       "time": "22:00",
       "weather": "雨",
-      "temp": "12",
+      "temp": "13",
       "precip": 1
     },
     {
