@@ -44,37 +44,55 @@ def main():
             raise ValueError("APIデータが空です。")
 
         # --- 1. 気象庁データから3日間予報を生成 ---
-        short_forecast = jma_data[0]
-        weekly_forecast = jma_data[1]
-        
+        # jma_data の構造は変わる可能性があるため、存在チェックをしつつ取得
+        short_forecast = jma_data[0] if len(jma_data) > 0 else {}
+        weekly_forecast = jma_data[1] if len(jma_data) > 1 else {}
+
         publishing_office = short_forecast.get('publishingOffice', '気象庁')
         report_datetime = short_forecast.get('reportDatetime', datetime.now().isoformat())
-        
-        weather_ts = short_forecast['timeSeries'][0]
-        pops_ts = short_forecast['timeSeries'][1]
-        temp_ts_short = short_forecast['timeSeries'][2]
-        
-        tokyo_region_weather = next(a for a in weather_ts['areas'] if a['area']['name'] == '東京地方')
-        tokyo_region_pops = next(a for a in pops_ts['areas'] if a['area']['name'] == '東京地方')
-        tokyo_city_temp_short = next(a for a in temp_ts_short['areas'] if a['area']['name'] == '東京')
-        
-        forecast_dates = [d.split('T')[0] for d in weather_ts['timeDefines']]
-        weathers = tokyo_region_weather['weathers']
-        short_temps = tokyo_city_temp_short['temps']
-        all_pops = tokyo_region_pops['pops']
+
+        time_series = short_forecast.get('timeSeries', [])
+        weather_ts = time_series[0] if len(time_series) > 0 else {}
+        pops_ts = time_series[1] if len(time_series) > 1 else {}
+        temp_ts_short = time_series[2] if len(time_series) > 2 else {}
+
+        # 指定地域のデータを安全に取り出す（見つからなければ None）
+        def find_area(ts, area_name):
+            if not ts:
+                return None
+            for a in ts.get('areas', []):
+                try:
+                    if a.get('area', {}).get('name') == area_name:
+                        return a
+                except Exception:
+                    continue
+            return None
+
+        tokyo_region_weather = find_area(weather_ts, '東京地方')
+        tokyo_region_pops = find_area(pops_ts, '東京地方')
+        tokyo_city_temp_short = find_area(temp_ts_short, '東京')
+
+        # timeDefines / weathers / temps などは欠損する可能性があるため安全に取得
+        forecast_dates = [d.split('T')[0] for d in weather_ts.get('timeDefines', [])]
+        weathers = tokyo_region_weather.get('weathers', []) if tokyo_region_weather else []
+        short_temps = tokyo_city_temp_short.get('temps', []) if tokyo_city_temp_short else []
+        all_pops = tokyo_region_pops.get('pops', []) if tokyo_region_pops else []
 
         daily_forecasts = []
         # 気象庁の降水確率データは時間帯が可変なため、日付と時間帯をキーにして整理
         pops_by_datetime = {}
-        for i, pop_val in enumerate(tokyo_region_pops.get('pops', [])):
-            if i < len(pops_ts['timeDefines']):
-                dt_str = pops_ts['timeDefines'][i]
+        # pops_ts の timeDefines とエントリ数がずれる場合があるため min を使う
+        pops_list = tokyo_region_pops.get('pops', []) if tokyo_region_pops else []
+        pops_time_def = pops_ts.get('timeDefines', []) if isinstance(pops_ts, dict) else []
+        for i, pop_val in enumerate(pops_list):
+            if i < len(pops_time_def):
+                dt_str = pops_time_def[i]
                 pops_by_datetime[dt_str] = pop_val
 
         for i in range(len(forecast_dates)):
             date = forecast_dates[i]
             temp_min, temp_max = "--", "--"
-            
+
             # 6時間ごとの降水確率を日付から逆引きして設定
             chance_of_rain = [
                 pops_by_datetime.get(f"{date}T00:00:00+09:00", '--'),
@@ -83,23 +101,44 @@ def main():
                 pops_by_datetime.get(f"{date}T18:00:00+09:00", '--')
             ]
 
+            # weathers 配列や temps 配列は短いことがあるので安全に取得
+            weather_text = weathers[i] if i < len(weathers) else '--'
+
             if i == 0:  # 今日
-                temp_max = short_temps[0]; temp_min = short_temps[1]
+                temp_max = short_temps[0] if len(short_temps) > 0 else '--'
+                temp_min = short_temps[1] if len(short_temps) > 1 else '--'
             elif i == 1:  # 明日
-                temp_min = short_temps[2]; temp_max = short_temps[3]
+                temp_min = short_temps[2] if len(short_temps) > 2 else '--'
+                temp_max = short_temps[3] if len(short_temps) > 3 else '--'
             elif i == 2:  # 明後日
-                weekly_temp_ts = weekly_forecast['timeSeries'][1]
-                tokyo_city_temp_weekly = next(a for a in weekly_temp_ts['areas'] if a['area']['name'] == '東京')
-                weekly_dates = [d.split('T')[0] for d in weekly_temp_ts['timeDefines']]
-                try:
-                    idx = weekly_dates.index(date)
-                    temp_min = tokyo_city_temp_weekly['tempsMin'][idx]
-                    temp_max = tokyo_city_temp_weekly['tempsMax'][idx]
-                except (ValueError, IndexError): pass
-            
+                # weekly_forecast の構造を安全に扱う
+                weekly_ts_list = weekly_forecast.get('timeSeries', [])
+                weekly_temp_ts = weekly_ts_list[1] if len(weekly_ts_list) > 1 else {}
+                tokyo_city_temp_weekly = None
+                if weekly_temp_ts:
+                    for a in weekly_temp_ts.get('areas', []):
+                        if a.get('area', {}).get('name') == '東京':
+                            tokyo_city_temp_weekly = a
+                            break
+                if tokyo_city_temp_weekly:
+                    weekly_dates = [d.split('T')[0] for d in weekly_temp_ts.get('timeDefines', [])]
+                    try:
+                        idx = weekly_dates.index(date)
+                        temps_min = tokyo_city_temp_weekly.get('tempsMin', [])
+                        temps_max = tokyo_city_temp_weekly.get('tempsMax', [])
+                        if idx < len(temps_min):
+                            temp_min = temps_min[idx]
+                        if idx < len(temps_max):
+                            temp_max = temps_max[idx]
+                    except (ValueError, IndexError):
+                        pass
+
             daily_forecasts.append({
-                "date": date, "weather": weathers[i], "temp_min": temp_min,
-                "temp_max": temp_max, "chance_of_rain": chance_of_rain
+                "date": date,
+                "weather": weather_text,
+                "temp_min": temp_min,
+                "temp_max": temp_max,
+                "chance_of_rain": chance_of_rain
             })
 
         # --- 2. ウェザーニュースデータから1時間ごと予報を生成 ---
