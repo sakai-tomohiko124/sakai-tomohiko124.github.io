@@ -33,3 +33,14 @@
 9件のトラブル情報をHTMLテーブルから取得しました。
 'train_info.json' の生成が完了しました。全 156 件の路線情報を書き出しました。
 2025-10-25 08:43:15,025 [INFO] 完了 (コード=0)
+2025-10-25 15:12:10,609 [INFO] 開始: scraper2.py と scrape_train.py を順次実行します
+2025-10-25 15:12:10,610 [INFO] 実行: /home/codespace/.python/current/bin/python /workspaces/sakai-tomohiko124.github.io/scraper2.py
+2025-10-25 15:12:12,885 [INFO] 終了コード: 0
+2025-10-25 15:12:12,885 [INFO] stdout:
+'weather_info.json' の生成が完了しました。
+2025-10-25 15:12:12,885 [INFO] 実行: /home/codespace/.python/current/bin/python /workspaces/sakai-tomohiko124.github.io/scrape_train.py
+2025-10-25 15:12:14,111 [INFO] 終了コード: 0
+2025-10-25 15:12:14,111 [INFO] stdout:
+4件のトラブル情報をHTMLテーブルから取得しました。
+'train_info.json' の生成が完了しました。全 156 件の路線情報を書き出しました。
+2025-10-25 15:12:14,111 [INFO] 完了 (コード=0)
