@@ -400,7 +400,7 @@ function updateSuggestions() {
 				if (hasInappropriate) return false;
 				// ユーザーの入力にマッチするキーワードがあるか
 				if (!userInput) return false; // 入力が空なら何も表示しない
-				return item.keywords.some(k => k.toLowerCase().includes(userInput));
+				return item.keywords.some(k => k.toLowerCase() === userInput.toLowerCase());
 			});
 			// 重複を避けて最大5件
 			const seen = new Set();
@@ -416,7 +416,7 @@ function updateSuggestions() {
 				const remaining = data.filter(item => {
 					const keyword = item.keywords[0];
 					const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
-					return !hasInappropriate && !seen.has(keyword) && (!userInput || item.keywords.some(k => k.toLowerCase().includes(userInput)));
+					return !hasInappropriate && !seen.has(keyword) && (!userInput || item.keywords.some(k => k.toLowerCase() === userInput.toLowerCase()));
 				});
 				const shuffled = remaining.sort(() => 0.5 - Math.random());
 				const additional = shuffled.slice(0, 3 - selected.length);
@@ -520,7 +520,7 @@ function fallbackToQA(userMsg, user) {
 		.then(data => {
 			let found = false;
 			for (let item of data) {
-				if (item.keywords.some(k => userMsg.includes(k))) {
+				if (item.keywords.some(k => userMsg.toLowerCase() === k.toLowerCase())) {
 					found = true;
 					// 複数答えがある場合、選択ボタンを表示
 					if (item.answers && item.answers.length > 1) {
