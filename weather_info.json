@@ -1,56 +1,37 @@
 {
   "publishingOffice": "気象庁",
-  "reportDatetime": "2025-10-26T17:00:00+09:00",
+  "reportDatetime": "2025-10-27T05:00:00+09:00",
   "forecasts": [
-    {
-      "date": "2025-10-26",
-      "weather": "雨　夜　くもり",
-      "temp_min": "22",
-      "temp_max": "15",
-      "chance_of_rain": [
-        "--",
-        "--",
-        "--",
-        "40"
-      ]
-    },
     {
       "date": "2025-10-27",
       "weather": "くもり　時々　晴れ",
-      "temp_min": "--",
-      "temp_max": "--",
+      "temp_min": "22",
+      "temp_max": "22",
       "chance_of_rain": [
+        "--",
         "10",
-        "0",
         "10",
         "10"
       ]
     },
     {
       "date": "2025-10-28",
-      "weather": "晴れ　時々　くもり",
-      "temp_min": "13",
+      "weather": "晴れ　夕方　から　くもり",
+      "temp_min": "14",
       "temp_max": "21",
       "chance_of_rain": [
-        "--",
-        "--",
-        "--",
-        "--"
+        "10",
+        "0",
+        "10",
+        "10"
       ]
     }
   ],
   "hourly_forecast": [
     {
-      "iso_time": "2025-10-26T19:00:00",
-      "time": "19:00",
-      "weather": "晴れ",
-      "temp": "15",
-      "precip": 0
-    },
-    {
       "iso_time": "2025-10-26T20:00:00",
       "time": "20:00",
-      "weather": "晴れ",
+      "weather": "くもり",
       "temp": "15",
       "precip": 0
     },
@@ -72,7 +53,7 @@
       "iso_time": "2025-10-26T23:00:00",
       "time": "23:00",
       "weather": "くもり",
-      "temp": "19",
+      "temp": "18",
       "precip": 0
     },
     {
@@ -542,6 +523,13 @@
       "time": "18:00",
       "weather": "晴れ",
       "temp": "12",
+      "precip": 0
+    },
+    {
+      "iso_time": "2025-10-29T19:00:00",
+      "time": "19:00",
+      "weather": "晴れ",
+      "temp": "11",
       "precip": 0
     }
   ]
