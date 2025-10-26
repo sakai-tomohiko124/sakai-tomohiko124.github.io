@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>小説詳細ページ</title>
+	<style>
+		body {
+			font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+			background: linear-gradient(135deg, #0f2027 0%, #2c5364 40%, #1a2980 70%, #00f2fe 100%);
+			color: #f2f8ff;
+			margin: 0;
+			min-height: 100vh;
+		}
+		.container {
+			max-width: 600px;
+			margin: 40px auto;
+			background: rgba(20,30,60,0.92);
+			padding: 32px 18px;
+			border-radius: 18px;
+			box-shadow: 0 0 32px #00f2fe44, 0 2px 24px #ae00ff22;
+			backdrop-filter: blur(2px);
+		}
+		h1 {
+			color: #00f2fe;
+			text-shadow: 0 0 8px #00f2fe99;
+			margin-top: 0;
+		}
+		.meta {
+			color: #ae00ff;
+			font-size: 1em;
+			margin-bottom: 18px;
+		}
+		.desc {
+			background: rgba(0,242,254,0.08);
+			border-left: 4px solid #00f2fe;
+			padding: 14px 18px;
+			border-radius: 8px;
+			color: #f2f8ff;
+			font-size: 1.08em;
+			box-shadow: 0 0 8px #00f2fe22;
+			margin-bottom: 24px;
+		}
+		.ext-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%);
+			color: #fff;
+			text-decoration: none;
+			padding: 12px 20px;
+			border-radius: 8px;
+			font-weight: bold;
+			font-size: 1.08em;
+			box-shadow: 0 0 12px #00f2fe44, 0 2px 8px #ae00ff22;
+			margin-top: 18px;
+			transition: background 0.2s, box-shadow 0.2s;
+		}
+		.ext-link:hover {
+			background: linear-gradient(90deg, #ae00ff 0%, #00f2fe 100%);
+			box-shadow: 0 0 24px #ae00ff66;
+		}
+		.ext-link svg {
+			vertical-align: middle;
+		}
+		@media (max-width: 700px) {
+			.container { max-width: 98vw; }
+		}
+		@media (max-width: 500px) {
+			.container { padding: 6vw 2vw; border-radius: 0; }
+			h1 { font-size: 1.2em; }
+		}
+	</style>
+</head>
+<body>
+        <nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
+        <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+        <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
+        <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
+        <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
+        <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+    </nav>
+	<div class="container">
+		<h1 style="font-size:2.2em;">小説リンク集</h1>
+		<div class="desc" style="font-size:1.3em;">
+			作品タイトル・説明・リンクをまとめています。<br>
+			下記の表から各作品やエピソードにアクセスできます。
+		</div>
+		<table style="width:100%;font-size:1.25em;margin-bottom:32px;border-collapse:separate;border-spacing:0 12px;">
+			<thead>
+				<tr style="background:rgba(0,242,254,0.18);color:#00f2fe;">
+					<th style="padding:10px 8px;text-align:left;">タイトル名</th>
+					<th style="padding:10px 8px;text-align:left;">説明</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/author/detail/31484585" target="_blank" style="color:#ae00ff;font-weight:bold;">自己紹介</a></td>
+					<td>作者プロフィール</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757" target="_blank" style="color:#00f2fe;font-weight:bold;">実はこれ実話なんですよ</a></td>
+					<td>実話を元にした物語</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/394882309" target="_blank" style="color:#00f2fe;font-weight:bold;">もしもこんなことが起きたらどうする？</a></td>
+					<td>もしもの世界を描く</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/52964906" target="_blank" style="color:#00f2fe;font-weight:bold;">AIが作成した物語</a></td>
+					<td>AIによる創作</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/573927442" target="_blank" style="color:#00f2fe;font-weight:bold;">不可思議物語</a></td>
+					<td>不思議な物語</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">＜伝説の話題＞</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10172624" target="_blank" style="color:#00f2fe;font-weight:bold;">ギネス世界記録？あだなの数</a></td>
+					<td>あだなの数がギネス級？</td>
+				</tr>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10260832" target="_blank" style="color:#00f2fe;font-weight:bold;">伝説のチャットアプリ</a></td>
+					<td>伝説のチャット体験</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">伝説の物語50話</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/9662890" target="_blank" style="color:#00f2fe;font-weight:bold;">あらすじ</a></td>
+					<td>物語の概要</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">やりすぎヒーロー伝説＆ドリームストーリー</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/9774791" target="_blank" style="color:#00f2fe;font-weight:bold;">自己紹介</a></td>
+					<td>ヒーロー伝説の自己紹介</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">やりすぎヒーロー伝説＆ドリームストーリー「SP」</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/9955398" target="_blank" style="color:#00f2fe;font-weight:bold;">自己紹介</a></td>
+					<td>スペシャル版の自己紹介</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">寝不足の5日間</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10044324" target="_blank" style="color:#00f2fe;font-weight:bold;">真夏の夜の罰</a></td>
+					<td>寝不足のエピソード</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">コイヌネランド</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10208789" target="_blank" style="color:#00f2fe;font-weight:bold;">１話</a></td>
+					<td>コイヌネランドの物語</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">人生鬼ハードモード</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10228929" target="_blank" style="color:#00f2fe;font-weight:bold;">１話</a></td>
+					<td>鬼ハードな人生の物語</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2 style="font-size:1.5em;color:#ae00ff;margin-top:32px;">噓つきは嘘治の始まり</h2>
+		<table style="width:100%;font-size:1.18em;margin-bottom:24px;border-collapse:separate;border-spacing:0 8px;">
+			<tbody>
+				<tr>
+					<td><a href="https://www.alphapolis.co.jp/novel/31484585/380882757/episode/10289104" target="_blank" style="color:#00f2fe;font-weight:bold;">１話</a></td>
+					<td>嘘治の始まりの物語</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

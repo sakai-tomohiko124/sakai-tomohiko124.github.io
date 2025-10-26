@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>関東 鉄道運行情報</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* --- 基本スタイルと背景 --- */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto Mono', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 40%, #1a2980 70%, #00f2fe 100%);
+            background-attachment: fixed;
+            color: #f2f8ff;
+            letter-spacing: 0.03em;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 80% 10%, #00f2fe55 0%, transparent 60%),
+                        radial-gradient(circle at 20% 90%, #ae00ff44 0%, transparent 60%),
+                        linear-gradient(120deg, #0f2027cc 0%, #2c5364cc 100%);
+            filter: blur(8px) brightness(1.1);
+            animation: bgmove 18s linear infinite alternate;
+        }
+        @keyframes bgmove {
+            0% { filter: blur(8px) brightness(1.1); }
+            100% { filter: blur(16px) brightness(1.2); }
+        }
+
+        /* --- ナビゲーション --- */
+        .nav {
+            background: rgba(20,30,60,0.8);
+            backdrop-filter: blur(2px);
+            color: #fff;
+            padding: 0.7em 0;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav a { color: #00e0ff; margin: 0 1em; text-decoration: underline; }
+
+        /* --- コンテナ --- */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(20,30,60,0.92);
+            padding: 24px 36px;
+            border-radius: 18px;
+            box-shadow: 0 0 32px #00f2fe44, 0 2px 24px #ae00ff22;
+            backdrop-filter: blur(2px);
+        }
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #00f2fe33;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        h1 { margin: 0; color: #f2f8ff; text-shadow: 0 0 8px #00f2fe99; }
+        .meta-info { font-size: 0.9em; color: #a0b0c0; text-align: right; }
+        
+        /* --- 運行情報スタイル --- */
+        #result-container { margin-top: 20px; }
+        .train-info {
+            border: 1px solid #ae00ff55;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(174,0,255,0.1);
+        }
+        .line-name { font-weight: 600; font-size: 1.2em; color: #f2f8ff; margin-bottom: 5px; }
+        .status { font-weight: bold; color: #ff8a80; }
+        .toggle-details-btn {
+            background: linear-gradient(90deg, #ae00ff 0%, #00f2fe 100%);
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-top: 10px;
+            color: #fff;
+            font-weight: bold;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 8px #ae00ff44;
+        }
+        .toggle-details-btn:hover {
+            background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%);
+            box-shadow: 0 0 16px #00f2fe66;
+        }
+        .details {
+            margin-top: 12px;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 4px;
+            color: #f2f8ff;
+            border-left: 3px solid #ae00ff;
+        }
+        
+        /* --- メッセージボックス --- */
+        .message-box { text-align: center; color: #a0b0c0; padding: 30px; border: 1px dashed #00f2fe55; border-radius: 8px; background-color: transparent; }
+        .message-box.success { color: #a7ffeb; border-color: #a7ffeb; }
+        .message-box.error { color: #ff8a80; border-color: #ff8a80; }
+
+        @media (max-width: 600px) {
+            .container { padding: 6vw 2vw; border-radius: 0; margin: 0; }
+            .nav a { margin: 0 0.5em; font-size: 0.9em; }
+            h1 { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+        <nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
+        <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+        <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
+        <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
+        <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
+        <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1>関東 鉄道運行情報</h1>
+            <div class="meta-info">
+                <div id="last-updated">データ取得中...</div>
+                <div id="countdown"></div>
+            </div>
+        </div>
+        <div id="result-container">
+            <div class="message-box">
+                <p>情報を読み込んでいます...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const UPDATE_INTERVAL_MS = 60 * 1000;
+        let countdownSeconds = UPDATE_INTERVAL_MS / 1000;
+
+        const resultContainer = document.getElementById('result-container');
+        const lastUpdatedElem = document.getElementById('last-updated');
+        const countdownElem = document.getElementById('countdown');
+        
+        async function fetchAndUpdate() {
+            try {
+                const response = await fetch('train_info.json?t=' + new Date().getTime());
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        resultContainer.innerHTML = `<div class="message-box error"><p><strong>データファイルが見つかりません。</strong></p><p>現在、運行情報データを準備中です。しばらくしてからページを再読み込みしてください。</p><p><small>(GitHub Actionsの初回実行には数分かかることがあります)</small></p></div>`;
+                        lastUpdatedElem.textContent = 'データ生成待ち';
+                    } else {
+                        throw new Error(`サーバーエラーが発生しました (HTTP ${response.status})`);
+                    }
+                    return; 
+                }
+                
+                // ★★★ 修正点 ★★★
+                // JSONデータをオブジェクトとして読み込み、中のキーにアクセスする
+                const data = await response.json();
+                
+                if (data.lastUpdated) {
+                    lastUpdatedElem.textContent = `データ生成時刻: ${new Date(data.lastUpdated).toLocaleString('ja-JP')}`;
+                }
+
+                resultContainer.innerHTML = '';
+                
+                const lines = data.lines || []; // `data.lines` を見るように修正
+
+                if (lines.length > 0) {
+                    const troubledLines = lines.filter(item => item.status !== '平常運転' && !item.status.includes('ほぼ平常'));
+
+                    if (troubledLines.length > 0) {
+                        troubledLines.forEach(item => {
+                            const infoDiv = document.createElement('div');
+                            infoDiv.className = 'train-info';
+                            
+                            infoDiv.innerHTML = `
+                                <div class="line-name">${item.name || '情報なし'}</div>
+                                <div class="status">状況: ${item.status || '情報なし'}</div>
+                                <button class="toggle-details-btn">詳細表示</button>
+                                <div class="details" style="display: none;">${item.detail || '情報なし'}</div>
+                            `;
+
+                            resultContainer.appendChild(infoDiv);
+                        });
+                    } else {
+                        resultContainer.innerHTML = `
+                            <div class="message-box success">
+                                <p><strong>すべて正常運転です</strong></p>
+                            </div>
+                        `;
+                    }
+                } else {
+                    resultContainer.innerHTML = `<div class="message-box"><p>路線の情報が見つかりませんでした。</p></div>`;
+                }
+
+            } catch (error) {
+                resultContainer.innerHTML = `<div class="message-box error"><p><strong>情報の取得に失敗しました。</strong></p><p>ネットワーク接続を確認するか、しばらくしてから再試行してください。</p><p><small>エラー: ${error.message}</small></p></div>`;
+            } finally {
+                countdownSeconds = UPDATE_INTERVAL_MS / 1000;
+            }
+        }
+
+        function updateTimer() {
+            countdownElem.textContent = `次の表示更新まで ${countdownSeconds} 秒`;
+            countdownSeconds--;
+        }
+
+        resultContainer.addEventListener('click', function(event) {
+            if (event.target.classList.contains('toggle-details-btn')) {
+                const btn = event.target;
+                const detailsDiv = btn.nextElementSibling;
+
+                if (detailsDiv && detailsDiv.classList.contains('details')) {
+                    const isHidden = detailsDiv.style.display === 'none';
+                    detailsDiv.style.display = isHidden ? 'block' : 'none';
+                    btn.textContent = isHidden ? '詳細を隠す' : '詳細表示';
+                }
+            }
+        });
+
+        fetchAndUpdate(); 
+        setInterval(fetchAndUpdate, UPDATE_INTERVAL_MS);
+        
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+</html>

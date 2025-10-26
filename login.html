@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン</title>
+    <link rel="stylesheet" href="static/style2.css">
+    <style>
+        .toggle-pw {
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--neon-blue);
+            margin-left: 4px;
+            text-shadow: 0 0 4px rgba(0, 224, 255, 0.5);
+        }
+    </style>
+<body>
+    <div class="background-effect"></div>
+
+    <header class="futuristic-header">
+        <div class="header-content">
+            <h1><span class="neon-text">ログイン</span></h1>
+            <p class="tagline">アカウントでログインまたは新規登録してください</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="control-panel glassm-effect">
+            <div id="login-form">
+                <h2 style="color: var(--neon-blue); text-align: center;">ログイン</h2>
+                <div class="control-group">
+                    <label for="login-username" class="control-label">ユーザ名</label>
+                    <input type="text" id="login-username" class="futuristic-input" placeholder="ユーザ名を入力">
+                </div>
+                <div class="control-group">
+                    <label for="login-password" class="control-label">パスワード</label>
+                    <input type="password" id="login-password" class="futuristic-input" placeholder="パスワードを入力">
+                    <span class="toggle-pw" onclick="togglePw('login-password', this)">表示</span>
+                </div>
+                <button onclick="login()" style="width: 100%; padding: 1em; background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%); color: #fff; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer;">ログイン</button>
+                <p style="text-align: center; margin-top: 1em;"><a href="#" onclick="showRegister()" style="color: var(--neon-blue);">新規登録はこちら</a></p>
+            </div>
+
+            <div id="register-form" style="display: none;">
+                <h2 style="color: var(--neon-blue); text-align: center;">新規登録</h2>
+                <div class="control-group">
+                    <label for="reg-username" class="control-label">ユーザ名</label>
+                    <input type="text" id="reg-username" class="futuristic-input" placeholder="ユーザ名（英数字と_のみ）">
+                </div>
+                <div class="control-group">
+                    <label for="reg-password" class="control-label">パスワード</label>
+                    <input type="password" id="reg-password" class="futuristic-input" placeholder="パスワード（2文字以上）">
+                    <span class="toggle-pw" onclick="togglePw('reg-password', this)">表示</span>
+                </div>
+                <div class="control-group">
+                    <label for="reg-email" class="control-label">メールアドレス（任意）</label>
+                    <input type="email" id="reg-email" class="futuristic-input" placeholder="メールアドレス">
+                </div>
+                <button onclick="register()" style="width: 100%; padding: 1em; background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%); color: #fff; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer;">登録</button>
+                <p style="text-align: center; margin-top: 1em;"><a href="#" onclick="showLogin()" style="color: var(--neon-blue);">ログインはこちら</a></p>
+            </div>
+
+            <div id="message" style="text-align: center; margin-top: 1em; color: #ff4d4d;"></div>
+        </section>
+    </main>
+
+    <footer class="futuristic-footer">
+        <p>&copy; プログラム言語集</p>
+        <p class="footer-note">ログインして機能を活用してください</p>
+    </footer>
+
+    <script>
+        function togglePw(id, el) {
+            const input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text"; el.textContent = "非表示";
+            } else {
+                input.type = "password"; el.textContent = "表示";
+            }
+        }
+
+        function showRegister() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+            document.getElementById('message').textContent = '';
+        }
+
+        function showLogin() {
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('message').textContent = '';
+        }
+
+        function register() {
+            const username = document.getElementById('reg-username').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const email = document.getElementById('reg-email').value.trim();
+
+            if (!username || !password) {
+                document.getElementById('message').textContent = 'ユーザ名とパスワードは必須です';
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                document.getElementById('message').textContent = 'ユーザ名は英数字と_のみ使用可能です';
+                return;
+            }
+
+            if (password.length < 2) {
+                document.getElementById('message').textContent = 'パスワードは2文字以上で入力してください';
+                return;
+            }
+
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('message').textContent = 'メールアドレスの形式が正しくありません';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('loginUsers') || '{}');
+            if (users[username]) {
+                document.getElementById('message').textContent = 'このユーザ名は既に登録されています';
+                return;
+            }
+
+            users[username] = { password, email };
+            localStorage.setItem('loginUsers', JSON.stringify(users));
+            document.getElementById('message').textContent = '登録完了！ログインしてください';
+            showLogin();
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            if (!username || !password) {
+                document.getElementById('message').textContent = 'ユーザ名とパスワードを入力してください';
+                return;
+            }
+
+            // 管理者チェック
+            if (username === 'ともひこです' && password === 'skytomo124') {
+                localStorage.setItem('currentUser', username);
+                localStorage.setItem('isAdmin', 'true');
+                window.location.href = 'loading.html';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('loginUsers') || '{}');
+            if (!users[username] || users[username].password !== password) {
+                document.getElementById('message').textContent = 'ユーザ名またはパスワードが違います';
+                return;
+            }
+
+            localStorage.setItem('currentUser', username);
+            localStorage.setItem('isAdmin', 'false');
+            window.location.href = 'loading.html';
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem('currentUser')) {
+                window.location.href = 'loading.html';
+            }
+        };
+    </script>
+</body>
+</html>

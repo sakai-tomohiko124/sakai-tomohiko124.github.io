@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>チャット</title>
+		<style>
+			html, body {
+				height: 100%;
+				min-height: 100vh;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: 'Roboto Mono', 'Noto Sans JP', sans-serif;
+				background: linear-gradient(135deg, #0f2027 0%, #2c5364 40%, #1a2980 70%, #00f2fe 100%);
+				background-attachment: fixed;
+				min-height: 100vh;
+				color: #f2f8ff;
+				letter-spacing: 0.03em;
+				position: relative;
+				overflow-x: hidden;
+			}
+			body::before {
+				content: '';
+				position: fixed;
+				top: 0; left: 0; width: 100vw; height: 100vh;
+				z-index: -1;
+				background: radial-gradient(circle at 80% 10%, #00f2fe55 0%, transparent 60%),
+							radial-gradient(circle at 20% 90%, #ae00ff44 0%, transparent 60%),
+							linear-gradient(120deg, #0f2027cc 0%, #2c5364cc 100%);
+				filter: blur(8px) brightness(1.1);
+				animation: bgmove 18s linear infinite alternate;
+			}
+			@keyframes bgmove {
+				0% { filter: blur(8px) brightness(1.1); }
+				100% { filter: blur(16px) brightness(1.2); }
+			}
+			.container {
+				max-width: 700px;
+				margin: 40px auto;
+				background: rgba(20,30,60,0.92);
+				padding: 36px 18px;
+				border-radius: 18px;
+				box-shadow: 0 0 32px #00f2fe44, 0 2px 24px #ae00ff22;
+				backdrop-filter: blur(2px);
+			}
+			.hidden { display: none; }
+			.chat-box {
+				border: 1.5px solid #00f2fe88;
+				height: 340px;
+				overflow-y: auto;
+				margin-bottom: 16px;
+				padding: 14px;
+				background: rgba(10,20,40,0.85);
+				font-size: 1.12em;
+				border-radius: 8px;
+				box-shadow: 0 0 12px #00f2fe22;
+			}
+			.msg { margin: 4px 0; }
+			.msg.admin { color: #00f2fe; text-shadow: 0 0 6px #00f2fe99; }
+			.msg.user { color: #fff; text-shadow: 0 0 4px #ae00ff33; }
+			.input-row { display: flex; gap: 8px; }
+			.input-row input[type="text"] { flex: 1; }
+			.toggle-pw { cursor: pointer; font-size: 13px; color: #00f2fe; margin-left: 4px; text-shadow: 0 0 4px #00f2fe99; }
+			.user-list { margin: 8px 0; }
+			input, button, textarea, select {
+				font-family: inherit;
+				border-radius: 6px;
+				border: 1px solid #00f2fe55;
+				background: #181f2b;
+				color: #f2f8ff;
+				padding: 8px 10px;
+				margin-bottom: 4px;
+				outline: none;
+				box-shadow: 0 0 6px #00f2fe22;
+				transition: border 0.2s, box-shadow 0.2s;
+			}
+			input:focus, textarea:focus, select:focus {
+				border: 1.5px solid #00f2fe;
+				box-shadow: 0 0 12px #00f2fe55;
+			}
+			button {
+				background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%);
+				color: #fff;
+				border: none;
+				font-weight: bold;
+				cursor: pointer;
+				box-shadow: 0 0 8px #00f2fe44;
+				transition: background 0.2s, box-shadow 0.2s;
+			}
+			button:hover {
+				background: linear-gradient(90deg, #ae00ff 0%, #00f2fe 100%);
+				box-shadow: 0 0 16px #ae00ff66;
+			}
+			/* レスポンシブ対応 */
+			@media (max-width: 900px) {
+				.container { max-width: 98vw; }
+			}
+			@media (max-width: 600px) {
+				.container { max-width: 100vw; margin: 0; padding: 6vw 2vw; border-radius: 0; }
+				.chat-box { height: 38vw; min-height: 120px; font-size: 0.98em; }
+				h2 { font-size: 1.2em; }
+				input, button, textarea, select { font-size: 1em; }
+				.input-row { flex-direction: column; gap: 6px; }
+				.input-row input[type="text"] { width: 100%; }
+				.toggle-pw { font-size: 11px; }
+			}
+			@media (max-width: 400px) {
+				.container { padding: 2vw 1vw; }
+				.chat-box { font-size: 0.92em; }
+			}
+		</style>
+	</head>
+	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
+		<a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+		<a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
+		<a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
+		<a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
+		<a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+		<a href="mail.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">メール</a>
+	</nav>
+<div class="container">
+	<!-- 新規登録画面 -->
+	<div id="register-area">
+		<h2>新規登録</h2>
+		<input id="reg-username" type="text" placeholder="ユーザ名"><br>
+		<input id="reg-password" type="password" placeholder="パスワード">
+		<span class="toggle-pw" onclick="togglePw('reg-password', this)">表示</span><br>
+		<button onclick="registerUser()">登録</button>
+		<p>既に登録済み？ <a href="#" onclick="showLogin()">ログイン</a></p>
+		<div id="reg-msg" style="color:red;"></div>
+	</div>
+
+	<!-- ログイン画面 -->
+	<div id="login-area" class="hidden">
+		<h2>ログイン</h2>
+		<input id="login-username" type="text" placeholder="ユーザ名"><br>
+		<input id="login-password" type="password" placeholder="パスワード">
+		<span class="toggle-pw" onclick="togglePw('login-password', this)">表示</span><br>
+		<button onclick="loginUser()">ログイン</button>
+		<p>未登録？ <a href="#" onclick="showRegister()">新規登録</a></p>
+		<div id="login-msg" style="color:red;"></div>
+	</div>
+
+	<!-- チャット画面（利用者用） -->
+	<div id="chat-area" class="hidden">
+		<h2>チャット</h2>
+		<div class="chat-box" id="chat-box"></div>
+		<div id="answer-options" style="margin:8px 0;"></div>
+		<div class="input-row">
+			<textarea id="chat-input" placeholder="メッセージを入力" rows="1" style="resize: none; overflow: hidden;" onkeydown="handleKeyDown(event)" oninput="autoResize(this); updateSuggestions();"></textarea>
+			<button onclick="sendMessage()">送信</button>
+		</div>
+		<div id="suggestions" style="margin:8px 0; display:flex; gap:8px; flex-wrap:wrap;">
+			<!-- 提案質問ボタン -->
+		</div>
+		<div style="margin:12px 0;">
+			<label>自分のメモ：</label><br>
+			<textarea id="user-memo" rows="2" style="width:100%;"></textarea>
+			<button onclick="saveUserMemo()">メモ保存</button>
+			<span id="memo-msg" style="color:green;"></span>
+		</div>
+		<div style="margin:28px 0 0 0; text-align:center;">
+			<button onclick="window.open('https://tmhk-chat.ddns.net/', '_blank')" style="background:linear-gradient(90deg,#ff00cc 0%,#00f2fe 100%);color:#fff;font-size:1.25em;font-weight:bold;padding:18px 38px;border-radius:14px;border:none;box-shadow:0 0 18px #00f2fe88,0 2px 12px #ae00ff55;letter-spacing:2px;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;">
+				そういう時はAREだ
+			</button>
+		</div>
+		<button onclick="logout()">ログアウト</button>
+	</div>
+
+	<!-- 管理者画面 -->
+	<div id="admin-area" class="hidden">
+		<h2>管理者チャット</h2>
+		<div>
+			<label>ユーザー選択：</label>
+			<select id="admin-user-list" onchange="showAdminChat();showAdminMemo();"></select>
+		</div>
+		<div class="chat-box" id="admin-chat-box"></div>
+		<div class="input-row">
+			<input id="admin-chat-input" type="text" placeholder="返信メッセージ">
+			<button onclick="sendAdminMessage()">返信</button>
+		</div>
+		<div style="margin:16px 0;">
+			<h3>ユーザー一覧</h3>
+			<ul id="admin-user-list-view" style="padding-left:1.2em;"></ul>
+			<div style="margin:10px 0 0 0;">
+				<input id="admin-add-username" type="text" placeholder="新規ユーザー名" style="width:40%;">
+				<input id="admin-add-password" type="password" placeholder="パスワード" style="width:40%;">
+				<button onclick="adminAddUser()">追加</button>
+			</div>
+			<div style="margin:8px 0;">
+				<button onclick="adminDeleteUser()" style="background:#ff4d4d; color:#fff; border:none; padding:6px 16px; border-radius:4px;">選択ユーザー削除</button>
+				<span id="admin-user-msg" style="color:#d00; margin-left:8px;"></span>
+			</div>
+			<h3>選択ユーザーのメモ</h3>
+			<div id="admin-user-memo" style="background:#f8f8f8; border:1px solid #ccc; min-height:2em; padding:8px; border-radius:4px;"></div>
+		</div>
+				<div style="margin:28px 0 0 0; text-align:center;">
+			<button onclick="window.open('https://tmhk-chat.ddns.net/', '_blank')" style="background:linear-gradient(90deg,#ff00cc 0%,#00f2fe 100%);color:#fff;font-size:1.25em;font-weight:bold;padding:18px 38px;border-radius:14px;border:none;box-shadow:0 0 18px #00f2fe88,0 2px 12px #ae00ff55;letter-spacing:2px;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;">
+				そういう時はAREだ
+			</button>
+		</div>
+		<button onclick="logout()">ログアウト</button>
+	</div>
+</div>
+
+<script>
+// 管理者: ユーザー追加
+function adminAddUser() {
+	const u = document.getElementById('admin-add-username').value.trim();
+	const p = document.getElementById('admin-add-password').value;
+	const msg = document.getElementById('admin-user-msg');
+	if (!u || !p) { msg.textContent = 'ユーザー名とパスワードを入力'; return; }
+	if (u === ADMIN_NAME) { msg.textContent = '管理者名は追加不可'; return; }
+	let users = JSON.parse(localStorage.getItem('users')||'{}');
+	if (users[u]) { msg.textContent = '既に存在します'; return; }
+	users[u] = { password: p };
+	localStorage.setItem('users', JSON.stringify(users));
+	msg.textContent = '追加しました';
+	document.getElementById('admin-add-username').value = '';
+	document.getElementById('admin-add-password').value = '';
+	loadAdminUserList();
+	setTimeout(()=>{msg.textContent='';},1200);
+}
+
+// 管理者: ユーザー削除
+function adminDeleteUser() {
+	const select = document.getElementById('admin-user-list');
+	const user = select.value;
+	const msg = document.getElementById('admin-user-msg');
+	if (!user) { msg.textContent = 'ユーザーを選択してください'; return; }
+	if (user === ADMIN_NAME) { msg.textContent = '管理者は削除できません'; return; }
+	let users = JSON.parse(localStorage.getItem('users')||'{}');
+	if (!users[user]) { msg.textContent = 'ユーザーが存在しません'; return; }
+	if (!confirm(user + ' を削除しますか？')) return;
+	delete users[user];
+	localStorage.setItem('users', JSON.stringify(users));
+	// 関連データも削除
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	delete chats[user];
+	localStorage.setItem('chats', JSON.stringify(chats));
+	let memos = JSON.parse(localStorage.getItem('userMemos')||'{}');
+	delete memos[user];
+	localStorage.setItem('userMemos', JSON.stringify(memos));
+	msg.textContent = '削除しました';
+	loadAdminUserList();
+	setTimeout(()=>{msg.textContent='';},1200);
+}
+// ユーザー情報・チャット履歴・メモはlocalStorageで簡易管理
+const ADMIN_NAME = "管理者";
+const ADMIN_PASS = "skytomo124";
+
+function togglePw(id, el) {
+	const input = document.getElementById(id);
+	if (input.type === "password") {
+		input.type = "text"; el.textContent = "非表示";
+	} else {
+		input.type = "password"; el.textContent = "表示";
+	}
+}
+
+function showRegister() {
+	document.getElementById('register-area').classList.remove('hidden');
+	document.getElementById('login-area').classList.add('hidden');
+}
+function showLogin() {
+	document.getElementById('register-area').classList.add('hidden');
+	document.getElementById('login-area').classList.remove('hidden');
+}
+
+function registerUser() {
+	const u = document.getElementById('reg-username').value.trim();
+	const p = document.getElementById('reg-password').value;
+	if (!u || !p) {
+		document.getElementById('reg-msg').textContent = 'ユーザ名とパスワードを入力してください'; return;
+	}
+	if (u === ADMIN_NAME) {
+		document.getElementById('reg-msg').textContent = 'このユーザ名は使用できません'; return;
+	}
+	let users = JSON.parse(localStorage.getItem('users')||'{}');
+	if (users[u]) {
+		document.getElementById('reg-msg').textContent = '既に登録されています'; return;
+	}
+	users[u] = { password: p };
+	localStorage.setItem('users', JSON.stringify(users));
+	document.getElementById('reg-msg').textContent = '登録完了！ログインしてください';
+}
+
+function loginUser() {
+	const u = document.getElementById('login-username').value.trim();
+	const p = document.getElementById('login-password').value;
+	if (!u || !p) {
+		document.getElementById('login-msg').textContent = 'ユーザ名とパスワードを入力してください'; return;
+	}
+	if (u === ADMIN_NAME && p === ADMIN_PASS) {
+		// 管理者ログイン
+		document.getElementById('login-msg').textContent = '';
+		showAdmin();
+		return;
+	}
+	let users = JSON.parse(localStorage.getItem('users')||'{}');
+	if (!users[u] || users[u].password !== p) {
+		document.getElementById('login-msg').textContent = 'ユーザ名またはパスワードが違います'; return;
+	}
+	document.getElementById('login-msg').textContent = '';
+	showChat(u);
+}
+
+function showChat(username) {
+	localStorage.setItem('currentUser', username);
+	document.getElementById('login-area').classList.add('hidden');
+	document.getElementById('register-area').classList.add('hidden');
+	document.getElementById('chat-area').classList.remove('hidden');
+	loadChat();
+	loadUserMemo();
+}
+// 利用者メモ保存・読込
+function saveUserMemo() {
+	const user = localStorage.getItem('currentUser');
+	const memo = document.getElementById('user-memo').value;
+	let memos = JSON.parse(localStorage.getItem('userMemos')||'{}');
+	memos[user] = memo;
+	localStorage.setItem('userMemos', JSON.stringify(memos));
+	document.getElementById('memo-msg').textContent = '保存しました';
+	setTimeout(()=>{document.getElementById('memo-msg').textContent='';},1200);
+}
+function loadUserMemo() {
+	const user = localStorage.getItem('currentUser');
+	let memos = JSON.parse(localStorage.getItem('userMemos')||'{}');
+	document.getElementById('user-memo').value = memos[user]||'';
+}
+
+function showAdmin() {
+	document.getElementById('login-area').classList.add('hidden');
+	document.getElementById('register-area').classList.add('hidden');
+	document.getElementById('admin-area').classList.remove('hidden');
+	loadAdminUserList();
+}
+
+function logout() {
+	localStorage.removeItem('currentUser');
+	document.getElementById('chat-area').classList.add('hidden');
+	document.getElementById('admin-area').classList.add('hidden');
+	showLogin();
+}
+
+function sendMessage() {
+	const msg = document.getElementById('chat-input').value.trim();
+	if (!msg) return;
+	const user = localStorage.getItem('currentUser');
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	if (!chats[user]) chats[user] = [];
+	chats[user].push({ from: user, text: msg, time: new Date().toLocaleString() });
+	localStorage.setItem('chats', JSON.stringify(chats));
+	document.getElementById('chat-input').value = '';
+	document.getElementById('chat-input').style.height = 'auto'; // リセット
+	document.getElementById('answer-options').innerHTML = '';
+	loadChat();
+	autoReply(msg);
+}
+
+function sendSuggestion(msg) {
+	document.getElementById('chat-input').value = msg;
+	sendMessage();
+}
+
+function handleKeyDown(event) {
+	if (event.key === 'Enter' && !event.shiftKey) {
+		event.preventDefault();
+		sendMessage();
+	}
+}
+
+function autoResize(textarea) {
+	textarea.style.height = 'auto';
+	textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+function loadChat() {
+	const user = localStorage.getItem('currentUser');
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	let html = '';
+	(chats[user]||[]).forEach(m => {
+		html += `<div class="msg ${m.from===user?'user':'admin'}"><b>${m.from}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span></div>`;
+	});
+	document.getElementById('chat-box').innerHTML = html;
+	document.getElementById('chat-box').scrollTop = 9999;
+}
+
+function updateSuggestions() {
+	const userInput = document.getElementById('chat-input').value.trim().toLowerCase();
+	const inappropriateKeywords = ["馬鹿", "バカ", "アホ", "死ね", "殺す", "クソ", "くたばれ", "使えない", "役立たず", "最低", "ゴミ", "糞", "畜生", "テメエ", "お前", "ファック", "shit", "fuck", "damn", "bitch", "asshole", "bastard", "crap", "dumb", "idiot", "stupid"];
+	fetch('/static/QA.json')
+		.then(res => res.json())
+		.then(data => {
+			let candidates = data.filter(item => {
+				// 不適切キーワードを含むアイテムを除外
+				const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
+				if (hasInappropriate) return false;
+				// ユーザーの入力にマッチするキーワードがあるか
+				if (!userInput) return false; // 入力が空なら何も表示しない
+				return item.keywords.some(k => k.toLowerCase().includes(userInput));
+			});
+			// 重複を避けて最大5件
+			const seen = new Set();
+			const uniqueCandidates = candidates.filter(item => {
+				const keyword = item.keywords[0];
+				if (seen.has(keyword)) return false;
+				seen.add(keyword);
+				return true;
+			});
+			const selected = uniqueCandidates.slice(0, 5);
+			// 最低3件を目指す: マッチが少ない場合、ランダムで補充（不適切除外）
+			if (selected.length < 3) {
+				const remaining = data.filter(item => {
+					const keyword = item.keywords[0];
+					const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
+					return !hasInappropriate && !seen.has(keyword) && (!userInput || item.keywords.some(k => k.toLowerCase().includes(userInput)));
+				});
+				const shuffled = remaining.sort(() => 0.5 - Math.random());
+				const additional = shuffled.slice(0, 3 - selected.length);
+				selected.push(...additional);
+			}
+			const suggestions = selected.map(item => item.keywords[0]);
+			document.getElementById('suggestions').innerHTML = suggestions.map(s => `<button onclick="sendSuggestion('${s}')" style="background:#00f2fe; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer;">${s}</button>`).join('');
+		})
+		.catch(err => console.error('QA.json load error:', err));
+}
+
+function loadAdminUserList() {
+	let users = JSON.parse(localStorage.getItem('users')||'{}');
+	let select = document.getElementById('admin-user-list');
+	select.innerHTML = '';
+	Object.keys(users).forEach(u => {
+		let opt = document.createElement('option');
+		opt.value = u; opt.textContent = u;
+		select.appendChild(opt);
+	});
+	// ユーザー一覧表示
+	let ul = document.getElementById('admin-user-list-view');
+	ul.innerHTML = '';
+	Object.keys(users).forEach(u => {
+		let li = document.createElement('li');
+		li.textContent = u;
+		ul.appendChild(li);
+	});
+	showAdminChat();
+	showAdminMemo();
+}
+// 管理者が選択ユーザーのメモを表示
+function showAdminMemo() {
+	let user = document.getElementById('admin-user-list').value;
+	let memos = JSON.parse(localStorage.getItem('userMemos')||'{}');
+	document.getElementById('admin-user-memo').textContent = memos[user]||'';
+}
+
+function showAdminChat() {
+	let user = document.getElementById('admin-user-list').value;
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	let html = '';
+	(chats[user]||[]).forEach(m => {
+		html += `<div class="msg ${m.from===ADMIN_NAME?'admin':'user'}"><b>${m.from}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span></div>`;
+	});
+	document.getElementById('admin-chat-box').innerHTML = html;
+	document.getElementById('admin-chat-box').scrollTop = 9999;
+}
+
+function sendAdminMessage() {
+	let user = document.getElementById('admin-user-list').value;
+	let msg = document.getElementById('admin-chat-input').value.trim();
+	if (!msg) return;
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	if (!chats[user]) chats[user] = [];
+	chats[user].push({ from: ADMIN_NAME, text: msg, time: new Date().toLocaleString() });
+	localStorage.setItem('chats', JSON.stringify(chats));
+	document.getElementById('admin-chat-input').value = '';
+	showAdminChat();
+}
+
+// 初期表示
+window.onload = function() {
+	showLogin();
+	// ログイン済みなら自動復帰
+	const user = localStorage.getItem('currentUser');
+	if (user) showChat(user);
+};
+
+function autoReply(userMsg) {
+	const user = localStorage.getItem('currentUser');
+	// 基本はGrok APIを呼ぶ
+	fetch('/grok', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ prompt: userMsg })
+	})
+	.then(res => res.json())
+	.then(data => {
+		if (data.answer) {
+			let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+			if (!chats[user]) chats[user] = [];
+			chats[user].push({ from: ADMIN_NAME, text: data.answer, time: new Date().toLocaleString() });
+			localStorage.setItem('chats', JSON.stringify(chats));
+			loadChat();
+		} else {
+			// Grokが使えない場合、QA.jsonで対応
+			fallbackToQA(userMsg, user);
+		}
+	})
+	.catch(err => {
+		console.error('Grok API error:', err);
+		// Grokが使えない場合、QA.jsonで対応
+		fallbackToQA(userMsg, user);
+	});
+}
+
+function fallbackToQA(userMsg, user) {
+	fetch('/static/QA.json')
+		.then(res => res.json())
+		.then(data => {
+			let found = false;
+			for (let item of data) {
+				if (item.keywords.some(k => userMsg.includes(k))) {
+					found = true;
+					// 複数答えがある場合、選択ボタンを表示
+					if (item.answers && item.answers.length > 1) {
+						document.getElementById('answer-options').innerHTML = item.answers.map(a => `<button onclick="selectAnswer('${a.replace(/'/g, "\\'")}')" style="background:#00f2fe; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; margin:2px;">${a}</button>`).join('');
+					} else {
+						// 1つだけの場合、直接追加
+						let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+						if (!chats[user]) chats[user] = [];
+						chats[user].push({ from: ADMIN_NAME, text: item.answers ? item.answers[0] : item.answer, time: new Date().toLocaleString() });
+						localStorage.setItem('chats', JSON.stringify(chats));
+						loadChat();
+					}
+					break;
+				}
+			}
+			if (!found) {
+				// QAにもマッチしなければ、デフォルトメッセージ
+				let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+				if (!chats[user]) chats[user] = [];
+				chats[user].push({ from: ADMIN_NAME, text: 'すいません、よくわかりません', time: new Date().toLocaleString() });
+				localStorage.setItem('chats', JSON.stringify(chats));
+				loadChat();
+			}
+		})
+		.catch(err => console.error('QA.json load error:', err));
+}
+
+function selectAnswer(answer) {
+	const user = localStorage.getItem('currentUser');
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	if (!chats[user]) chats[user] = [];
+	chats[user].push({ from: ADMIN_NAME, text: answer, time: new Date().toLocaleString() });
+	localStorage.setItem('chats', JSON.stringify(chats));
+	document.getElementById('answer-options').innerHTML = '';
+	loadChat();
+}
+</script>
+</body>
+</html>
