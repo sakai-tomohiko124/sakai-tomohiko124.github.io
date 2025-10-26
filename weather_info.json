@@ -41,13 +41,6 @@
   ],
   "hourly_forecast": [
     {
-      "iso_time": "2025-10-26T08:00:00",
-      "time": "08:00",
-      "weather": "コード650",
-      "temp": "16",
-      "precip": 0.5
-    },
-    {
       "iso_time": "2025-10-26T09:00:00",
       "time": "09:00",
       "weather": "くもり",
@@ -542,6 +535,13 @@
       "time": "07:00",
       "weather": "晴れ",
       "temp": "16",
+      "precip": 0
+    },
+    {
+      "iso_time": "2025-10-29T08:00:00",
+      "time": "08:00",
+      "weather": "晴れ",
+      "temp": "15",
       "precip": 0
     }
   ]
