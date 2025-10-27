@@ -1,0 +1,44 @@
+name: Scrape Weather Info
+
+on:
+  schedule:
+    # 毎日午前0時（JST）に自動実行 (UTCでは前日15時)
+    - cron: '0 15 * * *'
+  # GitHubのActionsタブから手動でも実行可能にする
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run weather scraper
+        run: python scraper2.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull --rebase --autostash
+          git add weather_info.json
+          if [[ -n $(git status --porcelain) ]]; then
+            git commit -m "Update weather_info.json"
+            git push
+          else
+            echo "No changes to commit."
+          fi
