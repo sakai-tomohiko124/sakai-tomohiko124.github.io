@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>全リンク集</title>
+
+    <style>
+/* --- Provided futuristic CSS (trimmed/embedded) --- */
+:root {
+    --bg-dark: #121212;
+    --bg-medium: #1f1f1f;
+    --bg-light: #2a2a2a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --neon-blue: #00e0ff;
+    --neon-purple: #ae00ff;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-blur: 10px;
+    --transition-speed: 0.3s;
+}
+body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;background-color:var(--bg-dark);color:var(--text-primary);display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden;position:relative}
+.background-effect{position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 15% 15%, rgba(0,224,255,0.15) 0%, transparent 40%),radial-gradient(circle at 85% 85%, rgba(174,0,255,0.15) 0%, transparent 40%);opacity:0.7;z-index:-1;animation:pulseBackground 20s infinite alternate ease-in-out}
+@keyframes pulseBackground{0%{transform:scale(1);opacity:0.7}50%{transform:scale(1.05);opacity:0.8}100%{transform:scale(1);opacity:0.7}}
+.futuristic-header{background:linear-gradient(45deg,var(--bg-medium),var(--bg-dark) 70%);color:var(--text-primary);padding:3em 1em 2em;text-align:center;box-shadow:0 0 20px rgba(0,224,255,0.3),0 0 40px rgba(174,0,255,0.2);border-bottom:2px solid var(--neon-blue);position:relative;z-index:10}
+.header-content{max-width:900px;margin:0 auto;position:relative}
+.futuristic-header h1{font-family:'Roboto Mono',monospace;font-size:3.5em;margin-bottom:0.2em;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 10px var(--neon-blue),0 0 20px var(--neon-blue),0 0 30px var(--neon-blue);animation:neonGlow 2s infinite alternate}
+.futuristic-header .tagline{font-size:1.1em;opacity:0.7;color:var(--text-secondary);letter-spacing:0.5px}
+@keyframes neonGlow{from{text-shadow:0 0 5px var(--neon-blue),0 0 10px var(--neon-blue)}to{text-shadow:0 0 10px var(--neon-blue),0 0 20px var(--neon-blue),0 0 30px var(--neon-blue)}}
+.main-content{max-width:900px;margin:2.5em auto;padding:0 1.5em;flex-grow:1;position:relative;z-index:5}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1.2rem}
+.card{background-color:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);padding:1.4rem;border-radius:12px;text-align:center;color:var(--text-primary);transition:transform var(--transition-speed) ease,box-shadow var(--transition-speed) ease;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.6),0 0 18px rgba(174,0,255,0.18);border-color:rgba(0,224,255,0.25)}
+.card a{display:flex;flex-direction:column;align-items:center;gap:10px;color:inherit;text-decoration:none}
+.card .icon{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,224,255,0.08),rgba(174,0,255,0.08));border:1px solid rgba(255,255,255,0.03); font-size: 2rem;}
+.card .label{font-family:'Roboto Mono',monospace;font-size:1rem;color:var(--text-secondary)}
+.futuristic-footer{margin-top:4em;background:linear-gradient(-45deg,var(--bg-medium),var(--bg-dark) 70%);color:var(--text-secondary);text-align:center;padding:1.5em 1em;font-size:0.9em;border-top:1px dashed var(--neon-purple);box-shadow:0 0 20px rgba(174,0,255,0.2);position:relative;z-index:10}
+@media(max-width:900px){.card-grid{grid-template-columns:repeat(auto-fit, minmax(150px, 1fr))}}
+@media(max-width:480px){.card-grid{grid-template-columns:1fr}.futuristic-header h1{font-size:1.8em}}
+/* small accessible focus styles */
+.card:focus-within{outline:3px solid rgba(0,224,255,0.12);outline-offset:4px}
+    </style>
+</head>
+<body>
+            <nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
+        <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+        <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
+        <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
+        <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
+        <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+    </nav>
+    <div class="background-effect" aria-hidden="true"></div>
+
+    <header class="futuristic-header">
+        <div class="header-content">
+            <h1 class="neon-text">全リンク集</h1>
+            <p class="tagline">プログラミング学習に役立つリンクをまとめました</p>
+        </div>
+    </header>
+
+    <main class="main-content" role="main">
+        <section class="control-panel" aria-labelledby="panel-title">
+            <div style="flex:1 1 100%">
+                <h2 id="panel-title" style="margin:0 0 0.6rem;color:var(--neon-blue);font-family:'Roboto Mono',monospace;">カテゴリ</h2>
+                <p style="margin:0;color:var(--text-secondary);">下のアイコンから目的のページに移動できます。外部リンクは新しいタブで開きます。</p>
+            </div>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-top:1rem;">
+                <div style="flex:1;min-width:200px;display:flex;gap:0.5rem;">
+                    <input type="text" id="search-input" placeholder="キーワード検索..." style="flex:1;padding:0.5rem;border:1px solid var(--glass-border);border-radius:8px;background-color:var(--glass-bg);color:var(--text-primary);font-family:'Roboto Mono',monospace;" list="link-suggestions">
+                    <button id="clear-search" style="padding:0.5rem 1rem;border:1px solid var(--glass-border);border-radius:8px;background-color:var(--glass-bg);color:var(--text-primary);font-family:'Roboto Mono',monospace;cursor:pointer;">クリア</button>
+                    <datalist id="link-suggestions">
+                        <option value="Python">
+                        <option value="SQL">
+                        <option value="JavaScript">
+                        <option value="ホーム">
+                        <option value="クイズ">
+                        <option value="チャット">
+                        <option value="マニュアル">
+                        <option value="楽天">
+                        <option value="ログイン">
+                        <option value="ログアウト">
+                        <option value="天気">
+                        <option value="交通機関">
+                        <option value="アンケート">
+                        <option value="動画">
+                        <option value="パスワード">
+                    </datalist>
+                </div>
+                <select id="category-filter" style="padding:0.5rem;border:1px solid var(--glass-border);border-radius:8px;background-color:var(--glass-bg);color:var(--text-primary);font-family:'Roboto Mono',monospace;">
+                    <option value="all">すべてのカテゴリ</option>
+                    <option value="programming">プログラミング学習</option>
+                    <option value="internal">サイト内</option>
+                    <option value="external">外部サイト</option>
+                </select>
+            </div>
+        </section>
+
+        </section>
+
+        <section class="glossary-section" aria-label="全リンク集">
+            <h2 style="color:var(--neon-blue);font-family:'Roboto Mono',monospace;margin-bottom:1rem;">よく見るサイト <button id="clear-history" style="margin-left:1rem;padding:0.3rem 0.6rem;border:1px solid var(--glass-border);border-radius:6px;background-color:var(--glass-bg);color:var(--text-primary);font-family:'Roboto Mono',monospace;font-size:0.8rem;cursor:pointer;">履歴削除</button></h2>
+            <div class="card-grid" role="list" id="frequent-grid">
+                <!-- よく見るサイトがここに動的に追加されます -->
+            </div>
+
+            <h2 style="color:var(--neon-blue);font-family:'Roboto Mono',monospace;margin:2rem 0 1rem;">すべてのリンク</h2>
+            <div class="card-grid" role="list" id="link-grid">
+                <!-- Python公式ドキュメント -->
+                <article class="card" role="listitem" data-category="programming">
+                    <a href="https://docs.python.org/ja/3/" target="_blank" title="Python公式ドキュメント">
+                        <div class="icon" aria-hidden="true">🐍</div>
+                        <span class="label">Python公式ドキュメント</span>
+                    </a>
+                </article>
+
+                <!-- SQLチュートリアル -->
+                <article class="card" role="listitem" data-category="programming">
+                    <a href="https://www.w3schools.com/sql/" target="_blank" title="SQLチュートリアル (W3Schools)">
+                        <div class="icon" aria-hidden="true">🗄️</div>
+                        <span class="label">SQLチュートリアル</span>
+                    </a>
+                </article>
+
+                <!-- JavaScript (MDN) -->
+                <article class="card" role="listitem" data-category="programming">
+                    <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript" target="_blank" title="JavaScript (MDN)">
+                        <div class="icon" aria-hidden="true">🟨</div>
+                        <span class="label">JavaScript (MDN)</span>
+                    </a>
+                </article>
+
+                <!-- 初期 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index.html" target="_blank" title="初期">
+                        <div class="icon" aria-hidden="true">🏠</div>
+                        <span class="label">初期</span>
+                    </a>
+                </article>
+
+                <!-- 楽天サイト -->
+                <article class="card" role="listitem" data-category="external">
+                    <a href="https://www.rakuten.co.jp/kbsanhe/" target="_blank" title="楽天サイト">
+                        <div class="icon" aria-hidden="true">🛒</div>
+                        <span class="label">楽天サイト</span>
+                    </a>
+                </article>
+
+                <!-- マニュアル -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index5.html" target="_blank" title="マニュアル">
+                        <div class="icon" aria-hidden="true">📖</div>
+                        <span class="label">マニュアル</span>
+                    </a>
+                </article>
+
+                <!-- ホーム -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="home.html" target="_blank" title="ホーム">
+                        <div class="icon" aria-hidden="true">🏠</div>
+                        <span class="label">ホーム</span>
+                    </a>
+                </article>
+
+                <!-- プログラミング言語用語集 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="hate/base.html" target="_blank" title="プログラミング言語用語集">
+                        <div class="icon" aria-hidden="true">📚</div>
+                        <span class="label">プログラミング言語用語集</span>
+                    </a>
+                </article>
+
+                <!-- 読み込み中... -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="loading.html" target="_blank" title="読み込み中...">
+                        <div class="icon" aria-hidden="true">⏳</div>
+                        <span class="label">読み込み中...</span>
+                    </a>
+                </article>
+
+                <!-- ログイン -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="login.html" target="_blank" title="ログイン">
+                        <div class="icon" aria-hidden="true">🔐</div>
+                        <span class="label">ログイン</span>
+                    </a>
+                </article>
+
+                <!-- ログアウト -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="logout.html" target="_blank" title="ログアウト">
+                        <div class="icon" aria-hidden="true">🚪</div>
+                        <span class="label">ログアウト</span>
+                    </a>
+                </article>
+
+                <!-- Python試験情報 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="pythonexam.html" target="_blank" title="Python試験情報">
+                        <div class="icon" aria-hidden="true">📝</div>
+                        <span class="label">Python試験情報</span>
+                    </a>
+                </article>
+
+                <!-- その他 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="other.html" target="_blank" title="その他">
+                        <div class="icon" aria-hidden="true">🔗</div>
+                        <span class="label">その他</span>
+                    </a>
+                </article>
+
+                <!-- アンケート画面へ -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="アンケート.html" target="_blank" title="アンケート画面へ">
+                        <div class="icon" aria-hidden="true">📊</div>
+                        <span class="label">アンケート画面へ</span>
+                    </a>
+                </article>
+
+                <!-- 交通機関 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="train.html" target="_blank" title="交通機関">
+                        <div class="icon" aria-hidden="true">🚆</div>
+                        <span class="label">交通機関</span>
+                    </a>
+                </article>
+
+                <!-- 天気予報 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="weather.html" target="_blank" title="天気予報">
+                        <div class="icon" aria-hidden="true">🌤️</div>
+                        <span class="label">天気予報</span>
+                    </a>
+                </article>
+
+                <!-- プログラミングクイズ -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index2.html" target="_blank" title="プログラミングクイズ">
+                        <div class="icon" aria-hidden="true">🧠</div>
+                        <span class="label">プログラミングクイズ</span>
+                    </a>
+                </article>
+
+                <!-- チャット -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index3.html" target="_blank" title="チャット">
+                        <div class="icon" aria-hidden="true">💬</div>
+                        <span class="label">チャット</span>
+                    </a>
+                </article>
+
+                <!-- 便利リンク -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index4.html" target="_blank" title="便利リンク">
+                        <div class="icon" aria-hidden="true">🔗</div>
+                        <span class="label">便利リンク</span>
+                    </a>
+                </article>
+
+                <!-- 苦手克服 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="hate.html" target="_blank" title="苦手克服">
+                        <div class="icon" aria-hidden="true">🎯</div>
+                        <span class="label">苦手克服</span>
+                    </a>
+                </article>
+
+                <!-- パスワード付き -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="password.html" target="_blank" title="パスワード付き">
+                        <div class="icon" aria-hidden="true">🔒</div>
+                        <span class="label">パスワード付き</span>
+                    </a>
+                </article>
+
+                <!-- 動画・音声 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="movie.html" target="_blank" title="動画・音声">
+                        <div class="icon" aria-hidden="true">🎥</div>
+                        <span class="label">動画・音声</span>
+                    </a>
+                </article>
+
+                <!-- 4択クイズ -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="クイズ.html" target="_blank" title="4択クイズ">
+                        <div class="icon" aria-hidden="true">❓</div>
+                        <span class="label">4択クイズ</span>
+                    </a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="futuristic-footer">
+        <div>© サイト — 全リンク集</div>
+        <div class="footer-note">すべてのリンクは新しいタブで開きます。存在しないローカルページに遷移する場合はファイル名を確認してください。</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search-input');
+            const clearSearchBtn = document.getElementById('clear-search');
+            const clearHistoryBtn = document.getElementById('clear-history');
+            const categoryFilter = document.getElementById('category-filter');
+            const linkGrid = document.getElementById('link-grid');
+            const frequentGrid = document.getElementById('frequent-grid');
+            const cards = Array.from(linkGrid.querySelectorAll('.card'));
+
+            // クリックカウントを保存・読み込み
+            function getClickCounts() {
+                const counts = localStorage.getItem('linkClickCounts');
+                return counts ? JSON.parse(counts) : {};
+            }
+
+            function saveClickCounts(counts) {
+                localStorage.setItem('linkClickCounts', JSON.stringify(counts));
+            }
+
+            // カードクリックイベント
+            cards.forEach(card => {
+                const link = card.querySelector('a');
+                link.addEventListener('click', function() {
+                    const label = this.querySelector('.label').textContent;
+                    const counts = getClickCounts();
+                    counts[label] = (counts[label] || 0) + 1;
+                    saveClickCounts(counts);
+                    updateFrequentSites();
+                });
+            });
+
+            // よく見るサイトを表示
+            function updateFrequentSites() {
+                const counts = getClickCounts();
+                const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+                frequentGrid.innerHTML = '';
+
+                sorted.forEach(([label, count]) => {
+                    const originalCard = cards.find(card => card.querySelector('.label').textContent === label);
+                    if (originalCard) {
+                        const clone = originalCard.cloneNode(true);
+                        const link = clone.querySelector('a');
+                        link.target = '_blank'; // 新しいタブで開く
+                        link.addEventListener('click', function() {
+                            const counts = getClickCounts();
+                            counts[label] = (counts[label] || 0) + 1;
+                            saveClickCounts(counts);
+                            updateFrequentSites();
+                        });
+                        frequentGrid.appendChild(clone);
+                    }
+                });
+
+                if (sorted.length === 0) {
+                    frequentGrid.innerHTML = '<p style="color:var(--text-secondary);text-align:center;width:100%;">まだクリック履歴がありません</p>';
+                }
+            }
+
+            // フィルタリング関数
+            function filterCards() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categoryFilter.value;
+
+                cards.forEach(card => {
+                    const label = card.querySelector('.label').textContent.toLowerCase();
+                    const category = card.dataset.category;
+                    const matchesSearch = label.includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || category === selectedCategory;
+
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // 検索クリア関数
+            function clearSearch() {
+                searchInput.value = '';
+                filterCards();
+                searchInput.focus();
+            }
+
+            // 履歴削除関数
+            function clearHistory() {
+                if (confirm('よく見るサイトの履歴を削除しますか？')) {
+                    localStorage.removeItem('linkClickCounts');
+                    updateFrequentSites();
+                }
+            }
+
+            // イベントリスナー
+            searchInput.addEventListener('input', filterCards);
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    // Enterキーで検索確定（フォーカスを外す）
+                    searchInput.blur();
+                } else if (e.key === 'Escape') {
+                    // Escキーでクリア
+                    clearSearch();
+                }
+            });
+            clearSearchBtn.addEventListener('click', clearSearch);
+            clearHistoryBtn.addEventListener('click', clearHistory);
+            categoryFilter.addEventListener('change', filterCards);
+
+            // 初期化
+            updateFrequentSites();
+        });
+    </script>
+</body>
+</html>

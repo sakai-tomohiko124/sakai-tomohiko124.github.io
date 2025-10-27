@@ -1,0 +1,55 @@
+<!--logout.htmlを押すとログアウトできる　もう一度ユーザー名とパスワードを入力する画面に戻る-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログアウト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        .logout-message {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-message">ログアウト中...</div>
+    <button onclick="logout()">ログアウト</button>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('isAdmin');
+            localStorage.removeItem('autoLogin');
+            localStorage.removeItem('savedUsername');
+            localStorage.removeItem('savedPassword');
+            window.location.href = 'login.html';
+        }
+        // 自動的にログアウト処理を実行
+        logout();
+
+
+// Service Worker登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
+}
+    </script>
+</body>
+</html>

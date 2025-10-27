@@ -1,0 +1,9 @@
+[
+  {
+    "page": "VBA-01",
+    "term": "VBA",
+    "category": "基礎",
+    "usage_example": "Sub HelloWorld()\n    MsgBox \"Hello, World!\"\nEnd Sub",
+    "explanation": "Visual Basic for Applicationsの略。ExcelなどのOfficeアプリケーションを自動化するためのプログラミング言語。"
+  }
+]

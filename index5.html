@@ -48,11 +48,11 @@
 <body>
     <div class="background-effect"></div>
   	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
-    <a href="index.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+    <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
     <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
     <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
     <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScIxMze7zXyO4OfyMyBTXrIbZP7Ak1Jm_FT3rvvmw01jYgOtA/viewform?usp=header" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
+    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
 </nav>
 
 
@@ -137,7 +137,7 @@
 
         <section class="manual-section">
             <h2>お問い合わせ</h2>
-            <p>ご質問やフィードバックがありましたら、<a href="https://docs.google.com/forms/d/e/1FAIpQLScIxMze7zXyO4OfyMyBTXrIbZP7Ak1Jm_FT3rvvmw01jYgOtA/viewform?usp=header" style="color: var(--neon-blue); text-decoration: underline;" target="_blank">アンケート</a>機能をご利用ください。</p>
+            <p>ご質問やフィードバックがありましたら、<a href="アンケート.html" style="color: var(--neon-blue); text-decoration: underline;" target="_blank">アンケート</a>機能をご利用ください。</p>
             <p>サイトの改善にご協力いただけると幸いです。</p>
         </section>
     </main>
@@ -147,5 +147,18 @@
     </footer>
 
     <script src="static/script2.js"></script>
+
+    <!-- Service Worker登録 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 </html>

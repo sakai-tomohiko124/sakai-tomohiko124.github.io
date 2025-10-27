@@ -33,10 +33,10 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
 .video-card{background-color:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);padding:1.4rem;border-radius:12px;text-align:center;color:var(--text-primary);transition:transform var(--transition-speed) ease,box-shadow var(--transition-speed) ease;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
 .video-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.6),0 0 18px rgba(174,0,255,0.18);border-color:rgba(0,224,255,0.25)}
-.video-card video{width:100%;height:200px;border-radius:8px;border:none}
+.video-card iframe{width:100%;height:200px;border-radius:8px;border:none}
 .audio-card{background-color:var(--glass-bg);backdrop-filter:blur(var(--glass-blur));border:1px solid var(--glass-border);padding:1.4rem;border-radius:12px;text-align:center;color:var(--text-primary);transition:transform var(--transition-speed) ease,box-shadow var(--transition-speed) ease;box-shadow:0 6px 18px rgba(0,0,0,0.4)}
 .audio-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.6),0 0 18px rgba(174,0,255,0.18);border-color:rgba(0,224,255,0.25)}
-.audio-card audio{width:100%;max-width:300px;border-radius:8px;border:none}
+.audio-card iframe{width:100%;max-width:300px;border-radius:8px;border:none}
 .audio-card .label{font-family:'Roboto Mono',monospace;font-size:1rem;color:var(--text-secondary);margin-top:0.5em}
 .video-card .label{font-family:'Roboto Mono',monospace;font-size:1rem;color:var(--text-secondary);margin-top:0.5em}
 .futuristic-footer{margin-top:4em;background:linear-gradient(-45deg,var(--bg-medium),var(--bg-dark) 70%);color:var(--text-secondary);text-align:center;padding:1.5em 1em;font-size:0.9em;border-top:1px dashed var(--neon-purple);box-shadow:0 0 20px rgba(174,0,255,0.2);position:relative;z-index:10}
@@ -68,27 +68,27 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
             <div class="video-grid">
                 <!-- 動画1: 試しに追加 -->
                 <article class="video-card">
-                    <video src="https://drive.google.com/file/d/1vtEWhUt1K_YD9E5jgkgqY2IMN5OwXM0e/view?usp=drive_link" title="ラッキーアンラッキー(予告)" controls></video>
+                    <iframe src="https://drive.google.com/file/d/1vtEWhUt1K_YD9E5jgkgqY2IMN5OwXM0e/preview" width="100%" height="200" frameborder="0" allowfullscreen title="ラッキーアンラッキー(予告)"></iframe>
                     <span class="label">ラッキーアンラッキー(予告)</span>
                 </article>
 
                 <article class="video-card">
-                    <video src="https://drive.google.com/file/d/1BG-_xzQROCvZ4yN4ktpiVOY1o4Echons/view?usp=drive_link" title="ラッキーアンラッキー(物語)" controls></video>
+                    <iframe src="https://drive.google.com/file/d/1BG-_xzQROCvZ4yN4ktpiVOY1o4Echons/preview" width="100%" height="200" frameborder="0" allowfullscreen title="ラッキーアンラッキー(物語)"></iframe>
                     <span class="label">ラッキーアンラッキー(物語)</span>
                 </article>
 
                 <article class="video-card">
-                    <video src="https://drive.google.com/file/d/1Zj0asHJ0LI_XI3onZLA5Hd-cumkuPoFv/view?usp=drive_link" title="ラッキーアンラッキー(解説)" controls></video>
+                    <iframe src="https://drive.google.com/file/d/1Zj0asHJ0LI_XI3onZLA5Hd-cumkuPoFv/preview" width="100%" height="200" frameborder="0" allowfullscreen title="ラッキーアンラッキー(解説)"></iframe>
                     <span class="label">ラッキーアンラッキー(解説)</span>
                 </article>
 
                 <article class="video-card">
-                    <video src="https://drive.google.com/file/d/1SYdneS1ry-bT091hiYakQygY4JxQ6TyB/view?usp=drive_link" title="ある開発者による、究極のアプリ開発設計図" controls></video>
+                    <iframe src="https://drive.google.com/file/d/1SYdneS1ry-bT091hiYakQygY4JxQ6TyB/preview" width="100%" height="200" frameborder="0" allowfullscreen title="ある開発者による、究極のアプリ開発設計図"></iframe>
                     <span class="label">ある開発者による、究極のアプリ開発設計図</span>
                 </article>
 
                 <article class="video-card">
-                    <video src="https://drive.google.com/file/d/1S1ky96cVH1heq4UGY8XpncNFh1Kaz01B/view?usp=drive_link" title="統合アプリ" controls></video>
+                    <iframe src="https://drive.google.com/file/d/1S1ky96cVH1heq4UGY8XpncNFh1Kaz01B/preview" width="100%" height="200" frameborder="0" allowfullscreen title="統合アプリ"></iframe>
                     <span class="label">統合アプリ</span>
                 </article>
 
@@ -101,7 +101,7 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
             <div class="video-grid"> <!-- 同じグリッドを使う -->
                 <!-- BGM1: 追加 -->
                 <article class="audio-card">
-                    <audio src="https://drive.google.com/file/d/1iLV-tjD05ju266Y2Roe4RVtYHubauRL4/view?usp=drive_link" title="AREとは" controls></audio>
+                    <iframe src="https://drive.google.com/file/d/1iLV-tjD05ju266Y2Roe4RVtYHubauRL4/preview" width="100%" height="60" frameborder="0" allowfullscreen title="AREとは"></iframe>
                     <span class="label">AREとは</span>
                 </article>
             </div>

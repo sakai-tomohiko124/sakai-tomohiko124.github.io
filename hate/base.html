@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高機能 プログラミング言語用語集</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>">
+    <style>
+        /* --- CSS変数によるテーマ定義 --- */
+        :root {
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --primary-color: #4a90e2;
+            --primary-color-dark: #357abd;
+            --text-color: #333;
+            --bg-color: #f4f7f9;
+            --card-bg-color: #fff;
+            --card-border-color: #e0e0e0;
+            --card-read-bg-color: #f0f5fa;
+            --header-color: #2c3e50;
+            --term-name-color: #2980b9;
+            --shadow-color: rgba(0,0,0,0.05);
+            --progress-bar-bg: #e0e0e0;
+            --progress-bar-fill: #4a90e2;
+            --pre-bg-color: #2d2d2d;
+            --pre-text-color: #f8f8f2;
+            --button-secondary-bg: #8c8c8c;
+            --toast-bg: #333;
+            --toast-text: #fff;
+            --attention-color: #f39c12;
+        }
+
+        [data-theme="dark"] {
+            --text-color: #e0e0e0;
+            --bg-color: #1a1a1a;
+            --card-bg-color: #2a2a2a;
+            --card-border-color: #444;
+            --card-read-bg-color: #333842;
+            --header-color: #e0e0e0;
+            --term-name-color: #58a6ff;
+            --shadow-color: rgba(0,0,0,0.2);
+            --progress-bar-bg: #444;
+            --pre-bg-color: #1e1e1e;
+        }
+
+        [data-theme="synthwave"] {
+            --bg-color: #2d2a55;
+            --card-bg-color: rgba(22, 17, 58, 0.8);
+            --card-border-color: #ff79c6;
+            --card-read-bg-color: rgba(32, 27, 78, 0.9);
+            --text-color: #f8f8f2;
+            --header-color: #50fa7b;
+            --primary-color: #ff79c6;
+            --primary-color-dark: #e668b2;
+            --term-name-color: #8be9fd;
+            --progress-bar-fill: #50fa7b;
+            --attention-color: #f1fa8c;
+            background: linear-gradient(to bottom, #2d2a55, #161235);
+        }
+        
+        /* --- 基本スタイル --- */
+        body { font-family: var(--font-family); line-height: 1.6; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; transition: background-color 0.3s, color 0.3s; }
+        main { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 20px; }
+        h1 { color: var(--header-color); font-size: 2.5em; }
+        h2 { font-size: 1.8em; color: var(--header-color); border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; margin-top: 50px;}
+
+        /* --- ヘッダーコントロール --- */
+        .header-controls { display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: var(--card-bg-color); border-radius: 8px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .progress-container { flex-grow: 1; display: flex; align-items: center; gap: 10px; }
+        #progress-bar { width: 100%; max-width: 200px; height: 10px; -webkit-appearance: none; appearance: none; border: 1px solid var(--card-border-color); border-radius: 5px; overflow: hidden; }
+        #progress-bar::-webkit-progress-bar { background-color: var(--progress-bar-bg); }
+        #progress-bar::-webkit-progress-value { background-color: var(--progress-bar-fill); }
+        #progress-text { font-size: 0.9em; font-weight: bold; }
+        #points-display { font-weight: bold; color: var(--primary-color); }
+        .theme-selector { display: flex; align-items: center; gap: 10px; }
+        select, .control-button { padding: 8px 12px; border: 1px solid var(--card-border-color); border-radius: 20px; font-size: 0.9em; background-color: var(--card-bg-color); color: var(--text-color); cursor: pointer; }
+        
+        /* --- 検索エリア --- */
+        #search-wrapper { position: sticky; top: 0; background-color: var(--bg-color); padding: 15px 0; z-index: 100; transition: background-color 0.3s;}
+        #search-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 10px; }
+        #searchInput, #categorySelect { padding: 12px 15px; border: 1px solid var(--card-border-color); border-radius: 25px; font-size: 1em; background-color: var(--card-bg-color); color: var(--text-color); outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+        #searchInput { flex-grow: 1; max-width: 400px; }
+        #searchInput:focus, #categorySelect:focus { border-color: var(--primary-color); box-shadow: 0 0 8px color-mix(in srgb, var(--primary-color) 20%, transparent); }
+        .search-button { padding: 12px 20px; border: none; border-radius: 25px; font-size: 1em; color: white; cursor: pointer; transition: background-color 0.3s, transform 0.2s; }
+        .search-button:hover { transform: scale(1.05); }
+        #searchButton { background-color: var(--primary-color); }
+        #searchButton:hover { background-color: var(--primary-color-dark); }
+        .secondary-button { background-color: var(--button-secondary-bg); }
+        .secondary-button:hover { background-color: color-mix(in srgb, var(--button-secondary-bg) 80%, black); }
+
+        /* --- 用語カード --- */
+        .term-card { background-color: var(--card-bg-color); border: 1px solid var(--card-border-color); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px var(--shadow-color); transition: all 0.3s ease; cursor: pointer; }
+        .term-card.is-read { background-color: var(--card-read-bg-color); }
+        .term-card:hover { box-shadow: 0 5px 15px var(--shadow-color); transform: translateY(-3px); }
+        .term-header { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .term-name { font-size: 1.4em; font-weight: 600; color: var(--term-name-color); margin: 0; }
+        .status-icon { margin-left: 8px; font-size: 0.8em; }
+        .term-controls { display: flex; align-items: center; gap: 5px; }
+        .control-icon-button { background: none; border: none; font-size: 1.6em; cursor: pointer; transition: opacity 0.2s, transform 0.2s; padding: 0 5px; opacity: 0.3; }
+        .control-icon-button:hover { transform: scale(1.2); opacity: 0.8; }
+        .favorite-button.favorited { opacity: 1; color: #ffdd57; }
+        .attention-button.is-attention { opacity: 1; color: var(--attention-color); }
+        pre { background-color: var(--pre-bg-color); color: var(--pre-text-color); padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.95em; }
+
+        /* --- その他UI --- */
+        #toast { position: fixed; bottom: 30px; right: 30px; background-color: var(--toast-bg); color: var(--toast-text); padding: 15px 25px; border-radius: 8px; z-index: 1000; visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0.5s, transform 0.5s; transform: translateY(20px); }
+        #toast.show { visibility: visible; opacity: 1; transform: translateY(0); }
+        .modal { position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; }
+        .modal-content { background-color: var(--card-bg-color); margin: auto; padding: 20px; border: 1px solid var(--card-border-color); width: 90%; max-width: 700px; border-radius: 10px; position: relative; }
+        .close-button { color: var(--text-color); position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+        #admin-section form { display: flex; flex-direction: column; gap: 10px; }
+        #admin-section input, #admin-section textarea { padding: 10px; border-radius: 5px; border: 1px solid var(--card-border-color); background-color: var(--bg-color); color: var(--text-color); }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 2em; }
+            .header-controls { flex-direction: column; align-items: stretch; }
+            #search-wrapper { padding: 10px; }
+            #search-container { flex-direction: column; align-items: stretch; }
+            #searchInput { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>高機能 プログラミング言語用語集</h1>
+            <div class="header-controls">
+                <div class="progress-container">
+                    <label for="progress-bar">学習進捗:</label>
+                    <progress id="progress-bar" value="0" max="100"></progress>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div>所持金: <span id="points-display">0円</span></div>
+                <div class="theme-selector">
+                    <label for="theme-select">テーマ:</label>
+                    <select id="theme-select">
+                        <option value="light">ライト</option>
+                        <option value="dark">ダーク</option>
+                        <option value="synthwave">シンセウェーブ</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <div id="search-wrapper">
+            <div id="search-container">
+                <select id="categorySelect">
+                    <option value="all">全てのカテゴリ</option>
+                    <option value="favorites">お気に入りのみ</option>
+                    <option value="python">Python</option>
+                    <option value="sql">SQL</option>
+                    <option value="web">Web</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="[/]を押して検索..." list="searchSuggestions">
+                <button id="searchButton" class="search-button">検索</button>
+            </div>
+            <div id="controls-container" style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                 <button id="sort-az" class="control-button">A-Z順</button>
+                 <button id="sort-za" class="control-button">Z-A順</button>
+                 <button id="random-term-button" class="control-button">ランダム表示</button>
+                 <button id="export-favorites-button" class="control-button">お気に入りエクスポート</button>
+                 <button id="clear-history-button" class="control-button secondary-button">履歴削除</button>
+            </div>
+             <datalist id="searchSuggestions"></datalist>
+        </div>
+
+        <div id="container"></div>
+        <div id="favorites-section"><h2>お気に入り</h2><div id="favorites-container"></div></div>
+        <div id="popular-searches"><h2>よく検索される用語</h2><div id="popular-container" class="popular-list"></div></div>
+        
+        <div id="admin-section">
+            <h2>管理者モード</h2>
+            <form id="add-term-form">
+                <input type="text" id="term-name-input" placeholder="用語名" required>
+                <textarea id="term-meaning-input" placeholder="意味" required rows="3"></textarea>
+                <textarea id="term-code-input" placeholder="サンプルコード（任意）" rows="4"></textarea>
+                <button type="submit" class="search-button">新しい用語を追加</button>
+            </form>
+            <h3>カスタム用語一覧</h3>
+            <div id="custom-terms-list"></div>
+        </div>
+    </main>
+
+    <div id="toast"></div>
+
+    <div id="random-term-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>今日のランダム用語</h2>
+        <div id="random-term-content"></div>
+      </div>
+    </div>
+
+<script>
+    window.onload = async function() {
+        // --- 要素の取得 ---
+        const elements = { container: document.getElementById('container'), searchInput: document.getElementById('searchInput'), categorySelect: document.getElementById('categorySelect'), searchSuggestions: document.getElementById('searchSuggestions'), favoritesContainer: document.getElementById('favorites-container'), popularContainer: document.getElementById('popular-container'), progressBar: document.getElementById('progress-bar'), progressText: document.getElementById('progress-text'), pointsDisplay: document.getElementById('points-display'), themeSelect: document.getElementById('theme-select'), toast: document.getElementById('toast'), randomTermModal: document.getElementById('random-term-modal'), randomTermContent: document.getElementById('random-term-content'), addTermForm: document.getElementById('add-term-form'), customTermsList: document.getElementById('custom-terms-list') };
+        let termsData = {};
+        let currentSort = 'default';
+
+        // --- データ読み込み ---
+        try {
+            const files = ['python.json', 'sql.json', 'web.json'];
+            const promises = files.map(file => fetch(file).then(res => res.ok ? res.json() : []));
+            const [python, sql, web] = await Promise.all(promises);
+            termsData = { python, sql, web };
+        } catch (error) { console.error('JSONの読み込みに失敗しました:', error); elements.container.innerHTML = `<p style="text-align: center; color: red;">用語データの読み込みに失敗しました。</p>`; }
+
+        // --- 共通ヘルパー ---
+        const getFromStorage = (key, def) => JSON.parse(localStorage.getItem(key)) || def;
+        const saveToStorage = (key, val) => localStorage.setItem(key, JSON.stringify(val));
+        const showToast = (message) => { elements.toast.textContent = message; elements.toast.classList.add('show'); setTimeout(() => elements.toast.classList.remove('show'), 3000); };
+
+        // --- データ管理 ---
+        const getCombinedTerms = () => { let combined = {}; const customTerms = getFromStorage('customTerms', []); for (const key in termsData) { combined[key] = [...termsData[key]]; } if (!combined.custom) combined.custom = []; combined.custom.push(...customTerms); return combined; };
+        const getAllTermsAsFlatArray = (includeCustom = true) => { const source = includeCustom ? getCombinedTerms() : termsData; let flatArray = []; Object.values(source).forEach(data => { if(Array.isArray(data)) flatArray.push(...data); else if(typeof data === 'object' && data !== null) { Object.values(data).forEach(arr => Array.isArray(arr) && flatArray.push(...arr)); } }); return flatArray; };
+
+        // --- テーマ管理 ---
+        const applyTheme = (theme) => { document.body.dataset.theme = theme; saveToStorage('theme', theme); elements.themeSelect.value = theme; };
+        applyTheme(getFromStorage('theme', 'light'));
+
+        // --- ポイント管理 ---
+        let points = getFromStorage('points', 0);
+        const updatePointsDisplay = () => elements.pointsDisplay.textContent = `${points}円`;
+        const addPoints = (amount) => { points += amount; saveToStorage('points', points); updatePointsDisplay(); };
+        updatePointsDisplay();
+        
+        // --- 状態管理 (進捗、注意、お気に入り) ---
+        let readTerms = new Set(getFromStorage('readTerms', []));
+        let attentionTerms = new Set(getFromStorage('attentionTerms', []));
+        
+        // --- UI生成 ---
+        const createTermCard = (term) => {
+            const card = document.createElement('div');
+            card.className = 'term-card';
+            card.dataset.termName = term.用語名;
+            if (readTerms.has(term.用語名)) card.classList.add('is-read');
+
+            card.innerHTML = `
+                <div class="term-header">
+                    <h3 class="term-name">
+                        ${term.用語名}
+                        <span class="status-icon">${readTerms.has(term.用語名) ? '✅' : ''}</span>
+                    </h3>
+                    <div class="term-controls">
+                         <button class="control-icon-button attention-button ${attentionTerms.has(term.用語名) ? 'is-attention' : ''}" data-term-name="${term.用語名}" title="注意マーク">⚠️</button>
+                         <button class="control-icon-button favorite-button ${getFromStorage('favorites', []).includes(term.用語名) ? 'favorited' : ''}" data-term-name="${term.用語名}" title="お気に入り">&#9733;</button>
+                    </div>
+                </div>
+                <p class="term-meaning">${term.意味}</p>
+                ${term.サンプルコード ? `<pre><code>${term.サンプルコード.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>` : ''}
+            `;
+            return card;
+        };
+        
+        // --- 表示ロジック ---
+        const updateProgressBar = () => { const totalCount = getAllTermsAsFlatArray().length; if (totalCount === 0) return; const readCount = readTerms.size; const percentage = Math.round((readCount / totalCount) * 100); elements.progressBar.value = percentage; elements.progressText.textContent = `${percentage}% (${readCount}/${totalCount})`; };
+        const displayTerms = (termList) => { elements.container.innerHTML = ''; if (currentSort === 'az') termList.sort((a, b) => a.用語名.localeCompare(b.用語名, 'ja')); if (currentSort === 'za') termList.sort((a, b) => b.用語名.localeCompare(a.用語名, 'ja')); if (termList.length === 0) { elements.container.innerHTML = '<p>対象の用語はありません。</p>'; return; } termList.forEach(term => elements.container.appendChild(createTermCard(term))); };
+        const displayByCategory = () => { const keyword = elements.searchInput.value.trim(); if (keyword) { handleSearch(); return; } const selected = elements.categorySelect.value; let termsToDisplay = []; let headerText = ''; const allTerms = getAllTermsAsFlatArray(); if (selected === 'all') { termsToDisplay = allTerms; headerText = '全ての用語'; } else if (selected === 'favorites') { const favorites = getFromStorage('favorites', []); termsToDisplay = allTerms.filter(t => favorites.includes(t.用語名)); headerText = 'お気に入りのみ'; } else { termsToDisplay = getCombinedTerms()[selected] || []; headerText = selected.charAt(0).toUpperCase() + selected.slice(1); } elements.container.innerHTML = `<h2>${headerText}</h2>`; displayTerms(termsToDisplay); };
+        const displayPopularSearches = () => { elements.popularContainer.innerHTML = ''; const counts = getFromStorage('searchCounts', {}); const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10); if(sorted.length > 0) { sorted.forEach(([keyword]) => { const item = document.createElement('div'); item.className = 'popular-item'; item.textContent = keyword; item.onclick = () => { elements.searchInput.value = keyword; handleSearch(); }; elements.popularContainer.appendChild(item); }); } };
+
+        const handleSearch = () => {
+            const keyword = elements.searchInput.value.trim();
+            if (!keyword) { displayByCategory(); return; }
+            addPoints(10);
+            
+            let history = getFromStorage('searchHistory', []).filter(item => item !== keyword); history.unshift(keyword); if (history.length > 20) history.pop(); saveToStorage('searchHistory', history);
+            const counts = getFromStorage('searchCounts', {}); counts[keyword] = (counts[keyword] || 0) + 1; saveToStorage('searchCounts', counts);
+            updateSearchSuggestions(); displayPopularSearches();
+
+            const lowerCaseKeyword = keyword.toLowerCase();
+            const selected = elements.categorySelect.value;
+            let sourceTerms = [];
+            const allTerms = getAllTermsAsFlatArray();
+
+            if (selected === 'all') sourceTerms = allTerms;
+            else if (selected === 'favorites') { const favorites = getFromStorage('favorites', []); sourceTerms = allTerms.filter(t => favorites.includes(t.用語名)); }
+            else { sourceTerms = getCombinedTerms()[selected] || []; }
+            
+            const filtered = sourceTerms.filter(t => t.用語名.toLowerCase().includes(lowerCaseKeyword) || t.意味.toLowerCase().includes(lowerCaseKeyword));
+            elements.container.innerHTML = `<h2>「${elements.searchInput.value}」の検索結果 (${filtered.length}件)</h2>`;
+            displayTerms(filtered);
+        };
+        
+        // --- カスタム用語管理 ---
+        const displayCustomTerms = () => { elements.customTermsList.innerHTML = ''; getFromStorage('customTerms', []).forEach(term => { const div = document.createElement('div'); div.innerHTML = `${term.用語名} <button data-term-name="${term.用語名}" class="delete-custom-term secondary-button" style="padding: 2px 8px; font-size: 0.8em;">削除</button>`; elements.customTermsList.appendChild(div); }); };
+        
+        // --- イベントリスナー設定 ---
+        const clearSearchHistory = () => { if (confirm('検索履歴と「よく検索される用語」を削除しますか？')) { localStorage.removeItem('searchHistory'); localStorage.removeItem('searchCounts'); updateSearchSuggestions(); displayPopularSearches(); showToast('検索履歴を削除しました。円はそのままです。'); } };
+        const updateSearchSuggestions = () => { elements.searchSuggestions.innerHTML = ''; getFromStorage('searchHistory', []).forEach(keyword => { const option = document.createElement('option'); option.value = keyword; elements.searchSuggestions.appendChild(option); }); };
+
+        elements.themeSelect.onchange = (e) => applyTheme(e.target.value);
+        elements.categorySelect.onchange = displayByCategory;
+        elements.searchInput.onkeydown = (e) => { if (e.key === 'Enter') handleSearch(); if (e.key === 'Escape') { elements.searchInput.value = ''; displayByCategory(); } };
+        document.getElementById('searchButton').onclick = handleSearch;
+        document.getElementById('clear-history-button').onclick = clearSearchHistory;
+        document.querySelector('.modal .close-button').onclick = () => elements.randomTermModal.style.display = 'none';
+        document.getElementById('sort-az').onclick = () => { currentSort = 'az'; displayByCategory(); };
+        document.getElementById('sort-za').onclick = () => { currentSort = 'za'; displayByCategory(); };
+        
+        document.getElementById('random-term-button').onclick = () => { const allTerms = getAllTermsAsFlatArray(); if (allTerms.length === 0) return; const randomTerm = allTerms[Math.floor(Math.random() * allTerms.length)]; elements.randomTermContent.innerHTML = ''; elements.randomTermContent.appendChild(createTermCard(randomTerm)); elements.randomTermModal.style.display = 'flex'; };
+        document.getElementById('export-favorites-button').onclick = () => { const favorites = getFromStorage('favorites', []); if (favorites.length === 0) { showToast('お気に入りがありません'); return; } const text = favorites.join('\n'); const blob = new Blob([text], { type: 'text/plain;charset=utf-8' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'favorites.txt'; a.click(); URL.revokeObjectURL(url); showToast('エクスポートしました'); };
+        document.addEventListener('keydown', (e) => { if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') { e.preventDefault(); elements.searchInput.focus(); } });
+        
+        document.body.addEventListener('click', (e) => {
+            const favoriteButton = e.target.closest('.favorite-button');
+            const attentionButton = e.target.closest('.attention-button');
+            const termCard = e.target.closest('.term-card');
+            const deleteButton = e.target.closest('.delete-custom-term');
+
+            if (favoriteButton) {
+                const termName = favoriteButton.dataset.termName;
+                let favorites = getFromStorage('favorites', []);
+                if (favorites.includes(termName)) { favorites = favorites.filter(f => f !== termName); showToast('お気に入りから削除'); }
+                else { favorites.push(termName); showToast('お気に入りに追加'); }
+                saveToStorage('favorites', favorites);
+                favoriteButton.classList.toggle('favorited');
+                if (elements.categorySelect.value === 'favorites') displayByCategory();
+                return;
+            }
+
+            if (attentionButton) {
+                const termName = attentionButton.dataset.termName;
+                if (attentionTerms.has(termName)) { attentionTerms.delete(termName); showToast('注意マークを解除'); }
+                else { attentionTerms.add(termName); showToast('注意マークを設定'); }
+                saveToStorage('attentionTerms', [...attentionTerms]);
+                attentionButton.classList.toggle('is-attention');
+                return;
+            }
+            
+            if (deleteButton) {
+                const termName = deleteButton.dataset.termName;
+                let customTerms = getFromStorage('customTerms', []).filter(t => t.用語名 !== termName);
+                saveToStorage('customTerms', customTerms);
+                showToast('カスタム用語を削除');
+                displayCustomTerms(); displayByCategory();
+                return;
+            }
+
+            if (termCard) {
+                const termName = termCard.dataset.termName;
+                if (!readTerms.has(termName)) {
+                    readTerms.add(termName);
+                    saveToStorage('readTerms', [...readTerms]);
+                    termCard.classList.add('is-read');
+                    const icon = termCard.querySelector('.status-icon');
+                    if (icon) icon.textContent = '✅';
+                    updateProgressBar();
+                }
+            }
+        });
+        
+        elements.addTermForm.onsubmit = (e) => { e.preventDefault(); const newTerm = { 用語名: document.getElementById('term-name-input').value, 意味: document.getElementById('term-meaning-input').value, サンプルコード: document.getElementById('term-code-input').value, }; const customTerms = getFromStorage('customTerms', []); if (customTerms.some(t => t.用語名 === newTerm.用語名)) { alert('同じ名前の用語が既に存在します。'); return; } customTerms.push(newTerm); saveToStorage('customTerms', customTerms); elements.addTermForm.reset(); showToast('新しい用語を追加'); displayCustomTerms(); displayByCategory(); updateProgressBar(); };
+
+        // --- 初期表示 ---
+        displayByCategory(); displayPopularSearches(); updateProgressBar(); updateSearchSuggestions(); displayCustomTerms();
+    };
+</script>
+</body>
+</html>

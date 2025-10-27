@@ -56,10 +56,12 @@
 				font-size: 1.12em;
 				border-radius: 8px;
 				box-shadow: 0 0 12px #00f2fe22;
+				display: flex;
+				flex-direction: column;
 			}
 			.msg { margin: 4px 0; }
-			.msg.admin { color: #00f2fe; text-shadow: 0 0 6px #00f2fe99; }
-			.msg.user { color: #fff; text-shadow: 0 0 4px #ae00ff33; }
+			.msg.admin { color: #00f2fe; text-shadow: 0 0 6px #00f2fe99; align-self: flex-start; }
+			.msg.user { color: #fff; text-shadow: 0 0 4px #ae00ff33; align-self: flex-end; }
 			.input-row { display: flex; gap: 8px; }
 			.input-row input[type="text"] { flex: 1; }
 			.toggle-pw { cursor: pointer; font-size: 13px; color: #00f2fe; margin-left: 4px; text-shadow: 0 0 4px #00f2fe99; }
@@ -113,12 +115,13 @@
 		</style>
 	</head>
 	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
-		<a href="index.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+		<a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
 		<a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
 		<a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
 		<a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
 		<a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
-	    <a href="https://docs.google.com/forms/d/e/1FAIpQLScIxMze7zXyO4OfyMyBTXrIbZP7Ak1Jm_FT3rvvmw01jYgOtA/viewform?usp=header" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
+		<a href="logout.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ログアウト</a>
+	    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
 	</nav>
 <div class="container">
 	<!-- 新規登録画面 -->
@@ -147,9 +150,10 @@
 	<div id="chat-area" class="hidden">
 		<h2>チャット</h2>
 		<div class="chat-box" id="chat-box"></div>
+		<div id="typing-indicator" style="display:none; color:#00f2fe; margin:4px 0;">管理者 が入力中...</div>
 		<div id="answer-options" style="margin:8px 0;"></div>
 		<div class="input-row">
-			<textarea id="chat-input" placeholder="メッセージを入力" rows="1" style="resize: none; overflow: hidden;" onkeydown="handleKeyDown(event)" oninput="autoResize(this); updateSuggestions();"></textarea>
+			<textarea id="chat-input" placeholder="メッセージを入力" rows="1" style="resize: none; overflow: hidden;" onkeydown="handleKeyDown(event)" oninput="autoResize(this); updateSuggestions(); showTyping(); clearTimeout(typingTimer); typingTimer = setTimeout(hideTyping, 1000);"></textarea>
 			<button onclick="sendMessage()">送信</button>
 		</div>
 		<div id="suggestions" style="margin:8px 0; display:flex; gap:8px; flex-wrap:wrap;">
@@ -160,6 +164,11 @@
 			<textarea id="user-memo" rows="2" style="width:100%;"></textarea>
 			<button onclick="saveUserMemo()">メモ保存</button>
 			<span id="memo-msg" style="color:green;"></span>
+		</div>
+		<div style="margin:12px 0;">
+			<button onclick="resetChat()" style="background:#ff4d4d; color:#fff; border:none; padding:6px 12px; border-radius:4px;">会話履歴リセット</button>
+			<button onclick="exportChat('txt')" style="background:#00f2fe; color:#fff; border:none; padding:6px 12px; border-radius:4px;">履歴保存 (TXT)</button>
+			<button onclick="exportChat('csv')" style="background:#00f2fe; color:#fff; border:none; padding:6px 12px; border-radius:4px;">履歴保存 (CSV)</button>
 		</div>
 		<div style="margin:28px 0 0 0; text-align:center;">
 			<button onclick="window.open('https://tmhk-chat.ddns.net/', '_blank')" style="background:linear-gradient(90deg,#ff00cc 0%,#00f2fe 100%);color:#fff;font-size:1.25em;font-weight:bold;padding:18px 38px;border-radius:14px;border:none;box-shadow:0 0 18px #00f2fe88,0 2px 12px #ae00ff55;letter-spacing:2px;cursor:pointer;transition:background 0.2s,box-shadow 0.2s;">
@@ -207,6 +216,7 @@
 
 <script>
 // 管理者: ユーザー追加
+let typingTimer;
 function adminAddUser() {
 	const u = document.getElementById('admin-add-username').value.trim();
 	const p = document.getElementById('admin-add-password').value;
@@ -248,7 +258,7 @@ function adminDeleteUser() {
 	setTimeout(()=>{msg.textContent='';},1200);
 }
 // ユーザー情報・チャット履歴・メモはlocalStorageで簡易管理
-const ADMIN_NAME = "管理者";
+const ADMIN_NAME = "ともひこです";
 const ADMIN_PASS = "skytomo124";
 
 function togglePw(id, el) {
@@ -258,6 +268,14 @@ function togglePw(id, el) {
 	} else {
 		input.type = "password"; el.textContent = "表示";
 	}
+}
+
+function showTyping() {
+	document.getElementById('typing-indicator').style.display = 'block';
+}
+
+function hideTyping() {
+	document.getElementById('typing-indicator').style.display = 'none';
 }
 
 function showRegister() {
@@ -340,9 +358,44 @@ function showAdmin() {
 
 function logout() {
 	localStorage.removeItem('currentUser');
+	localStorage.removeItem('autoLogin');
+	localStorage.removeItem('savedUsername');
+	localStorage.removeItem('savedPassword');
 	document.getElementById('chat-area').classList.add('hidden');
 	document.getElementById('admin-area').classList.add('hidden');
 	showLogin();
+}
+
+function resetChat() {
+	if (!confirm('会話履歴をリセットしますか？')) return;
+	const user = localStorage.getItem('currentUser');
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	delete chats[user];
+	localStorage.setItem('chats', JSON.stringify(chats));
+	loadChat();
+}
+
+function exportChat(format) {
+	const user = localStorage.getItem('currentUser');
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	const messages = chats[user] || [];
+	if (messages.length === 0) {
+		alert('会話履歴がありません');
+		return;
+	}
+	let content = '';
+	if (format === 'txt') {
+		content = messages.map(m => `${m.time} ${m.from}: ${m.text}`).join('\n');
+	} else if (format === 'csv') {
+		content = '\ufeff時間,送信者,メッセージ\n' + messages.map(m => `"${m.time}","${m.from}","${m.text.replace(/"/g, '""')}"`).join('\n');
+	}
+	const blob = new Blob([content], { type: format === 'txt' ? 'text/plain;charset=utf-8' : 'text/csv;charset=utf-8' });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = `chat_history_${user}.${format}`;
+	a.click();
+	URL.revokeObjectURL(url);
 }
 
 function sendMessage() {
@@ -351,7 +404,7 @@ function sendMessage() {
 	const user = localStorage.getItem('currentUser');
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	if (!chats[user]) chats[user] = [];
-	chats[user].push({ from: user, text: msg, time: new Date().toLocaleString() });
+	chats[user].push({ from: user, text: msg, time: new Date().toLocaleString(), read: false });
 	localStorage.setItem('chats', JSON.stringify(chats));
 	document.getElementById('chat-input').value = '';
 	document.getElementById('chat-input').style.height = 'auto'; // リセット
@@ -382,8 +435,12 @@ function loadChat() {
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	let html = '';
 	(chats[user]||[]).forEach(m => {
-		html += `<div class="msg ${m.from===user?'user':'admin'}"><b>${m.from}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span></div>`;
+		const displayName = m.from === ADMIN_NAME ? '管理者' : m.from;
+		// 既読セット
+		if (!m.read) m.read = true;
+		html += `<div class="msg ${m.from===user?'user':'admin'}"><b>${displayName}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span>${m.read ? ' <span style="color:#0f0;">既読</span>' : ''}</div>`;
 	});
+	localStorage.setItem('chats', JSON.stringify(chats)); // 既読更新
 	document.getElementById('chat-box').innerHTML = html;
 	document.getElementById('chat-box').scrollTop = 9999;
 }
@@ -394,35 +451,43 @@ function updateSuggestions() {
 	fetch('/static/QA.json')
 		.then(res => res.json())
 		.then(data => {
-			let candidates = data.filter(item => {
-				// 不適切キーワードを含むアイテムを除外
-				const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
-				if (hasInappropriate) return false;
-				// ユーザーの入力にマッチするキーワードがあるか
-				if (!userInput) return false; // 入力が空なら何も表示しない
-				return item.keywords.some(k => k.toLowerCase() === userInput.toLowerCase());
-			});
-			// 重複を避けて最大5件
-			const seen = new Set();
-			const uniqueCandidates = candidates.filter(item => {
-				const keyword = item.keywords[0];
-				if (seen.has(keyword)) return false;
-				seen.add(keyword);
-				return true;
-			});
-			const selected = uniqueCandidates.slice(0, 5);
-			// 最低3件を目指す: マッチが少ない場合、ランダムで補充（不適切除外）
-			if (selected.length < 3) {
-				const remaining = data.filter(item => {
-					const keyword = item.keywords[0];
+			let candidates = [];
+			if (!userInput) {
+				// 予測候補: ランダムで3-5件
+				const filtered = data.filter(item => !item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase()))));
+				const shuffled = filtered.sort(() => 0.5 - Math.random());
+				candidates = shuffled.slice(0, Math.floor(Math.random() * 3) + 3); // 3-5件
+			} else {
+				// 入力候補: 入力に近い言葉、最低5件、最大5件
+				candidates = data.filter(item => {
 					const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
-					return !hasInappropriate && !seen.has(keyword) && (!userInput || item.keywords.some(k => k.toLowerCase() === userInput.toLowerCase()));
+					if (hasInappropriate) return false;
+					// 部分一致: キーワードにuserInputを含む、またはuserInputにキーワードを含む
+					return item.keywords.some(k => k.toLowerCase().includes(userInput) || userInput.includes(k.toLowerCase()));
 				});
-				const shuffled = remaining.sort(() => 0.5 - Math.random());
-				const additional = shuffled.slice(0, 3 - selected.length);
-				selected.push(...additional);
+				// 重複避け
+				const seen = new Set();
+				candidates = candidates.filter(item => {
+					const keyword = item.keywords[0];
+					if (seen.has(keyword)) return false;
+					seen.add(keyword);
+					return true;
+				});
+				// 最低5件: 足りない場合、ランダム補充
+				if (candidates.length < 5) {
+					const remaining = data.filter(item => {
+						const keyword = item.keywords[0];
+						const hasInappropriate = item.keywords.some(k => inappropriateKeywords.some(ik => k.toLowerCase().includes(ik.toLowerCase())));
+						return !hasInappropriate && !seen.has(keyword);
+					});
+					const shuffled = remaining.sort(() => 0.5 - Math.random());
+					const additional = shuffled.slice(0, 5 - candidates.length);
+					candidates.push(...additional);
+				}
+				// 最大5件
+				candidates = candidates.slice(0, 5);
 			}
-			const suggestions = selected.map(item => item.keywords[0]);
+			const suggestions = candidates.map(item => item.keywords[0]);
 			document.getElementById('suggestions').innerHTML = suggestions.map(s => `<button onclick="sendSuggestion('${s}')" style="background:#00f2fe; color:#fff; border:none; padding:6px 12px; border-radius:4px; cursor:pointer;">${s}</button>`).join('');
 		})
 		.catch(err => console.error('QA.json load error:', err));
@@ -460,7 +525,8 @@ function showAdminChat() {
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	let html = '';
 	(chats[user]||[]).forEach(m => {
-		html += `<div class="msg ${m.from===ADMIN_NAME?'admin':'user'}"><b>${m.from}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span></div>`;
+		const displayName = m.from === ADMIN_NAME ? '管理者' : m.from;
+		html += `<div class="msg ${m.from===ADMIN_NAME?'admin':'user'}"><b>${displayName}:</b> ${m.text} <span style='font-size:10px;color:#888;'>${m.time}</span></div>`;
 	});
 	document.getElementById('admin-chat-box').innerHTML = html;
 	document.getElementById('admin-chat-box').scrollTop = 9999;
@@ -472,7 +538,7 @@ function sendAdminMessage() {
 	if (!msg) return;
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	if (!chats[user]) chats[user] = [];
-	chats[user].push({ from: ADMIN_NAME, text: msg, time: new Date().toLocaleString() });
+	chats[user].push({ from: ADMIN_NAME, text: msg, time: new Date().toLocaleString(), read: true });
 	localStorage.setItem('chats', JSON.stringify(chats));
 	document.getElementById('admin-chat-input').value = '';
 	showAdminChat();
@@ -488,8 +554,8 @@ window.onload = function() {
 
 function autoReply(userMsg) {
 	const user = localStorage.getItem('currentUser');
-	// 基本はGrok APIを呼ぶ
-	fetch('/grok', {
+	// 基本はGemini APIを呼ぶ
+	fetch('/gemini', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ prompt: userMsg })
@@ -499,7 +565,7 @@ function autoReply(userMsg) {
 		if (data.answer) {
 			let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 			if (!chats[user]) chats[user] = [];
-			chats[user].push({ from: ADMIN_NAME, text: data.answer, time: new Date().toLocaleString() });
+			chats[user].push({ from: ADMIN_NAME, text: data.answer, time: new Date().toLocaleString(), read: true });
 			localStorage.setItem('chats', JSON.stringify(chats));
 			loadChat();
 		} else {
@@ -529,7 +595,7 @@ function fallbackToQA(userMsg, user) {
 						// 1つだけの場合、直接追加
 						let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 						if (!chats[user]) chats[user] = [];
-						chats[user].push({ from: ADMIN_NAME, text: item.answers ? item.answers[0] : item.answer, time: new Date().toLocaleString() });
+						chats[user].push({ from: ADMIN_NAME, text: item.answers ? item.answers[0] : item.answer, time: new Date().toLocaleString(), read: true });
 						localStorage.setItem('chats', JSON.stringify(chats));
 						loadChat();
 					}
@@ -540,7 +606,7 @@ function fallbackToQA(userMsg, user) {
 				// QAにもマッチしなければ、デフォルトメッセージ
 				let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 				if (!chats[user]) chats[user] = [];
-				chats[user].push({ from: ADMIN_NAME, text: 'すいません、よくわかりません', time: new Date().toLocaleString() });
+				chats[user].push({ from: ADMIN_NAME, text: 'すいません、よくわかりません', time: new Date().toLocaleString(), read: true });
 				localStorage.setItem('chats', JSON.stringify(chats));
 				loadChat();
 			}
@@ -552,10 +618,21 @@ function selectAnswer(answer) {
 	const user = localStorage.getItem('currentUser');
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	if (!chats[user]) chats[user] = [];
-	chats[user].push({ from: ADMIN_NAME, text: answer, time: new Date().toLocaleString() });
+	chats[user].push({ from: ADMIN_NAME, text: answer, time: new Date().toLocaleString(), read: true });
 	localStorage.setItem('chats', JSON.stringify(chats));
 	document.getElementById('answer-options').innerHTML = '';
 	loadChat();
+}
+
+// Service Worker登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
 }
 </script>
 </body>

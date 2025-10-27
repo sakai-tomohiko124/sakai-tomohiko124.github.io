@@ -1,0 +1,1368 @@
+
+[
+  {
+    "page": "HTML-01",
+    "term": "ウェブブラウザ",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "Google Chrome や Microsoft Edge など、ウェブページを閲覧するためのソフトウェア。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "ウェブページ",
+    "category": "Web制作の基礎知識",
+    "usage_example": "HTML + CSS + 画像 = ウェブページ",
+    "explanation": "インターネット上の文書のこと。ウェブブラウザに読み込まれるデータ形式をまとめたもので、HTMLファイル、CSSファイル、画像ファイルなどで構成される。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "ウェブサイト",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "ウェブページの集合体のこと。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "リンク",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "ウェブページ同士の連携のこと。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "ウェブサーバー",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "インターネットに公開するためのコンピューター。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "アップロード",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "ウェブサーバーにデータを送ること。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "ダウンロード",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "ウェブサーバーからデータを取得すること。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "FTPクライアント",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "作成したウェブページを公開するためのソフトウェア。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "ナビゲーション",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "カテゴリーごとに設置するボタンのこと。"
+  },
+  {
+    "page": "HTML-01",
+    "term": "デザインカンプ",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "実際のページ制作をする前に実装図を描くこと。そのデザイン完成図を作成するソフトのこと。"
+  },
+  {
+    "page": "HTML-02",
+    "term": "HTML",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "Hyper Text Markup Languageの略。マークを付ける言語。"
+  },
+  {
+    "page": "HTML-02",
+    "term": "ソースコード",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "コンピューターに対する指示を書いたもの。"
+  },
+  {
+    "page": "HTML-02",
+    "term": "CSS",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "Cascading Style Sheetsの略。文書のスタイルやレイアウトをどのように表現するか指定するためのもの。"
+  },
+  {
+    "page": "HTML-02",
+    "term": "コーディング",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "HTML文書やCSSを記述する作業のこと。"
+  },
+  {
+    "page": "HTML-02",
+    "term": "URL",
+    "category": "Web制作の基礎知識",
+    "usage_example": "https://...",
+    "explanation": "「https://」といった形でインターネット上の特定の場所を指し示すための記号の並びのこと。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "要素",
+    "category": "HTMLの基礎",
+    "usage_example": "<開始タグ>内容</終了タグ>",
+    "explanation": "開始タグ・内容・終了タグで構成されるHTMLの部品。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "html要素",
+    "category": "HTML要素",
+    "usage_example": "<html>...</html>",
+    "explanation": "文書の基点となる要素。文書全体をhtmlタグで囲むことで、「これはHTML文書」と表す。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "head要素",
+    "category": "HTML要素",
+    "usage_example": "<head>...</head>",
+    "explanation": "その文書のメタ情報を含む要素。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "body要素",
+    "category": "HTML要素",
+    "usage_example": "<body>...</body>",
+    "explanation": "ウェブブラウザで表示される情報を含む要素。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "<!DOCTYPE html>",
+    "category": "HTMLの基礎",
+    "usage_example": "<!DOCTYPE html>",
+    "explanation": "HTMLのバージョンを示すもので、HTML5以降はこの形式で記述する。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "<meta>",
+    "category": "HTML要素",
+    "usage_example": "<meta charset=\"utf-8\">",
+    "explanation": "文書全体にかかわる情報を記述するためのタグ。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "属性",
+    "category": "HTMLの基礎",
+    "usage_example": "<meta charset=\"utf-8\">",
+    "explanation": "要素に機能や役割を追加するための情報。通常は「属性名=\"値\"」の形式で記述する。"
+  },
+  {
+    "page": "HTML-04",
+    "term": "コメント",
+    "category": "HTMLの基礎",
+    "usage_example": "<!-- コメント -->",
+    "explanation": "文書の直後に<!--、直後に-->を入力すると、その文章はコメントとして認識される。"
+  },
+  {
+    "page": "HTML-06",
+    "term": "タグ",
+    "category": "HTMLの基礎",
+    "usage_example": "<p>",
+    "explanation": "<>で要素名を囲ったもの。"
+  },
+  {
+    "page": "HTML-06",
+    "term": "開始タグ",
+    "category": "HTMLの基礎",
+    "usage_example": "<p>",
+    "explanation": "要素名を不等号<>で囲んだもの。"
+  },
+  {
+    "page": "HTML-06",
+    "term": "終了タグ",
+    "category": "HTMLの基礎",
+    "usage_example": "</p>",
+    "explanation": "</要素名>のようにバックスラッシュを付けたもの。"
+  },
+  {
+    "page": "HTML-06",
+    "term": "論理属性",
+    "category": "HTML属性",
+    "usage_example": "<option selected>",
+    "explanation": "属性のみを記述するだけで意味のある属性。"
+  },
+  {
+    "page": "HTML-07",
+    "term": "親子関係",
+    "category": "HTMLの構造",
+    "usage_example": "<nav><ul>...</ul></nav>",
+    "explanation": "要素の入れ子構造。外側が親要素、内側が子要素となる。<ul>は<nav>の子要素、<nav>は<ul>の親要素。"
+  },
+  {
+    "page": "HTML-07",
+    "term": "孫要素",
+    "category": "HTMLの構造",
+    "usage_example": "<ul><li><a>...</a></li></ul>",
+    "explanation": "子要素の中にさらに含まれる要素。<a>は<ul>の孫要素。"
+  },
+  {
+    "page": "HTML-07",
+    "term": "兄弟要素",
+    "category": "HTMLの構造",
+    "usage_example": "<li>...</li>\n<li>...</li>",
+    "explanation": "同じ階層に並んでいる要素。<li>同士は兄弟要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "メタデータコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "command, link, meta, script, style, title",
+    "explanation": "HTML文書の概要やほかのHTML文書との関連性を示す要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "セクショニングコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "nav, section",
+    "explanation": "章・節のようなコンテンツの固まりの階層構造（アウトライン）を定義する要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "ヘディングコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "h1, h2, h3",
+    "explanation": "見出しに関する要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "フローコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "a, audio, br, button, canvas, code, data, ...",
+    "explanation": "文書の本体（内容）に関する要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "エンベディッドコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "audio, canvas, img, object, video, picture",
+    "explanation": "HTML文書に外部のリソースを埋め込む要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "インタラクティブコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "a, audio, button, details, img, input, ...",
+    "explanation": "ユーザーが何かしらの操作ができる要素。"
+  },
+  {
+    "page": "HTML-08",
+    "term": "フレージングコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "a, area, audio, br, button, canvas, code, ...",
+    "explanation": "文書内のテキスト、および段階内のテキストをマークアップするための要素。"
+  },
+  {
+    "page": "HTML-09",
+    "term": "セクショニングルート",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "body, blockquote, td, details",
+    "explanation": "文書全体のアウトラインには影響を与えず、独自のアウトラインの最上位階層を構成する要素。"
+  },
+  {
+    "page": "HTML-09",
+    "term": "パルパブルコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "a, address, audio, button, canvas, code, ...",
+    "explanation": "フローコンテンツ、またはフレージングコンテンツに属する要素で、hidden属性が指定されていない内容を最低1つもつ要素。"
+  },
+  {
+    "page": "HTML-09",
+    "term": "フォーム関連",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "button, fieldset, input, label, object, select, textarea",
+    "explanation": "フォーム関連の入力項目、ラベルやボタンなどの要素。"
+  },
+  {
+    "page": "HTML-09",
+    "term": "コンテンツモデル",
+    "category": "HTMLの基礎",
+    "usage_example": "<section><h2>見出し</h2><p>内容</p></section>",
+    "explanation": "要素にどの内容を入れて良いかを定義したルール。"
+  },
+  {
+    "page": "HTML-10",
+    "term": "トランスペアレントコンテンツ",
+    "category": "HTML5コンテンツカテゴリー",
+    "usage_example": "a, audio, canvas, del, map, video",
+    "explanation": "親要素のコンテンツモデルを受け継ぐ要素。"
+  },
+  {
+    "page": "HTML-10",
+    "term": "アウトライン",
+    "category": "HTMLの構造",
+    "usage_example": null,
+    "explanation": "HTML文書の階層構造のこと。本でいう章節項のようなもの。<section>など「セクショニング・コンテンツ」に属する要素を使うことで明示的にアウトラインを記述できる。"
+  },
+  {
+    "page": "HTML-10",
+    "term": "暗黙のアウトライン",
+    "category": "HTMLの構造",
+    "usage_example": null,
+    "explanation": "セクショニング要素を記述しなくても（h1, h2などだけで）アウトラインが生成されること。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "グローバル属性",
+    "category": "HTML属性",
+    "usage_example": null,
+    "explanation": "すべての要素に指定できる共通の属性のこと。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "accesskey",
+    "category": "グローバル属性",
+    "usage_example": "<button accesskey=\"s\">送信</button>",
+    "explanation": "要素にアクセスキーを割り当てる。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "autocapitalize",
+    "category": "グローバル属性",
+    "usage_example": "<input autocapitalize=\"words\">",
+    "explanation": "入力/編集されたとき、入力文字列の大文字化を自動で行うか指定する。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "class",
+    "category": "グローバル属性",
+    "usage_example": "<p class=\"important\">注意</p>",
+    "explanation": "要素にクラス名を付ける。クラス名はCSSのセレクタで、特定の要素を選択できるようになる。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "contenteditable",
+    "category": "グローバル属性",
+    "usage_example": "<div contenteditable=\"true\">編集可能</div>",
+    "explanation": "要素の内容が編集可能かどうかを指定する。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "data-*",
+    "category": "グローバル属性",
+    "usage_example": "<div data-user-id=\"123\">ユーザー情報</div>",
+    "explanation": "カスタムデータ属性。JavaScriptで使用するため独自属性を指定。「data-」に続けて半角英数の任意の文字列を記述。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "dir",
+    "category": "グローバル属性",
+    "usage_example": "<p dir=\"rtl\">アラビア語</p>",
+    "explanation": "要素の内容の書く向きを指定（ltr: 左から右, rtl: 右から左）。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "draggable",
+    "category": "グローバル属性",
+    "usage_example": "<div draggable=\"true\">ドラッグ可能</div>",
+    "explanation": "Drag and Drop APIを使用して要素をドラッグの切替が可能か指定する。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "hidden",
+    "category": "グローバル属性",
+    "usage_example": "<p hidden>この文章は表示されません</p>",
+    "explanation": "関連性がないことを指定し、要素を非表示にする。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "id",
+    "category": "グローバル属性",
+    "usage_example": "<h1 id=\"main-title\">タイトル</h1>",
+    "explanation": "要素にIDをつける。ID名はCSSのセレクタで特定の要素を選択できる。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "lang",
+    "category": "グローバル属性",
+    "usage_example": "<html lang=\"ja\">",
+    "explanation": "要素の内容の言語を指定する。"
+  },
+  {
+    "page": "HTML-11",
+    "term": "spellcheck",
+    "category": "グローバル属性",
+    "usage_example": "<textarea spellcheck=\"true\"></textarea>",
+    "explanation": "要素の内容に対するスペルチェックの可否を指定。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "style",
+    "category": "グローバル属性",
+    "usage_example": "<p style=\"color: red;\">赤い文字</p>",
+    "explanation": "要素に直接スタイルシートを指定。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "tabindex",
+    "category": "グローバル属性",
+    "usage_example": "<input tabindex=\"1\">",
+    "explanation": "Tabキーによる移動順序を指定。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "title",
+    "category": "グローバル属性",
+    "usage_example": "<p title=\"補足情報\">テキスト</p>",
+    "explanation": "要素に補足情報を加える。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "translate",
+    "category": "グローバル属性",
+    "usage_example": "<span translate=\"no\">BrandName</span>",
+    "explanation": "翻訳対象にするかどうかを指定。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "マイクロデータ",
+    "category": "高度なHTML",
+    "usage_example": "<div itemscope itemtype=\"http://schema.org/Book\">...</div>",
+    "explanation": "HTML文書内に埋め込むためのメタデータのこと。コンピュータがそのブロックが何について書いているのか理解できるようになる。"
+  },
+  {
+    "page": "HTML-12",
+    "term": "WAI-ARIA",
+    "category": "高度なHTML",
+    "usage_example": "<div role=\"button\" aria-pressed=\"false\">カスタムボタン</div>",
+    "explanation": "W3Cが公開している技術仕様。視覚障害を持つ方が利用する音声ブラウザなどでアクセシビリティ対応を行うために使用する。"
+  },
+  {
+    "page": "HTML-13",
+    "term": "xmlns",
+    "category": "HTML属性",
+    "usage_example": "<html xmlns=\"http://www.w3.org/1999/xhtml\">",
+    "explanation": "HTML文書をXMLとして記述する場合に使用する。"
+  },
+  {
+    "page": "HTML-13",
+    "term": "manifest",
+    "category": "HTML属性",
+    "usage_example": "<html manifest=\"cache.manifest\">",
+    "explanation": "Cache機能を使って、定義したファイルをブラウザのローカル領域に保存し、オフラインでも利用可能にすること。"
+  },
+  {
+    "page": "HTML-13",
+    "term": "<title>",
+    "category": "HTML要素",
+    "usage_example": "<title>ページのタイトル</title>",
+    "explanation": "HTML文書のタイトルを示す要素。"
+  },
+  {
+    "page": "HTML-13",
+    "term": "<link>",
+    "category": "HTML要素",
+    "usage_example": "<link rel=\"stylesheet\" href=\"style.css\">",
+    "explanation": "外部のリソースとの関係を示す要素。"
+  },
+  {
+    "page": "HTML-14",
+    "term": "viewport",
+    "category": "HTMLメタデータ",
+    "usage_example": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "explanation": "アクセスしたときの表示領域の指定。スマートフォンなどのモバイルデバイスでの表示を最適化するために使う。"
+  },
+  {
+    "page": "HTML-14",
+    "term": "<base>",
+    "category": "HTML要素",
+    "usage_example": "<base href=\"/docs/\">",
+    "explanation": "相対パスの基準となるURLを指定する。"
+  },
+  {
+    "page": "HTML-15",
+    "term": "MIMEタイプ",
+    "category": "Web制作の基礎知識",
+    "usage_example": "text/html, image/jpeg",
+    "explanation": "クライアントに対して転送するドキュメントの種類を伝える機能。"
+  },
+  {
+    "page": "HTML-15",
+    "term": "CORS",
+    "category": "Web制作の基礎知識",
+    "usage_example": null,
+    "explanation": "Cross-Origin Resource Sharingの略。異なるオリジン（ドメイン）間でリソースを共有するための仕組み。"
+  },
+  {
+    "page": "HTML-16",
+    "term": "<style>",
+    "category": "HTML要素",
+    "usage_example": "<style>p { color: blue; }</style>",
+    "explanation": "スタイル情報を記述する要素。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<main>",
+    "category": "HTML要素",
+    "usage_example": "<main>...</main>",
+    "explanation": "HTML文書のメインコンテンツを示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<article>",
+    "category": "HTML要素",
+    "usage_example": "<article>...</article>",
+    "explanation": "記事コンテンツを示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<section>",
+    "category": "HTML要素",
+    "usage_example": "<section>...</section>",
+    "explanation": "文章のセクションを示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<header>",
+    "category": "HTML要素",
+    "usage_example": "<header>...</header>",
+    "explanation": "セクションのヘッダー情報を示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<footer>",
+    "category": "HTML要素",
+    "usage_example": "<footer>...</footer>",
+    "explanation": "直近のセクションのフッター情報を示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<nav>",
+    "category": "HTML要素",
+    "usage_example": "<nav>...</nav>",
+    "explanation": "ナビゲーションを示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<aside>",
+    "category": "HTML要素",
+    "usage_example": "<aside>...</aside>",
+    "explanation": "補足・余談の情報を示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<address>",
+    "category": "HTML要素",
+    "usage_example": "<address>...</address>",
+    "explanation": "連絡先の情報を示す。"
+  },
+  {
+    "page": "HTML-17",
+    "term": "<div>",
+    "category": "HTML要素",
+    "usage_example": "<div>...</div>",
+    "explanation": "特別に機能がない汎用的な範囲を示す。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<h1>-<h6>",
+    "category": "HTML要素",
+    "usage_example": "<h1>見出し1</h1>",
+    "explanation": "見出しを示す要素。h1が最上位の見出し。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<p>",
+    "category": "HTML要素",
+    "usage_example": "<p>段落です。</p>",
+    "explanation": "段落を示す要素。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<ol>",
+    "category": "HTML要素",
+    "usage_example": "<ol><li>項目1</li><li>項目2</li></ol>",
+    "explanation": "順序のあるリストを表す。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<ul>",
+    "category": "HTML要素",
+    "usage_example": "<ul><li>項目A</li><li>項目B</li></ul>",
+    "explanation": "順序のないリストを表示する。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<li>",
+    "category": "HTML要素",
+    "usage_example": "<li>リスト項目</li>",
+    "explanation": "リスト項目を表示する。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<dl>",
+    "category": "HTML要素",
+    "usage_example": "<dl><dt>用語</dt><dd>説明</dd></dl>",
+    "explanation": "定義や説明のリストを表示する。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<dt>",
+    "category": "HTML要素",
+    "usage_example": "<dt>用語</dt>",
+    "explanation": "定義する用語を表示する。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<dd>",
+    "category": "HTML要素",
+    "usage_example": "<dd>説明</dd>",
+    "explanation": "定義した用語の説明を表示する。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<blockquote>",
+    "category": "HTML要素",
+    "usage_example": "<blockquote>引用文</blockquote>",
+    "explanation": "引用文であることを示す。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<pre>",
+    "category": "HTML要素",
+    "usage_example": "<pre>ソースコードなど</pre>",
+    "explanation": "ソース中のスペースや改行をそのまま表示。"
+  },
+  {
+    "page": "HTML-18",
+    "term": "<hr>",
+    "category": "HTML要素",
+    "usage_example": "<hr>",
+    "explanation": "段落の区切りを示す。"
+  },
+  {
+    "page": "HTML-19",
+    "term": "<a>",
+    "category": "HTML要素",
+    "usage_example": "<a href=\"https://example.com\">リンク</a>",
+    "explanation": "リンクを示す要素。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "相対パスと絶対パス",
+    "category": "Web制作の基礎知識",
+    "usage_example": "./file.html (相対パス) / https://... (絶対パス)",
+    "explanation": "相対パスはファイルの位置(階層)を基準にして指定し、絶対パスはURLでページを指定する。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<em>",
+    "category": "HTML要素",
+    "usage_example": "<em>強調</em>",
+    "explanation": "テキストに強勢を付ける。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<strong>",
+    "category": "HTML要素",
+    "usage_example": "<strong>重要</strong>",
+    "explanation": "テキストに重要性を示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<b>",
+    "category": "HTML要素",
+    "usage_example": "<b>太字</b>",
+    "explanation": "他と区別したいテキストを示す（太字）。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<i>",
+    "category": "HTML要素",
+    "usage_example": "<i>斜体</i>",
+    "explanation": "通常のテキストとは少し異なるテキストを示す（斜体）。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<u>",
+    "category": "HTML要素",
+    "usage_example": "<u>下線</u>",
+    "explanation": "スペルミスや外国固有名詞などを示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<mark>",
+    "category": "HTML要素",
+    "usage_example": "<mark>ハイライト</mark>",
+    "explanation": "ユーザーの操作で目立たせるテキスト。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<small>",
+    "category": "HTML要素",
+    "usage_example": "<small>細目</small>",
+    "explanation": "細目（さいもく）を示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<s>",
+    "category": "HTML要素",
+    "usage_example": "<s>無効</s>",
+    "explanation": "無効になった内容を示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<cite>",
+    "category": "HTML要素",
+    "usage_example": "<cite>作品名</cite>",
+    "explanation": "文献や作品のタイトルを示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<q>",
+    "category": "HTML要素",
+    "usage_example": "<q>短い引用</q>",
+    "explanation": "短い引用分であることを示す。"
+  },
+  {
+    "page": "HTML-20",
+    "term": "<dfn>",
+    "category": "HTML要素",
+    "usage_example": "<dfn>定義語</dfn>",
+    "explanation": "定義語を示す。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<abbr>",
+    "category": "HTML要素",
+    "usage_example": "<abbr title=\"Hyper Text Markup Language\">HTML</abbr>",
+    "explanation": "略語や頭文字を示す。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<ruby>",
+    "category": "HTML要素",
+    "usage_example": "<ruby>漢<rt>かん</rt>字<rt>じ</rt></ruby>",
+    "explanation": "ルビを振る。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<rb>",
+    "category": "HTML要素",
+    "usage_example": "<rb>漢字</rb>",
+    "explanation": "ルビを振る対象テキストを示す。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<rt>",
+    "category": "HTML要素",
+    "usage_example": "<rt>かんじ</rt>",
+    "explanation": "ルビテキストを示す。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<time>",
+    "category": "HTML要素",
+    "usage_example": "<time datetime=\"2025-01-24\">1月24日</time>",
+    "explanation": "日付や時刻を正確に示す。"
+  },
+  {
+    "page": "HTML-21",
+    "term": "<data>",
+    "category": "HTML要素",
+    "usage_example": "<data value=\"12345\">商品A</data>",
+    "explanation": "コンピュータが理解できるデータを示す。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<sub>",
+    "category": "HTML要素",
+    "usage_example": "H<sub>2</sub>O",
+    "explanation": "下付き文字を表示する。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<sup>",
+    "category": "HTML要素",
+    "usage_example": "E=mc<sup>2</sup>",
+    "explanation": "上付き文字を表示する。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<span>",
+    "category": "HTML要素",
+    "usage_example": "<p>一部を<span style=\"color:red;\">赤く</span>する</p>",
+    "explanation": "汎用的な範囲を示す（インライン）。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<br>",
+    "category": "HTML要素",
+    "usage_example": "一行目<br>二行目",
+    "explanation": "改行を示す。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<wbr>",
+    "category": "HTML要素",
+    "usage_example": "長いURLの<wbr>途中で改行",
+    "explanation": "改行が可能な位置を指定する。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<ins>",
+    "category": "HTML要素",
+    "usage_example": "<ins>追加されたテキスト</ins>",
+    "explanation": "追加されたことを示す。"
+  },
+  {
+    "page": "HTML-22",
+    "term": "<del>",
+    "category": "HTML要素",
+    "usage_example": "<del>削除されたテキスト</del>",
+    "explanation": "削除された箇所を示す。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<bdi>",
+    "category": "HTML要素",
+    "usage_example": "<p>User <bdi>מספר</bdi>: 123</p>",
+    "explanation": "他と異なる書字方向であることを示す。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "OGP",
+    "category": "高度なHTML",
+    "usage_example": "<meta property=\"og:title\" content=\"ページのタイトル\">",
+    "explanation": "Open Graph Protocolの略。FacebookやXなどのSNS上でWebページの内容を伝えることができるmeta要素の仕組み。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<bdo>",
+    "category": "HTML要素",
+    "usage_example": "<bdo dir=\"rtl\">逆方向テキスト</bdo>",
+    "explanation": "テキストの書字方向を指定する。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<code>",
+    "category": "HTML要素",
+    "usage_example": "<code>console.log('hello');</code>",
+    "explanation": "プログラムなどのコードであることを示す。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<var>",
+    "category": "HTML要素",
+    "usage_example": "<var>x</var> = 10",
+    "explanation": "変数であることを示す。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<samp>",
+    "category": "HTML要素",
+    "usage_example": "<samp>File not found.</samp>",
+    "explanation": "プログラムの出力結果であることを示す。"
+  },
+  {
+    "page": "HTML-23",
+    "term": "<kbd>",
+    "category": "HTML要素",
+    "usage_example": "<kbd>Ctrl</kbd> + <kbd>C</kbd>",
+    "explanation": "ユーザがコンピュータへ入力する内容である。"
+  },
+  {
+    "page": "HTML-24",
+    "term": "<img>",
+    "category": "HTML要素",
+    "usage_example": "<img src=\"image.jpg\" alt=\"説明\">",
+    "explanation": "画像ファイルを表示する。"
+  },
+  {
+    "page": "HTML-24",
+    "term": "<picture>",
+    "category": "HTML要素",
+    "usage_example": "<picture><source ...><img ...></picture>",
+    "explanation": "レスポンシブ・イメージを指定する。"
+  },
+  {
+    "page": "HTML-24",
+    "term": "<source>",
+    "category": "HTML要素",
+    "usage_example": "<source srcset=\"image.webp\" type=\"image/webp\">",
+    "explanation": "video, audio, picture要素で複数の外部リソースを指定する。"
+  },
+  {
+    "page": "HTML-25",
+    "term": "<map>",
+    "category": "HTML要素",
+    "usage_example": "<map name=\"infographic\"><area ...></map>",
+    "explanation": "イメージマップを作成する。"
+  },
+  {
+    "page": "HTML-25",
+    "term": "<area>",
+    "category": "HTML要素",
+    "usage_example": "<area shape=\"rect\" coords=\"0,0,82,126\" href=\"sun.htm\">",
+    "explanation": "ホットスポット領域を指定する。"
+  },
+  {
+    "page": "HTML-27",
+    "term": "<figure>",
+    "category": "HTML要素",
+    "usage_example": "<figure><img ...><figcaption>...</figcaption></figure>",
+    "explanation": "図表などのまとまりを示す。"
+  },
+  {
+    "page": "HTML-27",
+    "term": "<figcaption>",
+    "category": "HTML要素",
+    "usage_example": "<figcaption>図1の説明</figcaption>",
+    "explanation": "figure要素のキャプションを示す。"
+  },
+  {
+    "page": "HTML-27",
+    "term": "<iframe>",
+    "category": "HTML要素",
+    "usage_example": "<iframe src=\"page.html\"></iframe>",
+    "explanation": "インラインフレームを表示する。"
+  },
+  {
+    "page": "HTML-27",
+    "term": "<embed>",
+    "category": "HTML要素",
+    "usage_example": "<embed src=\"movie.swf\">",
+    "explanation": "外部アプリケーション、インタラクティブコンテンツを埋め込む。"
+  },
+  {
+    "page": "HTML-28",
+    "term": "<audio>",
+    "category": "HTML要素",
+    "usage_example": "<audio src=\"audio.mp3\" controls></audio>",
+    "explanation": "音声コンテンツを埋め込む。"
+  },
+  {
+    "page": "HTML-28",
+    "term": "<video>",
+    "category": "HTML要素",
+    "usage_example": "<video src=\"video.mp4\" controls></video>",
+    "explanation": "動画コンテンツを埋め込む。"
+  },
+  {
+    "page": "HTML-29",
+    "term": "<track>",
+    "category": "HTML要素",
+    "usage_example": "<video><track src=\"subtitles_ja.vtt\" kind=\"subtitles\" srclang=\"ja\"></video>",
+    "explanation": "video要素やaudio要素のトラック情報を指定する。"
+  },
+  {
+    "page": "HTML-30",
+    "term": "<svg>",
+    "category": "HTML要素",
+    "usage_example": "<svg width=\"100\" height=\"100\"><circle .../></svg>",
+    "explanation": "SVG画像をHTML文書に埋め込む。"
+  },
+  {
+    "page": "HTML-30",
+    "term": "<object>",
+    "category": "HTML要素",
+    "usage_example": "<object data=\"file.swf\" type=\"application/x-shockwave-flash\"></object>",
+    "explanation": "外部のリソースを埋め込む。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<table>",
+    "category": "HTML要素",
+    "usage_example": "<table>...</table>",
+    "explanation": "テーブルを作成する。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<tr>",
+    "category": "HTML要素",
+    "usage_example": "<tr><td>...</td></tr>",
+    "explanation": "テーブルの行を表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<th>",
+    "category": "HTML要素",
+    "usage_example": "<th>見出しセル</th>",
+    "explanation": "テーブルの見出しセルを表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<td>",
+    "category": "HTML要素",
+    "usage_example": "<td>データセル</td>",
+    "explanation": "テーブルのセルを表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<caption>",
+    "category": "HTML要素",
+    "usage_example": "<caption>表のタイトル</caption>",
+    "explanation": "テーブルのタイトルを表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<thead>",
+    "category": "HTML要素",
+    "usage_example": "<thead>...</thead>",
+    "explanation": "テーブルのヘッダ要素の行グループを表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<tbody>",
+    "category": "HTML要素",
+    "usage_example": "<tbody>...</tbody>",
+    "explanation": "テーブルのボディ要素の行グループを表す。"
+  },
+  {
+    "page": "HTML-31",
+    "term": "<tfoot>",
+    "category": "HTML要素",
+    "usage_example": "<tfoot>...</tfoot>",
+    "explanation": "テーブルのフッタ要素の行グループを表す。"
+  },
+  {
+    "page": "HTML-32",
+    "term": "<colgroup>",
+    "category": "HTML要素",
+    "usage_example": "<colgroup><col span=\"2\"></colgroup>",
+    "explanation": "テーブルの列グループを表す。"
+  },
+  {
+    "page": "HTML-32",
+    "term": "<col>",
+    "category": "HTML要素",
+    "usage_example": "<col style=\"background-color: #f0f0f0;\">",
+    "explanation": "テーブルの列を表す。"
+  },
+  {
+    "page": "HTML-32",
+    "term": "<form>",
+    "category": "HTML要素",
+    "usage_example": "<form action=\"/submit\" method=\"post\">...</form>",
+    "explanation": "フォーム関連の要素を指定する。"
+  },
+  {
+    "page": "HTML-33",
+    "term": "<input>",
+    "category": "HTML要素",
+    "usage_example": "<input type=\"text\" name=\"username\">",
+    "explanation": "フォームの入力要素を作成する。type属性で様々な入力欄を作成できる。"
+  },
+  {
+    "page": "HTML-39",
+    "term": "<button>",
+    "category": "HTML要素",
+    "usage_example": "<button type=\"submit\">送信</button>",
+    "explanation": "ボタンを作成する。"
+  },
+  {
+    "page": "HTML-39",
+    "term": "<textarea>",
+    "category": "HTML要素",
+    "usage_example": "<textarea name=\"comment\"></textarea>",
+    "explanation": "複数行のテキスト入力欄を作成する。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<select>",
+    "category": "HTML要素",
+    "usage_example": "<select name=\"color\"><option value=\"red\">赤</option></select>",
+    "explanation": "プルダウンメニューを作成する。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<option>",
+    "category": "HTML要素",
+    "usage_example": "<option value=\"red\">赤</option>",
+    "explanation": "select要素、datalist要素の選択肢を作成する。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<optgroup>",
+    "category": "HTML要素",
+    "usage_example": "<optgroup label=\"色\"><option>赤</option></optgroup>",
+    "explanation": "option要素のグループを作成する。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<datalist>",
+    "category": "HTML要素",
+    "usage_example": "<input list=\"items\"><datalist id=\"items\"><option>A</option></datalist>",
+    "explanation": "入力候補を作成する。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<label>",
+    "category": "HTML要素",
+    "usage_example": "<label for=\"username\">ユーザー名:</label><input id=\"username\">",
+    "explanation": "入力コントロールの項目名を表す。"
+  },
+  {
+    "page": "HTML-40",
+    "term": "<output>",
+    "category": "HTML要素",
+    "usage_example": "<output name=\"result\"></output>",
+    "explanation": "計算結果を表示する。"
+  },
+  {
+    "page": "HTML-41",
+    "term": "<progress>",
+    "category": "HTML要素",
+    "usage_example": "<progress value=\"70\" max=\"100\"></progress>",
+    "explanation": "プログレスバー（進行状況）を表示する。"
+  },
+  {
+    "page": "HTML-41",
+    "term": "<meter>",
+    "category": "HTML要素",
+    "usage_example": "<meter value=\"2\" min=\"0\" max=\"10\">2 out of 10</meter>",
+    "explanation": "特定範囲の測定値を表示する。"
+  },
+  {
+    "page": "HTML-42",
+    "term": "<fieldset>",
+    "category": "HTML要素",
+    "usage_example": "<fieldset><legend>個人情報</legend>...</fieldset>",
+    "explanation": "入力コントロールをグループ化する。"
+  },
+  {
+    "page": "HTML-42",
+    "term": "<legend>",
+    "category": "HTML要素",
+    "usage_example": "<legend>グループの見出し</legend>",
+    "explanation": "fieldset要素で作られたグループの見出しを作成する。"
+  },
+  {
+    "page": "HTML-43",
+    "term": "<details>",
+    "category": "HTML要素",
+    "usage_example": "<details><summary>詳細</summary><p>内容</p></details>",
+    "explanation": "追加の詳細情報を表示する。"
+  },
+  {
+    "page": "HTML-43",
+    "term": "<summary>",
+    "category": "HTML要素",
+    "usage_example": "<summary>要約</summary>",
+    "explanation": "details要素の要約を示す。"
+  },
+  {
+    "page": "HTML-43",
+    "term": "<dialog>",
+    "category": "HTML要素",
+    "usage_example": "<dialog open>ダイアログ</dialog>",
+    "explanation": "ダイアログを表示する。"
+  },
+  {
+    "page": "HTML-44",
+    "term": "<script>",
+    "category": "HTML要素",
+    "usage_example": "<script src=\"main.js\"></body>/script>",
+    "explanation": "JavaScriptなどクライアントサイドスクリプトを埋め込む。"
+  },
+  {
+    "page": "HTML-44",
+    "term": "<noscript>",
+    "category": "HTML要素",
+    "usage_example": "<noscript>JavaScriptが無効です。</noscript>",
+    "explanation": "スクリプトが動作しない環境の内容を表す。"
+  },
+  {
+    "page": "HTML-44",
+    "term": "<template>",
+    "category": "HTML要素",
+    "usage_example": "<template>...</template>",
+    "explanation": "スクリプトが利用するHTMLのパーツを表す。"
+  },
+  {
+    "page": "HTML-44",
+    "term": "<canvas>",
+    "category": "HTML要素",
+    "usage_example": "<canvas width=\"200\" height=\"100\"></canvas>",
+    "explanation": "グラフィックやアニメーションの描写領域を表す。"
+  },
+  {
+    "page": "CSS-45",
+    "term": "CSS",
+    "category": "CSSの基礎",
+    "usage_example": null,
+    "explanation": "Cascading Style Sheetsの略。HTML文書のデザインやレイアウトといったスタイルを整える。"
+  },
+  {
+    "page": "CSS-45",
+    "term": "セレクタ",
+    "category": "CSSの基礎",
+    "usage_example": "h1.title { ... }",
+    "explanation": "CSSスタイルをどのHTML要素に適用するかを指定する条件式。"
+  },
+  {
+    "page": "CSS-45",
+    "term": "コメントアウト",
+    "category": "CSSの基礎",
+    "usage_example": "/* コメント */",
+    "explanation": "/* と */ で囲むことで、スタイルシート内でコメントを記述できる。"
+  },
+  {
+    "page": "CSS-45",
+    "term": "ボックスモデル",
+    "category": "CSSの基礎",
+    "usage_example": null,
+    "explanation": "要素がcontent, padding, border, marginの4つの領域で構成されるという考え方。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "スタイルの優先順位",
+    "category": "CSSの基礎",
+    "usage_example": "style属性(1000点) > id(100点) > class(10点) > 要素名(1点)",
+    "explanation": "複数のスタイル指定が競合した場合、セレクタの詳細度（点数）によってどのスタイルを適用するかが決まる。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "ベンダープレフィックス",
+    "category": "CSSの基礎",
+    "usage_example": "-webkit-, -moz-, -ms-",
+    "explanation": "各ブラウザが独自に実装している機能をCSSで利用するための接頭辞。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "全称セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "* { ... }",
+    "explanation": "すべての要素を指定する。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "要素型セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "p { ... }",
+    "explanation": "特定の要素を指定する。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "子孫セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "div p { ... }",
+    "explanation": "指定した要素の子孫要素を指定する。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "子セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "div > p { ... }",
+    "explanation": "指定した要素の子要素を指定する。"
+  },
+  {
+    "page": "CSS-46",
+    "term": "隣接兄弟セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "h1 + p { ... }",
+    "explanation": "指定した要素の直後の兄弟要素を指定する。"
+  },
+  {
+    "page": "CSS-47",
+    "term": "一般兄弟セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "h1 ~ p { ... }",
+    "explanation": "指定した要素以降のすべての兄弟要素を指定する。"
+  },
+  {
+    "page": "CSS-47",
+    "term": "クラスセレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": ".classname { ... }",
+    "explanation": "クラス名を持つ要素を指定する。"
+  },
+  {
+    "page": "CSS-47",
+    "term": "IDセレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "#idname { ... }",
+    "explanation": "ID名を持つ要素を指定する。"
+  },
+  {
+    "page": "CSS-47",
+    "term": "属性セレクタ",
+    "category": "CSSセレクタ",
+    "usage_example": "[target], [target=\"_blank\"], [class~=\"btn\"]",
+    "explanation": "特定の属性を持つ、または属性値が特定の値である要素を指定する。"
+  },
+  {
+    "page": "CSS-48",
+    "term": "構造疑似クラス",
+    "category": "CSS疑似クラス",
+    "usage_example": ":root, :nth-child(n), :first-child, etc.",
+    "explanation": "要素の構造上の位置に基づいてスタイルを適用する。"
+  },
+  {
+    "page": "CSS-49",
+    "term": "リンク疑似クラス",
+    "category": "CSS疑似クラス",
+    "usage_example": ":link, :visited",
+    "explanation": "リンクの状態（未訪問、訪問済み）に応じてスタイルを適用する。"
+  },
+  {
+    "page": "CSS-50",
+    "term": "ユーザーアクション疑似クラス",
+    "category": "CSS疑似クラス",
+    "usage_example": ":hover, :active, :focus",
+    "explanation": "ユーザーの操作（ホバー、クリック、フォーカス）に応じてスタイルを適用する。"
+  },
+  {
+    "page": "CSS-50",
+    "term": "UI要素状態疑似クラス",
+    "category": "CSS疑似クラス",
+    "usage_example": ":enabled, :disabled, :checked",
+    "explanation": "フォーム要素などの状態（有効、無効、チェック済み）に応じてスタイルを適用する。"
+  },
+  {
+    "page": "CSS-50",
+    "term": "疑似要素",
+    "category": "CSSの基礎",
+    "usage_example": "::first-line, ::first-letter, ::before, ::after",
+    "explanation": "要素の特定の部分にスタイルを適用する。"
+  },
+  {
+    "page": "CSS-51",
+    "term": "否定疑似クラス",
+    "category": "CSS疑似クラス",
+    "usage_example": ":not(.special) { ... }",
+    "explanation": "指定条件に当てはまらない要素にスタイルを適用する。"
+  },
+  {
+    "page": "CSS-51",
+    "term": "color",
+    "category": "CSSプロパティ",
+    "usage_example": "{ color: red; }",
+    "explanation": "テキストの色を指定する。"
+  },
+  {
+    "page": "CSS-51",
+    "term": "font-style",
+    "category": "CSSプロパティ",
+    "usage_example": "{ font-style: italic; }",
+    "explanation": "フォントのスタイル（normal, italic, oblique）を指定する。"
+  },
+  {
+    "page": "CSS-51",
+    "term": "font-variant",
+    "category": "CSSプロパティ",
+    "usage_example": "{ font-variant: small-caps; }",
+    "explanation": "フォントをスモールキャップスに指定する。"
+  },
+  {
+    "page": "CSS-52",
+    "term": "font-weight",
+    "category": "CSSプロパティ",
+    "usage_example": "{ font-weight: bold; }",
+    "explanation": "フォントの太さを指定する。"
+  },
+  {
+    "page": "CSS-52",
+    "term": "font-size",
+    "category": "CSSプロパティ",
+    "usage_example": "{ font-size: 16px; }",
+    "explanation": "フォントのサイズを指定する。"
+  }
+]

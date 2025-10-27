@@ -10,8 +10,9 @@
     <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
     <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
     <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+    <a href="link.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">全リンク表示</a>
     <a href="https://www.rakuten.co.jp/kbsanhe/" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">楽天サイト</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScIxMze7zXyO4OfyMyBTXrIbZP7Ak1Jm_FT3rvvmw01jYgOtA/viewform?usp=header" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
+    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
 </nav>
     <link rel="stylesheet" href="static/style2.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
@@ -91,5 +92,15 @@
     <!-- <script src="static/other_glossary.json"></script> -->
     <!-- <script src="static/python_methods.json"></script> -->
 
+// Service Worker登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
+}
 </body>
 </html>

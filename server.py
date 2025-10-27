@@ -1,43 +1,52 @@
+# 必要なライブラリをインポート
 from flask import Flask, request, jsonify
-import requests
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
+import google.generativeai as genai
 
+# .envファイルから環境変数を読み込む
 load_dotenv()
 
+# Flaskアプリケーションの準備
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/grok', methods=['POST'])
-def grok():
+# アプリ起動時に一度だけAPIキーを設定する
+api_key = os.getenv('GOOGLE_API_KEY')
+if not api_key:
+    print("エラー: GOOGLE_API_KEYが設定されていません。")
+else:
+    genai.configure(api_key=api_key)
+
+@app.route('/gemini', methods=['POST'])
+def generate_with_gemini():
     data = request.json
     prompt = data.get('prompt')
     if not prompt:
-        return jsonify({'error': 'No prompt provided'}), 400
+        return jsonify({'error': 'プロンプトがありません'}), 400
 
-    api_key = os.getenv('XAI_API_KEY')
-    if not api_key:
-        return jsonify({'error': 'API key not set'}), 500
-
-    headers = {
-        'Authorization': f'Bearer {api_key}',
-        'Content-Type': 'application/json'
-    }
-    payload = {
-        'model': 'grok-2',
-        'messages': [{'role': 'user', 'content': prompt}]
-    }
+    print(f"受信したプロンプト: {prompt}")
     try:
-        response = requests.post('https://api.x.ai/v1/chat/completions', headers=headers, json=payload, timeout=30)
-        if response.status_code == 200:
-            result = response.json()
-            answer = result['choices'][0]['message']['content']
-            return jsonify({'answer': answer})
-        else:
-            return jsonify({'error': f'API error: {response.status_code}'}), 500
+        model = genai.GenerativeModel('gemini-pro')
+        print("モデルを作成しました")
+        response = model.generate_content(prompt)
+        print("応答を生成しました")
+        answer = response.text
+        print(f"生成された回答: {answer}")
+        return jsonify({'answer': answer})
     except Exception as e:
+        print(f"エラーが発生しました: {e}")
         return jsonify({'error': str(e)}), 500
+
+@app.route('/notify_admin', methods=['POST'])
+def notify_admin():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    if username and password:
+        print(f"新規登録: ユーザー名={username}, パスワード={password}")
+    return jsonify({'status': 'ok'}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

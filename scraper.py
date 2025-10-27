@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 # scraper2.pyとscrape_train.pyを一括で実行するコードをここに記述
-# 1時間ごとに自動的にこのファイルが実行されるように設定すること
+# 1日1回、午前0時（JST）に自動的にこのファイルが実行されるように設定すること
 
 import argparse
 import subprocess
@@ -64,7 +64,7 @@ def install_cron():
     if shutil.which("crontab") is None:
         logging.error("crontab コマンドが見つかりません。devcontainerで利用可能か確認してください。")
         return 1
-    cron_cmd = f'0 * * * * cd {WORKDIR} && /usr/bin/env python3 {Path(__file__).resolve()} >> {LOGFILE} 2>&1 {CRON_MARKER}'
+    cron_cmd = f'TZ=Asia/Tokyo 0 0 * * * cd {WORKDIR} && /usr/bin/env python3 {Path(__file__).resolve()} >> {LOGFILE} 2>&1 {CRON_MARKER}'
     try:
         existing = subprocess.run(["crontab", "-l"], capture_output=True, text=True)
         current = existing.stdout if existing.returncode == 0 else ""
@@ -76,7 +76,7 @@ def install_cron():
             tf.write(new_cron)
             tf.flush()
             subprocess.check_call(["crontab", tf.name])
-        logging.info("cron をインストールしました。毎時 0 分に実行されます。")
+        logging.info("cron をインストールしました。毎日午前0時（JST）に実行されます。")
         return 0
     except subprocess.CalledProcessError as e:
         logging.error("crontab のインストールに失敗しました: %s", e)

