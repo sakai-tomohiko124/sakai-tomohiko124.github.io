@@ -72,7 +72,7 @@ body {
 }
 
 .header-content {
-    max-width: min(900px, 90vw);
+    max-width: min(1200px, 95vw);
     margin: 0 auto;
     position: relative;
 }
@@ -109,7 +109,7 @@ body {
 
 /* Main Content Area */
 .main-content {
-    max-width: 900px;
+    max-width: min(1100px, 95vw);
     margin: 2.5em auto;
     padding: 0 1.5em;
     flex-grow: 1;
@@ -234,12 +234,13 @@ body {
     background-color: var(--bg-medium);
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    margin-bottom: 1.8em;
+    /* グリッド間のgapで余白を確保するため、margin-bottomは削除 */
     padding: 2em;
     border-left: 4px solid var(--neon-purple); /* アクセントカラー */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     position: relative;
-    overflow: hidden;
+    overflow: visible; /* コンテンツ（コードブロック等）のはみ出しを許容し、横スクロールにする */
+    box-sizing: border-box;
 }
 
 .glossary-item::before {
@@ -289,6 +290,14 @@ body {
     z-index: 1;
 }
 
+.glossary-term,
+.glossary-explanation,
+.glossary-usage-example,
+.glossary-usage-example .code-block {
+    word-break: break-word; /* 長い英単語やURLでレイアウトが崩れるのを防ぐ */
+    overflow-wrap: anywhere;
+}
+
 .glossary-explanation {
     font-size: 1.05em;
     color: var(--text-secondary);
@@ -323,6 +332,22 @@ body {
     word-break: break-word; /* 単語の途中で改行 */
     color: #aaffaa; /* コードっぽい色 */
     box-shadow: inset 0 0 5px rgba(0, 224, 255, 0.2);
+}
+
+/* Glossary をカードグリッドで表示してレスポンシブ化（PC:2-3カラム, タブレット:2カラム, スマホ:1カラム） */
+.glossary-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6em;
+    padding-top: 1em; /* 既存の余白を維持 */
+    align-items: start;
+}
+
+/* 小さい画面でカード内の余白を少し縮める */
+@media (max-width: 480px) {
+    .glossary-item {
+        padding: 1.2em;
+    }
 }
 
 /* Loading/Error Messages */
@@ -433,7 +458,7 @@ body {
         padding: 0.6em 0.8em;
     }
     .glossary-item {
-        padding: 1.5em;
+        padding: 1.2em;
     }
     .glossary-term {
         font-size: 1.5em;
@@ -441,4 +466,31 @@ body {
     .glossary-explanation {
         font-size: 0.95em;
     }
+}
+
+/* 単一表示モード用ナビゲーション */
+.single-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+}
+.single-nav .nav-button {
+    background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+    border: none;
+    color: #001;
+    padding: 0.6em 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+.single-nav .nav-button[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.single-nav .nav-info {
+    color: var(--text-secondary);
+    font-family: 'Roboto Mono', monospace;
 }
