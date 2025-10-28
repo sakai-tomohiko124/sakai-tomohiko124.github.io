@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 # scraper2.pyとscrape_train.pyを一括で実行するコードをここに記述
-# 1日1回、午前0時（JST）に自動的にこのファイルが実行されるように設定すること
+# 1日4回、午前0時、6時、12時、18時（JST）に自動的にこのファイルが実行されるように設定すること
 
 import argparse
 import subprocess

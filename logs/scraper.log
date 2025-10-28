@@ -46,3 +46,14 @@
 2025-10-25 15:12:14,111 [INFO] 完了 (コード=0)
 2025-10-27 01:20:33,578 [ERROR] crontab コマンドが見つかりません。devcontainerで利用可能か確認してください。
 2025-10-27 01:21:15,343 [INFO] cron をインストールしました。毎日午前0時（JST）に実行されます。
+2025-10-28 04:41:46,125 [INFO] 開始: scraper2.py と scrape_train.py を順次実行します
+2025-10-28 04:41:46,125 [INFO] 実行: /home/codespace/.python/current/bin/python /workspaces/sakai-tomohiko124.github.io/scraper2.py
+2025-10-28 04:41:47,611 [INFO] 終了コード: 0
+2025-10-28 04:41:47,612 [INFO] stdout:
+'weather_info.json' の生成が完了しました。
+2025-10-28 04:41:47,612 [INFO] 実行: /home/codespace/.python/current/bin/python /workspaces/sakai-tomohiko124.github.io/scrape_train.py
+2025-10-28 04:41:48,633 [INFO] 終了コード: 0
+2025-10-28 04:41:48,634 [INFO] stdout:
+0件のトラブル情報をHTMLテーブルから取得しました。
+'train_info.json' の生成が完了しました。全 156 件の路線情報を書き出しました。
+2025-10-28 04:41:48,634 [INFO] 完了 (コード=0)

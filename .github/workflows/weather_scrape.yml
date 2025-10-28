@@ -2,8 +2,11 @@ name: Scrape Weather Info
 
 on:
   schedule:
-    # 毎日午前0時（JST）に自動実行 (UTCでは前日15時)
-    - cron: '0 15 * * *'
+    # 毎日0時、6時、12時、18時（JST）に自動実行
+    - cron: '0 15 * * *'  # 0時 JST (UTC 15:00)
+    - cron: '0 21 * * *'  # 6時 JST (UTC 21:00)
+    - cron: '0 3 * * *'   # 12時 JST (UTC 3:00)
+    - cron: '0 9 * * *'   # 18時 JST (UTC 9:00)
   # GitHubのActionsタブから手動でも実行可能にする
   workflow_dispatch:
 
