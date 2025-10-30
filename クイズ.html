@@ -78,6 +78,7 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
         <section id="quiz-selection" class="quiz-selection">
             <button class="quiz-btn" onclick="startQuiz('ARE')">AREクイズ</button>
             <button class="quiz-btn" onclick="startQuiz('story')">物語クイズ</button>
+            <button class="quiz-btn" onclick="startQuiz('admin')">管理者クイズ</button>
         </section>
 
         <section id="quiz-area" style="display:none;">
@@ -129,7 +130,7 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
 
         async function startQuiz(type) {
             quizType = type;
-            const url = type === 'ARE' ? 'static/ARE.json' : 'static/story.json';
+            const url = type === 'ARE' ? 'static/ARE.json' : type === 'story' ? 'static/story.json' : 'static/管理者.json';
             try {
                 const response = await fetch(url);
                 const data = await response.json();
