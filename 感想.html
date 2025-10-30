@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python試験 受験レポート</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本的なスタイリング */
+        :root {
+            --bg-dark: #121212;
+            --bg-medium: #1f1f1f;
+            --bg-light: #2a2a2a;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --neon-blue: #00e0ff;
+            --neon-purple: #ae00ff;
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-blur: 10px;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景エフェクト */
+        .background-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 15% 15%, rgba(0, 224, 255, 0.15) 0%, transparent 40%), radial-gradient(circle at 85% 85%, rgba(174, 0, 255, 0.15) 0%, transparent 40%);
+            opacity: 0.7;
+            z-index: -1;
+            animation: pulseBackground 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseBackground {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+
+        /* ヘッダー */
+        .futuristic-header {
+            background: linear-gradient(45deg, var(--bg-medium), var(--bg-dark) 70%);
+            padding: 3em 1em 2em;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 224, 255, 0.3), 0 0 40px rgba(174, 0, 255, 0.2);
+            border-bottom: 2px solid var(--neon-blue);
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: min(1200px, 95vw);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .futuristic-header h1 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2.8em;
+            margin-bottom: 0.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+            animation: neonGlow 2s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            from { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue); }
+            to { text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue); }
+        }
+
+        .futuristic-header .tagline {
+            font-size: 1.1em;
+            opacity: 0.7;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            max-width: min(800px, 95vw);
+            margin: 2.5em auto;
+            padding: 0 1.5em;
+            flex-grow: 1;
+            position: relative;
+            z-index: 5;
+        }
+
+        .content-container {
+            padding: 2.5em;
+            border-radius: 15px;
+            backdrop-filter: blur(var(--glass-blur));
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .content-section {
+            margin-bottom: 2.5em;
+        }
+        
+        /* コンテンツ用のカスタムスタイル */
+        .content-section h2 {
+            display: block;
+            margin-bottom: 1em;
+            font-weight: 700;
+            color: var(--neon-blue);
+            font-size: 1.5em;
+            letter-spacing: 0.8px;
+            text-shadow: 0 0 5px var(--neon-blue);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 0.5em;
+        }
+        
+        .content-container ul, .content-container ol {
+            padding-left: 20px;
+        }
+
+        .content-container li {
+            margin-bottom: 1.2em;
+        }
+        
+        .content-container strong {
+            color: var(--neon-purple);
+            font-weight: 700;
+        }
+
+        .content-container .note {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            border-left: 3px solid var(--neon-purple);
+            padding-left: 1em;
+            margin-top: 1em;
+            display: inline-block;
+        }
+
+        code {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-light);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            padding: 1em;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.95em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-top: 1em;
+        }
+
+        /* フッター */
+        .futuristic-footer {
+            margin-top: 4em;
+            background: linear-gradient(-45deg, var(--bg-medium), var(--bg-dark) 70%);
+            text-align: center;
+            padding: 1.5em 1em;
+            font-size: 0.9em;
+            border-top: 1px dashed var(--neon-purple);
+        }
+
+        @media (max-width: 768px) {
+            .futuristic-header h1 { font-size: 2.2em; }
+            .content-container { padding: 1.5em; }
+            .content-section h2 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-effect"></div>
+
+    <header class="futuristic-header">
+        <div class="header-content">
+            <h1>Python 試験 受験レポート</h1>
+            <p class="tagline">2025年8月23日(土) 船橋にて</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="content-container">
+
+            <section class="content-section">
+                <h2>はじめに</h2>
+                <p>勉強のやる気を起こすために、無理やり試験日程を近日にし、ハードルを上げていました。みなさんからの応援がプレッシャーとなるか、やる気になるかは別として、本番は緊張しながら試験に挑んでいました。</p>
+                <p class="note">以下の問題はうろ覚えなので、許してください！参考程度によろしくお願いいたします。</p>
+            </section>
+
+            <section class="content-section">
+                <h2>試験概要と準備</h2>
+                <ul>
+                    <li><strong>試験日時:</strong> 2025年8月23日(土) 18時30分 (試験時間50分)</li>
+                    <li><strong>所感:</strong> 見直しが怖かったので、開始20分で試験終了・印刷しました。</li>
+                    <li><strong>事前準備:</strong> 身分証明書の確認、前日の朝9時までに振込 <br><span class="note">振込先の名義を間違えないようにしましょう！！</span></li>
+                </ul>
+            </section>
+            
+            <section class="content-section">
+                <h2>勉強方法</h2>
+                <ol>
+                    <li>自作のメソッド一覧表を一通り眺める。</li>
+                    <li>YouTubeで2時間26分くらいの「完全入門永久保存版」で、自分の苦手なところを復習。(サイトはJupiterlabに似ていました)</li>
+                    <li>緑色の「Python完全入門」の本のPythonの概要(p16～p34)を読む。</li>
+                </ol>
+            </section>
+            
+            <section class="content-section">
+                <h2>出題内容の記憶（参考）</h2>
+                <ul>
+                    <li><strong>無名関数とは何か:</strong> → <code>ラムダ式</code></li>
+                    <li><strong>クラスの基本構文:</strong> (P286の<code>init3.py</code>に似てる) 「Suzuki,Taro」が答えになる問題。</li>
+                    <li><strong>内包表記:</strong> <code>for</code>文を内包表記する問題。</li>
+                    <li><strong>defの意味:</strong> → 関数を定義する。</li>
+                    <li><strong>print関数の結果:</strong> 実行結果が選択肢と同じになるものを選ぶ。</li>
+                    <li><strong>import文:</strong> <code>from 【urllib】 import request</code> のような【】を答える問題。</li>
+                    <li><strong>if文:</strong> <code>if-elif</code>に続く【<code>else</code>】が答えになる問題。</li>
+                    <li><strong>printのend引数:</strong> <code>end=','</code>の役割を問うチェックボックス問題（2つ選択）。答えは「改行せずに実行」と「区切り文字を指定」。<br>
+                        <pre><code># 通常のprint
+for i in range(3):
+    print(i)
+# 実行結果:
+# 0
+# 1
+# 2
+
+# endを使用
+for i in range(3):
+    print(i, end=',')
+# 実行結果: 0,1,2,</code></pre>
+                    </li>
+                    <li><strong>in演算子:</strong> 「A < B > C」のような条件式で、どちらも満たさない場合にどうなるか → 【何も表示されなかった】</li>
+                    <li><strong>pass文の意味:</strong> → 【何もしない】</li>
+                    <li><strong>forの基本構文:</strong> <code>for A in range(): print(len(A), A)</code> のような基本を問う問題。</li>
+                    <li><strong>.python_historyの意味:</strong> → 今までの実行履歴のこと。</li>
+                    <li><strong>キーワード引数:</strong> 関数の<code>**keyword</code>引数について。辞書になっているものを答える。</li>
+                    <li><strong>タプルになるもの:</strong> 実行結果がタプルになるものを選ぶ。</li>
+                    <li><strong>集合の役割:</strong> 集合の役割として誤っているものを答える。</li>
+                    <li><strong>入出力:</strong> （ご本人コメント：０％だったので、ノーコメントです）</li>
+                    <li><strong>例外処理:</strong> <code>try, except, else, finally</code>の意味をしっかり理解していればOK。<code>Exception as e</code>のエラー表示もポイント。</li>
+                    <li><strong>globモジュール:</strong> <code>glob.glob("*.txt")</code> のように、拡張子が.txtのファイル名リストを取得する問題。</li>
+                    <li><strong>書式指定子:</strong> 円周率piの<code>.8f</code>での実行結果。<code>0.0000000314</code>か<code>0.000000314</code>かで悩んだとのこと。</li>
+                    <li><strong>random.randint:</strong> 非常に桁数の多い数字が表示され、その中から結果を選ぶ問題。冷静に考えれば解ける。</li>
+                    <li><strong>zip関数:</strong> <code>zip</code>関数に関するチャンス問題が出た。</li>
+                    <li><strong>エスケープ文字:</strong> <code>"It's"</code> の中の <code>'</code> の役割 → 【クウォート文字扱い】</li>
+                    <li><strong>リストのスライス:</strong> 簡単なスライスの問題。</li>
+                    <li><strong>スタック:</strong> 後入れ先出し（LIFO）の概念を問う問題。</li>
+                    <li><strong>break文:</strong> ループを途中で停止させるための【<code>break</code>】を答える問題。
+                        <pre><code>for A in range(1, 6):
+    if A == 3:
+        【break】
+print(A)</code></pre>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="futuristic-footer">
+        <p>&copy; 2025 Python Exam Report</p>
+    </footer>
+
+</body>
+</html>
