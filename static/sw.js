@@ -19,7 +19,6 @@ const urlsToCache = [
     '/static/sql_glossary.json',
     '/static/html_elements.json',
     '/static/other_glossary.json',
-    '/static/sw.js',
     '/hate/base.html',
     '/hate/python.json',
     '/hate/sql.json',

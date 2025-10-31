@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -332,6 +333,18 @@ function showChat(username) {
 	document.getElementById('chat-area').classList.remove('hidden');
 	loadChat();
 	loadUserMemo();
+	// サーバーからチャットを取得
+	fetch(`/api/chats/${encodeURIComponent(username)}`)
+		.then(res => res.json())
+		.then(data => {
+			if (data.chats) {
+				let localChats = JSON.parse(localStorage.getItem('chats')||'{}');
+				localChats[username] = data.chats;
+				localStorage.setItem('chats', JSON.stringify(localChats));
+				loadChat();
+			}
+		})
+		.catch(err => console.error('サーバ同期エラー:', err));
 }
 // 利用者メモ保存・読込
 function saveUserMemo() {
@@ -404,12 +417,14 @@ function sendMessage() {
 	const user = localStorage.getItem('currentUser');
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	if (!chats[user]) chats[user] = [];
-	chats[user].push({ from: user, text: msg, time: new Date().toLocaleString(), read: false });
+	const id = generateId();
+	chats[user].push({ id: id, from: user, text: msg, time: new Date().toLocaleString(), read: false });
 	localStorage.setItem('chats', JSON.stringify(chats));
 	document.getElementById('chat-input').value = '';
 	document.getElementById('chat-input').style.height = 'auto'; // リセット
 	document.getElementById('answer-options').innerHTML = '';
 	loadChat();
+	syncChats(user); // サーバー同期
 	autoReply(msg);
 }
 
@@ -545,6 +560,10 @@ function sendAdminMessage() {
 }
 
 // 初期表示
+function generateId() {
+	return Date.now().toString() + Math.random().toString(36).substr(2, 9);
+}
+
 window.onload = function() {
 	showLogin();
 	// ログイン済みなら自動復帰
@@ -622,6 +641,22 @@ function selectAnswer(answer) {
 	localStorage.setItem('chats', JSON.stringify(chats));
 	document.getElementById('answer-options').innerHTML = '';
 	loadChat();
+}
+
+function syncChats(user) {
+	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
+	let userChats = chats[user] || [];
+	// サーバーに保存
+	fetch(`/api/chats/${encodeURIComponent(user)}`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ chats: userChats })
+	})
+	.then(res => res.json())
+	.then(data => {
+		// 保存成功
+	})
+	.catch(err => console.error('サーバ同期エラー:', err));
 }
 
 // Service Worker登録

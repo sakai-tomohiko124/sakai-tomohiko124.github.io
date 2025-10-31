@@ -12,6 +12,9 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
+# グローバル変数でチャットを保存（本番ではデータベースを使う）
+server_chats = {}
+
 # アプリ起動時に一度だけAPIキーを設定する
 api_key = os.getenv('GOOGLE_API_KEY')
 if not api_key:
@@ -47,6 +50,17 @@ def notify_admin():
     if username and password:
         print(f"新規登録: ユーザー名={username}, パスワード={password}")
     return jsonify({'status': 'ok'}), 200
+
+@app.route('/api/chats/<username>', methods=['GET', 'POST'])
+def handle_chats(username):
+    if request.method == 'GET':
+        chats = server_chats.get(username, [])
+        return jsonify({'chats': chats})
+    elif request.method == 'POST':
+        data = request.json
+        chats = data.get('chats', [])
+        server_chats[username] = chats
+        return jsonify({'status': 'saved'}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
