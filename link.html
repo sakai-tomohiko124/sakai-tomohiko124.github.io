@@ -43,13 +43,12 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
     </style>
 </head>
 <body>
-            <nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
-        <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
-        <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
-        <a href="index3.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">チャット</a>
-        <a href="index4.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">便利リンク</a>
-        <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
-    </nav>
+	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
+    <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
+    <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
+    <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
+    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
+  </nav>
     <div class="background-effect" aria-hidden="true"></div>
 
     <header class="futuristic-header">
@@ -75,16 +74,11 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                         <option value="JavaScript">
                         <option value="ホーム">
                         <option value="クイズ">
-                        <option value="チャット">
                         <option value="マニュアル">
                         <option value="楽天">
                         <option value="ログイン">
                         <option value="ログアウト">
-                        <option value="天気">
-                        <option value="交通機関">
                         <option value="アンケート">
-                        <option value="動画">
-                        <option value="パスワード">
                     </datalist>
                 </div>
                 <select id="category-filter" style="padding:0.5rem;border:1px solid var(--glass-border);border-radius:8px;background-color:var(--glass-bg);color:var(--text-primary);font-family:'Roboto Mono',monospace;">
@@ -137,11 +131,20 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                         <span class="label">Python認定基礎試験の感想</span>
                     </a>
                 </article>
-                <!-- 初期 -->
+
+                <!-- マニュアル -->
                 <article class="card" role="listitem" data-category="internal">
-                    <a href="index.html" target="_blank" title="初期">
-                        <div class="icon" aria-hidden="true">🏠</div>
-                        <span class="label">初期</span>
+                    <a href="index5.html" target="_blank" title="マニュアル">
+                        <div class="icon" aria-hidden="true">📖</div>
+                        <span class="label">マニュアル</span>
+                    </a>
+                </article>
+
+                <!-- Python試験情報 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="pythonexam.html" target="_blank" title="Python試験情報">
+                        <div class="icon" aria-hidden="true">📝</div>
+                        <span class="label">Python試験情報</span>
                     </a>
                 </article>
 
@@ -153,11 +156,35 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                     </a>
                 </article>
 
-                <!-- マニュアル -->
+                <!-- プログラミング言語用語集 -->
                 <article class="card" role="listitem" data-category="internal">
-                    <a href="index5.html" target="_blank" title="マニュアル">
-                        <div class="icon" aria-hidden="true">📖</div>
-                        <span class="label">マニュアル</span>
+                    <a href="hate/base.html" target="_blank" title="プログラミング言語用語集">
+                        <div class="icon" aria-hidden="true">📚</div>
+                        <span class="label">プログラミング言語用語集</span>
+                    </a>
+                </article>
+
+                <!-- プログラミングクイズ -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index2.html" target="_blank" title="プログラミングクイズ">
+                        <div class="icon" aria-hidden="true">🧠</div>
+                        <span class="label">プログラミングクイズ</span>
+                    </a>
+                </article>
+                
+                <!-- 苦手克服 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="hate.html" target="_blank" title="苦手克服">
+                        <div class="icon" aria-hidden="true">🎯</div>
+                        <span class="label">苦手克服</span>
+                    </a>
+                </article>
+
+                <!-- 初期 -->
+                <article class="card" role="listitem" data-category="internal">
+                    <a href="index.html" target="_blank" title="初期">
+                        <div class="icon" aria-hidden="true">🏠</div>
+                        <span class="label">初期</span>
                     </a>
                 </article>
 
@@ -169,13 +196,7 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                     </a>
                 </article>
 
-                <!-- プログラミング言語用語集 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="hate/base.html" target="_blank" title="プログラミング言語用語集">
-                        <div class="icon" aria-hidden="true">📚</div>
-                        <span class="label">プログラミング言語用語集</span>
-                    </a>
-                </article>
+
 
                 <!-- 読み込み中... -->
                 <article class="card" role="listitem" data-category="internal">
@@ -201,59 +222,12 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                     </a>
                 </article>
 
-                <!-- Python試験情報 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="pythonexam.html" target="_blank" title="Python試験情報">
-                        <div class="icon" aria-hidden="true">📝</div>
-                        <span class="label">Python試験情報</span>
-                    </a>
-                </article>
-
-                <!-- その他 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="other.html" target="_blank" title="その他">
-                        <div class="icon" aria-hidden="true">🔗</div>
-                        <span class="label">その他</span>
-                    </a>
-                </article>
 
                 <!-- アンケート画面へ -->
                 <article class="card" role="listitem" data-category="internal">
                     <a href="アンケート.html" target="_blank" title="アンケート画面へ">
                         <div class="icon" aria-hidden="true">📊</div>
                         <span class="label">アンケート画面へ</span>
-                    </a>
-                </article>
-
-                <!-- 交通機関 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="train.html" target="_blank" title="交通機関">
-                        <div class="icon" aria-hidden="true">🚆</div>
-                        <span class="label">交通機関</span>
-                    </a>
-                </article>
-
-                <!-- 天気予報 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="weather.html" target="_blank" title="天気予報">
-                        <div class="icon" aria-hidden="true">🌤️</div>
-                        <span class="label">天気予報</span>
-                    </a>
-                </article>
-
-                <!-- プログラミングクイズ -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="index2.html" target="_blank" title="プログラミングクイズ">
-                        <div class="icon" aria-hidden="true">🧠</div>
-                        <span class="label">プログラミングクイズ</span>
-                    </a>
-                </article>
-
-                <!-- チャット -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="index3.html" target="_blank" title="チャット">
-                        <div class="icon" aria-hidden="true">💬</div>
-                        <span class="label">チャット</span>
                     </a>
                 </article>
 
@@ -265,43 +239,20 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                     </a>
                 </article>
 
-                <!-- 苦手克服 -->
+                <!-- その他 -->
                 <article class="card" role="listitem" data-category="internal">
-                    <a href="hate.html" target="_blank" title="苦手克服">
-                        <div class="icon" aria-hidden="true">🎯</div>
-                        <span class="label">苦手克服</span>
+                    <a href="other.html" target="_blank" title="その他">
+                        <div class="icon" aria-hidden="true">🔗</div>
+                        <span class="label">その他</span>
                     </a>
                 </article>
 
-                <!-- パスワード付き -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="password.html" target="_blank" title="パスワード付き">
-                        <div class="icon" aria-hidden="true">🔒</div>
-                        <span class="label">パスワード付き</span>
-                    </a>
-                </article>
-
-                <!-- 動画・音声 -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="movie.html" target="_blank" title="動画・音声">
-                        <div class="icon" aria-hidden="true">🎥</div>
-                        <span class="label">動画・音声</span>
-                    </a>
-                </article>
-
-                <!-- 4択クイズ -->
-                <article class="card" role="listitem" data-category="internal">
-                    <a href="クイズ.html" target="_blank" title="4択クイズ">
-                        <div class="icon" aria-hidden="true">❓</div>
-                        <span class="label">4択クイズ</span>
-                    </a>
-                </article>
             </div>
         </section>
     </main>
 
     <footer class="futuristic-footer">
-        <div>© サイト — 全リンク集</div>
+        <div>© よく使うリンク集</div>
         <div class="footer-note">すべてのリンクは新しいタブで開きます。存在しないローカルページに遷移する場合はファイル名を確認してください。</div>
     </footer>
 
