@@ -114,13 +114,117 @@
 				.chat-box { font-size: 0.92em; }
 			}
 		</style>
+		
+		<!-- レスポンシブナビゲーション用CSS -->
+		<style>
+			/* ハンバーガーボタン */
+			#hamburger-menu-btn {
+				display: none;
+				position: fixed;
+				top: 15px;
+				left: 15px;
+				z-index: 3000;
+				background: linear-gradient(135deg, #00e0ff, #ae00ff);
+				border: none;
+				border-radius: 8px;
+				padding: 12px 15px;
+				font-size: 1.5em;
+				color: #fff;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 15px rgba(0, 224, 255, 0.3);
+			}
+			#hamburger-menu-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(174, 0, 255, 0.4);
+			}
+
+			/* PC用トップナビゲーション */
+			.responsive-nav {
+				background: #222; color: #fff; padding: 0.7em 0; text-align: center;
+				font-size: 1.1em; letter-spacing: 1px; display: none;
+			}
+			.responsive-nav a {
+				color: #00e0ff; margin: 0 1em; text-decoration: underline;
+			}
+			.responsive-nav a.highlight {
+				font-weight: bold;
+			}
+
+			/* サイドメニュー */
+			#table-of-contents {
+				width: 280px; background-color: #1a1a1a; color: #e0e0e0; padding: 20px;
+				height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;
+				transition: transform 0.3s ease; z-index: 2000;
+				border-right: 1px solid #00e0ff; transform: translateX(-100%);
+			}
+			#table-of-contents.open { transform: translateX(0); }
+			#table-of-contents h2 {
+				color: #00e0ff; font-family: 'Roboto Mono', monospace;
+				margin-top: 0; font-size: 1.5em;
+			}
+			#table-of-contents ul { list-style: none; padding: 0; margin: 0; }
+			#table-of-contents li a {
+				display: block; color: #b0b0b0; text-decoration: none;
+				padding: 10px 15px; border-radius: 5px; transition: all 0.2s;
+				font-size: 0.95em;
+			}
+			#table-of-contents li a:hover {
+				background-color: rgba(0, 224, 255, 0.1); color: #ffffff;
+			}
+
+			/* レスポンシブ切り替え */
+			@media (min-width: 769px) {
+				.responsive-nav { display: block; }
+			}
+
+			@media (max-width: 768px) {
+				#hamburger-menu-btn { display: block; }
+				.responsive-nav { display: none; }
+			}
+		</style>
 	</head>
-	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
-    <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
-    <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
-    <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
-    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
-  </nav>
+	<body>
+	<button id="hamburger-menu-btn">
+		<span class="hamburger-line"></span>
+	</button>
+	
+	<!-- PC用トップナビゲーション -->
+	<nav class="responsive-nav">
+		<a href="home.html">ホーム</a>
+		<a href="index2.html">クイズ</a>
+		<a href="index5.html">マニュアル</a>
+		<a href="https://www.rakuten.co.jp/kbsanhe/">楽天サイト</a>
+		<a href="アンケート.html" class="highlight" target="_blank">アンケート画面へ</a>
+	</nav>
+
+	<!-- サイドメニュー -->
+	<aside id="table-of-contents">
+		<h2>全リンク集</h2>
+		<ul>
+			<li><a href="home.html">🏠 ホーム</a></li>
+			<li><a href="index2.html">🧠 プログラミングクイズ</a></li>
+			<li><a href="index5.html">📖 マニュアル</a></li>
+			<li><a href="アンケート.html">📊 アンケート画面へ</a></li>
+			<li><a href="logout.html">🔒 ログアウト</a></li>
+			<li><a href="link.html">📑 全リンク集</a></li>
+			<li><a href="hate.html">🎯 苦手克服</a></li>
+			<li><a href="hate/base.html">📚 プログラミング言語用語集</a></li>
+			<li><a href="https://docs.python.org/ja/3/" target="_blank">� Python公式ドキュメント</a></li>
+			<li><a href="https://www.w3schools.com/sql/" target="_blank">🗄️ SQLチュートリアル</a></li>
+			<li><a href="pythonexam.html">📝 Python試験情報</a></li>
+			<li><a href="感想.html">✍️ Python認定基礎試験の感想</a></li>
+			<li><a href="https://www.rakuten.co.jp/kbsanhe/" target="_blank">🛒 楽天サイト</a></li>
+			<li><a href="weather.html">🌤️ 天気情報</a></li>
+			<li><a href="train.html">� 電車情報</a></li>
+			<li><a href="other.html">🔗 その他</a></li>
+			<li><a href="index3.html">� チャット</a></li>
+			<li><a href="index4.html">🔗 便利リンク</a></li>
+			<li><a href="story.html">📖 物語</a></li>
+
+		</ul>
+	</aside>
+
 <div class="container">
 	<!-- 新規登録画面 -->
 	<div id="register-area">
@@ -213,23 +317,81 @@
 </div>
 
 <script>
+// ========================================
+// セキュリティ対策: F12無効化・右クリック無効化
+// ========================================
+(function() {
+	'use strict';
+	
+	// F12キー、開発者ツール、ソース表示無効化
+	document.addEventListener('keydown', e => {
+		if (e.key === 'F12' || 
+			(e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+			(e.metaKey && e.altKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+			(e.ctrlKey && e.key.toLowerCase() === 'u') ||
+			(e.metaKey && e.key.toLowerCase() === 'u')) {
+			e.preventDefault();
+			alert('⚠️ 開発者ツールの使用は禁止されています。');
+			return false;
+		}
+	});
+
+	// 右クリック無効化
+	document.addEventListener('contextmenu', e => {
+		e.preventDefault();
+		alert('⚠️ 右クリックは無効化されています。');
+		return false;
+	});
+
+	// コピー防止
+	document.addEventListener('copy', e => {
+		e.preventDefault();
+		return false;
+	});
+})();
+
+// ========================================
+// メイン機能
+// ========================================
+
 // 管理者: ユーザー追加
 let typingTimer;
 function adminAddUser() {
 	const u = document.getElementById('admin-add-username').value.trim();
 	const p = document.getElementById('admin-add-password').value;
 	const msg = document.getElementById('admin-user-msg');
-	if (!u || !p) { msg.textContent = 'ユーザー名とパスワードを入力'; return; }
-	if (u === ADMIN_NAME) { msg.textContent = '管理者名は追加不可'; return; }
+	
+	if (!u || !p) { 
+		msg.textContent = '⚠️ ユーザー名とパスワードを入力'; 
+		return; 
+	}
+	
+	// ユーザー名バリデーション
+	const usernamePattern = /^[a-zA-Z0-9_\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]{3,20}$/;
+	if (!usernamePattern.test(u)) {
+		msg.textContent = '⚠️ ユーザ名は3〜20文字の英数字、ひらがな、カタカナ、漢字、アンダースコアのみ';
+		return;
+	}
+	
+	if (u === ADMIN_NAME) { 
+		msg.textContent = '⚠️ 管理者名は追加不可'; 
+		return; 
+	}
+	
 	let users = JSON.parse(localStorage.getItem('users')||'{}');
-	if (users[u]) { msg.textContent = '既に存在します'; return; }
+	if (users[u]) { 
+		msg.textContent = '⚠️ 既に存在します'; 
+		return; 
+	}
+	
 	users[u] = { password: p };
 	localStorage.setItem('users', JSON.stringify(users));
-	msg.textContent = '追加しました';
+	msg.textContent = '✓ 追加しました';
+	msg.style.color = '#00ff00';
 	document.getElementById('admin-add-username').value = '';
 	document.getElementById('admin-add-password').value = '';
 	loadAdminUserList();
-	setTimeout(()=>{msg.textContent='';},1200);
+	setTimeout(()=>{msg.textContent=''; msg.style.color='';},1200);
 }
 
 // 管理者: ユーザー削除
@@ -288,19 +450,44 @@ function showLogin() {
 function registerUser() {
 	const u = document.getElementById('reg-username').value.trim();
 	const p = document.getElementById('reg-password').value;
+	
+	// 入力チェック
 	if (!u || !p) {
-		document.getElementById('reg-msg').textContent = 'ユーザ名とパスワードを入力してください'; return;
+		document.getElementById('reg-msg').textContent = '⚠️ ユーザ名とパスワードを入力してください';
+		return;
 	}
-	if (u === ADMIN_NAME) {
-		document.getElementById('reg-msg').textContent = 'このユーザ名は使用できません'; return;
+	
+	// ユーザー名の正規表現バリデーション（特殊文字禁止）
+	const usernamePattern = /^[a-zA-Z0-9_\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]{3,20}$/;
+	if (!usernamePattern.test(u)) {
+		document.getElementById('reg-msg').textContent = '⚠️ ユーザ名は3〜20文字の英数字、ひらがな、カタカナ、漢字、アンダースコアのみ使用可能です。\n@などの特殊記号は使用できません。';
+		return;
 	}
+	
+	// 管理者名チェック
+	if (u === ADMIN_NAME || u.toLowerCase() === 'admin' || u.toLowerCase() === 'administrator') {
+		document.getElementById('reg-msg').textContent = '⚠️ このユーザ名は使用できません（管理者専用）';
+		return;
+	}
+	
+	// パスワード強度チェック
+	if (p.length < 6) {
+		document.getElementById('reg-msg').textContent = '⚠️ パスワードは6文字以上にしてください';
+		return;
+	}
+	
+	// 既存ユーザーチェック
 	let users = JSON.parse(localStorage.getItem('users')||'{}');
 	if (users[u]) {
-		document.getElementById('reg-msg').textContent = '既に登録されています'; return;
+		document.getElementById('reg-msg').textContent = '⚠️ 既に登録されているユーザ名です';
+		return;
 	}
+	
+	// 登録実行
 	users[u] = { password: p };
 	localStorage.setItem('users', JSON.stringify(users));
-	document.getElementById('reg-msg').textContent = '登録完了！ログインしてください';
+	document.getElementById('reg-msg').textContent = '✓ 登録完了！ログインしてください';
+	document.getElementById('reg-msg').style.color = '#00ff00';
 }
 
 function loginUser() {
@@ -666,6 +853,25 @@ if ('serviceWorker' in navigator) {
             console.log('Service Worker registration failed:', error);
         });
 }
+
+// ハンバーガーメニュー機能
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerButton = document.getElementById('hamburger-menu-btn');
+    const toc = document.getElementById('table-of-contents');
+
+    if (hamburgerButton && toc) {
+        hamburgerButton.addEventListener('click', e => {
+            e.stopPropagation();
+            toc.classList.toggle('open');
+        });
+        document.body.addEventListener('click', e => {
+            if (toc.classList.contains('open') && !toc.contains(e.target) && e.target !== hamburgerButton) {
+                toc.classList.remove('open');
+            }
+        });
+    }
+});
 </script>
+<script src="static/security.js"></script>
 </body>
 </html>

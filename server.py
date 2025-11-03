@@ -1,5 +1,5 @@
 # 必要なライブラリをインポート
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, send_from_directory
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -21,6 +21,16 @@ if not api_key:
     print("エラー: GOOGLE_API_KEYが設定されていません。")
 else:
     genai.configure(api_key=api_key)
+
+# ルートアクセス時にindex.htmlにリダイレクト
+@app.route('/')
+def index():
+    return redirect('/index.html')
+
+# 静的ファイルを配信
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory('.', path)
 
 @app.route('/gemini', methods=['POST'])
 def generate_with_gemini():

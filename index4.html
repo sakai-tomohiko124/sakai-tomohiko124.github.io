@@ -96,13 +96,105 @@
                 .btns a { font-size: 0.92em; }
             }
         </style>
+        
+        <!-- レスポンシブナビゲーション用CSS -->
+        <style>
+            #hamburger-menu-btn {
+                display: none;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 3000;
+                background: linear-gradient(135deg, #00e0ff, #ae00ff);
+                border: none;
+                border-radius: 8px;
+                padding: 12px 15px;
+                font-size: 1.5em;
+                color: #fff;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0, 224, 255, 0.3);
+            }
+            #hamburger-menu-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(174, 0, 255, 0.4);
+            }
+
+            .responsive-nav {
+                background: #222; color: #fff; padding: 0.7em 0; text-align: center;
+                font-size: 1.1em; letter-spacing: 1px; display: none;
+            }
+            .responsive-nav a { color: #00e0ff; margin: 0 1em; text-decoration: underline; }
+            .responsive-nav a.highlight { font-weight: bold; }
+
+            #table-of-contents {
+                width: 280px; background-color: #1a1a1a; color: #e0e0e0; padding: 20px;
+                height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;
+                transition: transform 0.3s ease; z-index: 2000;
+                border-right: 1px solid #00e0ff; transform: translateX(-100%);
+            }
+            #table-of-contents.open { transform: translateX(0); }
+            #table-of-contents h2 {
+                color: #00e0ff; font-family: 'Roboto Mono', monospace;
+                margin-top: 0; font-size: 1.5em;
+            }
+            #table-of-contents ul { list-style: none; padding: 0; margin: 0; }
+            #table-of-contents li a {
+                display: block; color: #b0b0b0; text-decoration: none;
+                padding: 10px 15px; border-radius: 5px; transition: all 0.2s; font-size: 0.95em;
+            }
+            #table-of-contents li a:hover {
+                background-color: rgba(0, 224, 255, 0.1); color: #ffffff;
+            }
+
+            @media (min-width: 769px) {
+                .responsive-nav { display: block; }
+            }
+
+            @media (max-width: 768px) {
+                #hamburger-menu-btn { display: block; }
+                .responsive-nav { display: none; }
+            }
+        </style>
     </head>
-	<nav style="background:#222; color:#fff; padding:0.7em 0; text-align:center; font-size:1.1em; letter-spacing:1px;">
-    <a href="home.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">ホーム</a>
-    <a href="index2.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">クイズ</a>
-    <a href="index5.html" style="color:#00e0ff; margin:0 1em; text-decoration:underline;">マニュアル</a>
-    <a href="アンケート.html" style="font-weight: bold;" target="_blank">アンケート画面へ</a>
-  </nav>
+    <body>
+    <button id="hamburger-menu-btn">
+        <span class="hamburger-line"></span>
+    </button>
+    
+    <nav class="responsive-nav">
+        <a href="home.html">ホーム</a>
+        <a href="index2.html">クイズ</a>
+        <a href="index5.html">マニュアル</a>
+        <a href="https://www.rakuten.co.jp/kbsanhe/">楽天サイト</a>
+        <a href="アンケート.html" class="highlight" target="_blank">アンケート画面へ</a>
+    </nav>
+
+        <aside id="table-of-contents">
+        <h2>全リンク集</h2>
+        <ul>
+            <li><a href="home.html">🏠 ホーム</a></li>
+            <li><a href="index2.html">🧠 プログラミングクイズ</a></li>
+            <li><a href="index5.html">📖 マニュアル</a></li>
+            <li><a href="アンケート.html">📊 アンケート画面へ</a></li>
+            <li><a href="logout.html">🔒 ログアウト</a></li>
+            <li><a href="link.html">📑 全リンク集</a></li>
+            <li><a href="hate.html">🎯 苦手克服</a></li>
+            <li><a href="hate/base.html">📚 プログラミング言語用語集</a></li>
+            <li><a href="https://docs.python.org/ja/3/" target="_blank">🐍 Python公式ドキュメント</a></li>
+            <li><a href="https://www.w3schools.com/sql/" target="_blank">🗄️ SQLチュートリアル</a></li>
+            <li><a href="pythonexam.html">📝 Python試験情報</a></li>
+            <li><a href="感想.html">✍️ Python認定基礎試験の感想</a></li>
+            <li><a href="https://www.rakuten.co.jp/kbsanhe/" target="_blank">🛒 楽天サイト</a></li>
+            <li><a href="weather.html">🌤️ 天気情報</a></li>
+            <li><a href="train.html">🚃 電車情報</a></li>
+            <li><a href="other.html">🔗 その他</a></li>
+            <li><a href="index3.html">💬 チャット</a></li>
+            <li><a href="index4.html">🔗 便利リンク</a></li>
+            <li><a href="story.html">📖 物語</a></li>
+        </ul>
+    </aside>
+    
     <div class="container">
         <h2 style="display:flex;align-items:center;gap:10px;">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;">
@@ -233,6 +325,19 @@
             updateWeatherAndTrain();
             setInterval(updateWeatherAndTrain, 3600000); // 60分ごとに更新
 
+            // ハンバーガーメニュー
+            const hamburgerButton = document.getElementById('hamburger-menu-btn');
+            const toc = document.getElementById('table-of-contents');
+            if (hamburgerButton && toc) {
+                hamburgerButton.addEventListener('click', () => {
+                    toc.classList.toggle('open');
+                });
+                document.addEventListener('click', (e) => {
+                    if (!toc.contains(e.target) && e.target !== hamburgerButton) {
+                        toc.classList.remove('open');
+                    }
+                });
+            }
 
 // Service Worker登録
 if ('serviceWorker' in navigator) {
@@ -244,6 +349,7 @@ if ('serviceWorker' in navigator) {
             console.log('Service Worker registration failed:', error);
         });
 }
-            </script>            
+            </script>
+            <script src="static/security.js"></script>
 </body>
 </html>
