@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TM eラーニング講座</title>
+    
+    <!-- メインコンテンツの装飾用CSS -->
+    <link rel="stylesheet" href="static/style2.css">
+    <link rel="stylesheet" href="static/responsive-header.css">
+    
+    <!-- Google FontsとFavicon -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0iIzNGRUU5MSIgZD0iTTE2IDguNjZjLjI0LS4wNi41LS4xMS43Ni0uMTZjLjctLjEzIDEuMzQtLjIgMi4xLS4yQTQuMDQgNC4wNCAwIDAgMSA1LjUgMTkuNGMyLS4xNSA0LjItLjMgNi4zNi0uNWMuNDUtLjAzLjg4LS4xIDEuMzMtLjE5QTE1Ljg1IDE1Ljg1IDAgMCAwIDkuMiAxMi41MWMtLjI3LjI1LS41Mi40Ny0uNzMuNzgtLjA3LjEtLjE0LjI0LS4xNS4zN2ExLjYzIDEuNjMgMCAwIDAtLjUgMS4xODVjMS4wNy42IDIuMDggMS4xNyAzLjA2IDEuNzMuNS4yOC45LjQ5IDEuMzcuN2MtLjEuMDYtLjIuMTMtLjMuMTgtLjk0LjY0LTIuMSAxLjA2LTMuMzUgMS4yNC00LjQ1LjY2LTkuMDMtLjI2LTEzLjEtMS40MUEyNi41MyAyNi41MyAwIDAgMSA3LjcgNWMtLjg0LS4wMy0xLjYtLjE1LTIuMy0uMy0uNTctLjEzLTEuMTMtLjI4LTEuNy0uNDJhMS43MiAxLjcyIDAgMCAwLS42OC0uMjJjLS4zLjEtLjUuNC0uNS43Ni0uMTEuOTUtLjE2IDIuMDYtLjIgMy4xMS0uMDYuOTctLjExIDIuMDctLjExIDMuMTVzLjA0LjYuMiAxLjAyYy4wNS4xMy4xLjI0LjE4LjMyLjEuMS4yLjE4LjM3LjI1LS4zNi4zMi0uNzUuNjUtMS4xMy45NS0uNzEuNTQtMS40MiAxLjA1LTI4LjA4IDEuNTUtLjEuMDctLjIuMTMtLjMuMTgtMS4xMS44LTEuNTggMi4xLTEuNTggMy41NyAwIC42OC4xMSAxLjM0LjMzIDEuODZsLjA3LjE2YS40NC40NCAwIDAgMCAuMy4yLjY3LjY3IDAgMCAwIC40OC0uMmMuNC0uMi44Mi0uNDIgMS4yLS42NS4xNC0uMS4yOC0uMi40Mi0uMjguOC0uNDggMS42NS0uOTcgMi40NC0xLjUxLjEtLjA2LjItLjEzLjMtLjE3LjY3LS4zOCAxLjQxLS42NSAyLjEyLS44OC41Mi0uMTcgMS4wNy0uMzUgMS41OS0uNTJMMTYgOC42NlptLTcuNS01Ljc2YS40NC40NCAwIDAgMC0uMy0uMmMtLjQuMDMtLjc2LjEyLTEuMTIuMi0uNjcuMTgtMS4zNi40LTIuMDUuNTRhMy4yIDMuMiAwIDAgMC0uOS4zNGMtLjM3LjE0LS43LjMyLTEuMDYuNTIuNTMtLjMuOTktLjYgMS40MS0uOTQuNDMtLjM1Ljg0LS43IDEuMjMtMS4wMi4xLS4wOC4yLS4xNS4zLS4yM2MuMTQtLjExLjI5LS4yLjQ2LS4yNmMuMS0uMDYuMi0uMTIuMy0uMThhLjczLjczIDAgMCAxIC40LS4yMyAxLjE1IDEuMTUgMCAwIDEtLjAyLS43MWMtLjAxLS41LS4wMy0uOTMtLjA1LTEuMzMtLjA3LS4xLS4xNS0uMi0uMjQtLjMuMi40MS40Ni44NS43MiAxLjMuMTIuMjMuMjcuNDMuNDMuNjUuMzcuNTEuNzcgMS4wMiAxLjEzIDEuNTEuNjIuODIgMS4xNyAxLjY2IDEuNjMgMi40Ny4yMy40LjQuODIuNTMgMS4yNmEuNzUuNzMgMCAwIDEtLjY4Ljg3IDEuMDcgMS45NyAwIDAgMS0xLjU2LS4xNnptNS41NyAxNC41M2MtMi4xMi0uMTEtMy42LS4zNi00LjcyLS42N2EyIDIgMCAwIDAtLjk1LS4xNiAxLjM2IDEuMzYgMCAwIDAtLjkzLjQyYzIuMS45NCA0LjIyIDEuNSA2LjI3IDEuNDcuNC4yLjg0LjMgMS4yOC4zNi0uNTEtLjctLjktMS4zNS0xLjE5LTEuOTZ6bTMuMjktMi4zNmMtLjMxLjIzLS43NS40NS0xLjI0LjY1LS42MS4yNS0xLjE5LjUtMS43OS43MS0uMi4wNi0uMzguMTItLjU1LjItLjE3LjA3LS4zNS4xNC0uNTEuMjJhMy4zNyAzLjM3IDAgMCAwLS44OC40N2MuOC40NiAxLjU1Ljc4IDIuMjMgMS4wMS43OC4yNiAxLjU0LjQ0IDIuMjguNS40My4wMy43OS4wNCAxLjE0LjA2bC4wNy0uNWExLjQ1IDEuNDUgMCAwIDAtLjE5LS40OGMtLjE3LS4yMi0uMzUtLjQyLS41My0uNmEuNTMuNTMgMCAwIDAtLjE5LS4yNWwtLjE4LS4xek03LjMzIDQuMDZjLS40LjI1LS43OC40NS0xLjEzLjY4LS4yNi4xNy0uNS4zNS0uNzMuNTZhMy42IDMuNiAwIDAgMC0uODcuNThjLS40LjI1LS44LjUtMS4xOC43NGEuNjUuNjUgMCAwIDAtLjQ3LjMgMS4wMiAxLjAyIDAgMCAwLS41Mi43MyAyLjM2IDIuMzYgMCAwIDAgLjMyLjggMi43NyAyLjc3IDAgMCAwIC43Ny41MSAxLjMgMS4zIDAgMCAwIC43OC4wNyAyLjc1IDIuNzUgMCAwIDAgMS4xNi0uNjFjLjUtLjM0Ljk3LS43MiAxLjQ0LTEuMS4yLS4xNS40LS4zLjUtLjQ1LjI1LS4yLjUtLjQuNzItLjU3YTIuMTIgMi4xMiAwIDAgMCAuMy0uMzZjLjQtLjQ2Ljc5LS45MiAxLjE1LTEuNC4yNi0uMy41NC0uNi44Mi0uOTBhMi4yNyAyLjcgMCAwIDAgLjUtLjQxYy41LS40Ljk3LS43OSAxLjQzLTEuMTMuMTctLjEzLjM0LS4yNS41MS0uMzVjLjYtLjQ3IDEuMi0uOSAxLjc4LTEuMjcuNTgtLjM4IDEuMTUtLjc3IDEuNjgtMS4xMWwuMDctLjA5YS40Ni40NiAwIDAgMCAuMy0uMi42Ny42NyAwIDAgMCAuNDUtLjIuNTguNTggMCAwIDAtLjE4LS40NmMtLjItLjI1LS40Mi0uNDctLjY0LS42Ny0uMTQtLjEzLS4yOC0uMjYtLjQyLS4zOC0uNjQtLjUzLTEuMzItMS4wNC0xLjk3LTEuNDctLjY1LS40My0xLjMtLjgzLTEuOS0uOTgtLjMtLjE1LS42LS4zLS45LS40NGEuNDQuNDQgMCAwIDAtLjMtLjJjLS40LjAzLS44LjEyLTEuMTcuMmEzLjI3IDMuMjcgMCAwIDAtMS43NC42Yy0uNC4xNC0uNzguMy0xLjEuNDVsLS4xNy4wOHpNMjEuNDkgMTIuODdjLS40NS0uMDctLjg2LS4xOC0xLjI0LS4yN2EyLjUxIDIuNTEgMCAwIDAtMi4yMy0uNTFjMS4wNi42MSAyLjA3IDEuMTggMy4wNyAxLjc0LjEzLjA3LjI2LjE0LjM4LjIxLjE4LjEuMzEuMS40OS4xLjA1LS4xMS4wOS0uMjQuMTEtLjQxYTEuNDcgMS40NyAwIDAgMC0uNDgtMS40N3oiIHBhdGggZmlsbD0idXJsKCNibGVvbi1ncmFkaWVudCkiLz48L3N2Zz4=">
+    
+    <!-- ポイント管理システム -->
+    <script src="static/points.js"></script>
+    
+    <style>
+        /* PC用トップナビゲーション */
+        .responsive-nav {
+            background: #222; color: #fff; padding: 0.7em 0; font-size: 1.1em;
+            letter-spacing: 1px; display: none;
+            justify-content: center; align-items: center; flex-wrap: wrap;
+        }
+        .responsive-nav a { color: #00e0ff; margin: 0.5em 1em; text-decoration: underline; white-space: nowrap; }
+        .responsive-nav a.highlight { font-weight: bold; }
+
+        /* サイドメニュー */
+        #table-of-contents {
+            width: 280px; background-color: #1a1a1a; color: #e0e0e0; padding: 20px;
+            height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto; transition: transform 0.3s ease;
+            z-index: 2000; border-right: 1px solid #00e0ff; transform: translateX(-100%);
+        }
+        #table-of-contents.open { transform: translateX(0); }
+        #table-of-contents h2 { color: #00e0ff; font-family: 'Roboto Mono', monospace; margin-top: 0; font-size: 1.5em; }
+        #table-of-contents ul { list-style: none; padding: 0; margin: 0; }
+        #table-of-contents li a { display: block; color: #b0b0b0; text-decoration: none; padding: 10px 15px; border-radius: 5px; transition: all 0.2s; font-size: 0.95em; }
+        #table-of-contents li a:hover { background-color: rgba(0, 224, 255, 0.1); color: #ffffff; }
+
+        .main-container { flex-grow: 1; }
+
+        /* eラーニング専用スタイル */
+        .elearning-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(20, 30, 60, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.3);
+        }
+
+        .course-card {
+            background: rgba(30, 40, 70, 0.8);
+            border: 2px solid #00e0ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .course-title {
+            color: #00e0ff;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .course-info {
+            color: #e0e0e0;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .price-info {
+            background: linear-gradient(90deg, #00f2fe 0%, #ae00ff 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .highlight-text {
+            color: #ffaa00;
+            font-weight: bold;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: rgba(0, 224, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            border: 1px solid #00e0ff;
+        }
+
+        @media (min-width: 769px) {
+            .responsive-nav { display: flex; }
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-nav { display: none; }
+            .elearning-section { padding: 20px; margin: 20px auto; }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- ポイント表示タブ -->
+    <div class="points-tab" onclick="showPointsModal()">
+        <div class="points-label">💰 保有ポイント</div>
+        <div class="points-display">20000円</div>
+    </div>
+    
+    <!-- ハンバーガーボタン -->
+    <style>
+        #hamburger-menu-btn {
+            display: block !important;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 9999;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        
+        #hamburger-menu-btn::before,
+        #hamburger-menu-btn::after,
+        .hamburger-line {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 4px;
+            background: #00e0ff;
+            border-radius: 2px;
+            margin: 0 auto 6px;
+            box-shadow: 0 0 10px rgba(0, 224, 255, 0.8), 0 0 20px rgba(0, 224, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        #hamburger-menu-btn::before {
+            margin-top: 8px;
+        }
+        
+        #hamburger-menu-btn::after {
+            margin-bottom: 0;
+        }
+        
+        #hamburger-menu-btn:hover::before,
+        #hamburger-menu-btn:hover::after,
+        #hamburger-menu-btn:hover .hamburger-line {
+            background: #ff00ff;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 1), 0 0 30px rgba(255, 0, 255, 0.7);
+            transform: scaleX(1.1);
+        }
+    </style>
+    <button id="hamburger-menu-btn">
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- PC用トップナビゲーション -->
+    <nav class="responsive-nav">
+        <a href="index.html">ホーム</a>
+        <a href="index2.html">クイズ</a>
+        <a href="index5.html">マニュアル</a>
+        <a href="TMlearning.html" class="highlight">eラーニング講座</a>
+        <a href="movie.html">動画</a>
+        <a href="story.html">物語</a>
+        <a href="アンケート.html" class="highlight">アンケート</a>
+    </nav>
+
+    <!-- サイドメニュー -->
+    <aside id="table-of-contents">
+        <h2>全リンク集</h2>
+        <ul>
+            <li><a href="home.html">🏠 ホーム</a></li>
+            <li><a href="index2.html">🧠 プログラミングクイズ</a></li>
+            <li><a href="index5.html">📖 マニュアル</a></li>
+            <li><a href="TMlearning.html">🎓 eラーニング講座</a></li>
+            <li><a href="アンケート.html">📊 アンケート画面へ</a></li>
+            <li><a href="logout.html">🔒 ログアウト</a></li>
+            <li><a href="link.html">🔗 全リンク集</a></li>
+            <li><a href="hate.html">🎯 苦手克服</a></li>
+            <li><a href="hate/base.html">📚 プログラミング言語用語集</a></li>
+            <li><a href="pythonexam.html">📝 Python試験情報</a></li>
+            <li><a href="感想.html">✍️ Python認定基礎試験の感想</a></li>
+            <li><a href="weather.html">🌤️ 天気情報</a></li>
+            <li><a href="train.html">🚃 電車情報</a></li>
+            <li><a href="other.html">🔍 その他</a></li>
+        </ul>
+    </aside>
+    
+    <!-- メインコンテンツ -->
+    <div class="main-container">
+        <div class="background-effect"></div>
+        <header class="futuristic-header">
+            <div class="header-content">
+                <h1><span class="neon-text">TM eラーニング講座</span></h1>
+                <p class="tagline">オフィス系・プログラミング言語を一から学び直す</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="elearning-section">
+                <div class="course-card">
+                    <h2 class="course-title">📚 講座概要</h2>
+                    <p class="course-info">
+                        オフィス系ソフトやプログラミング言語について、<span class="highlight-text">一から学びなおすことができる</span>講座です。
+                    </p>
+                    <p class="course-info">
+                        eラーニング形式で、自分のペースで学習を進めることができます。
+                    </p>
+                </div>
+
+                <div class="course-card">
+                    <h2 class="course-title">💰 料金プラン</h2>
+                    <div class="price-info">
+                        <p style="font-size: 1.3em; margin: 10px 0;">
+                            ✨ <span class="highlight-text">2025年1月31日まで</span>お試し期間として<span class="highlight-text">完全無料</span>！
+                        </p>
+                        <p style="font-size: 1.1em; margin: 10px 0;">
+                            📅 2026年2月1日以降：月額500円（税込）
+                        </p>
+                        <p style="font-size: 0.95em; margin: 10px 0;">
+                            お支払い方法：クレジットカード または 現金振込（期日までに）
+                        </p>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <h2 class="course-title">📖 Excel講座の詳細</h2>
+                    <div class="info-badge">📊 全30回分のカリキュラム</div>
+                    <div class="info-badge">⏰ 1日2時間を目安</div>
+                    <div class="info-badge">👨‍🎓 初心者から学べる内容</div>
+                    
+                    <p class="course-info" style="margin-top: 20px;">
+                        Excelの基礎から応用まで、実務で使えるスキルを体系的に習得できます。
+                    </p>
+                    <p class="course-info">
+                        データ入力、関数、グラフ作成、マクロ、VBAなど、幅広い内容をカバーしています。
+                    </p>
+                </div>
+
+                <div class="course-card">
+                    <h2 class="course-title">🎯 こんな方におすすめ</h2>
+                    <ul class="course-info" style="list-style: none; padding-left: 0;">
+                        <li>✅ オフィスソフトを基礎から学びたい方</li>
+                        <li>✅ 業務効率を向上させたい方</li>
+                        <li>✅ プログラミングに興味がある方</li>
+                        <li>✅ 自分のペースで学習したい方</li>
+                        <li>✅ スキルアップを目指している方</li>
+                    </ul>
+                </div>
+
+                <div class="course-card">
+                    <h2 class="course-title">🚀 今すぐ始めよう！</h2>
+                    <p class="course-info">
+                        <span class="highlight-text">2025年1月31日まで無料</span>でご利用いただけます。
+                    </p>
+                    <p class="course-info">
+                        この機会にぜひ、eラーニング講座で新しいスキルを身につけましょう！
+                    </p>
+                    <div style="text-align: center; margin-top: 30px;">
+                        <button class="futuristic-button" style="padding: 15px 40px; font-size: 1.2em; cursor: pointer;">
+                            📝 講座申し込みはこちら
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="futuristic-footer">
+            <p>&copy; TM eラーニング講座</p>
+            <p class="footer-note">あなたのスキルアップを全力でサポートします</p>
+        </footer>
+    </div>
+
+    <script>
+        // セキュリティ対策
+        (function() {
+            'use strict';
+            
+            document.addEventListener('keydown', e => {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+                    (e.metaKey && e.altKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) ||
+                    (e.ctrlKey && e.key.toLowerCase() === 'u') ||
+                    (e.metaKey && e.key.toLowerCase() === 'u')) {
+                    e.preventDefault();
+                    alert('⚠️ 開発者ツールの使用は禁止されています。');
+                    return false;
+                }
+            });
+
+            document.addEventListener('contextmenu', e => {
+                e.preventDefault();
+                alert('⚠️ 右クリックは無効化されています。');
+                return false;
+            });
+
+            document.addEventListener('copy', e => {
+                e.preventDefault();
+                return false;
+            });
+        })();
+
+        // ハンバーガーメニュー制御
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerButton = document.getElementById('hamburger-menu-btn');
+            const toc = document.getElementById('table-of-contents');
+
+            if (hamburgerButton && toc) {
+                hamburgerButton.addEventListener('click', e => {
+                    e.stopPropagation();
+                    toc.classList.toggle('open');
+                });
+                document.body.addEventListener('click', e => {
+                    if (toc.classList.contains('open') && !toc.contains(e.target) && e.target !== hamburgerButton) {
+                        toc.classList.remove('open');
+                    }
+                });
+            }
+        });
+
+        // Service Worker登録
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Service Worker: Registered'))
+                .catch(err => console.error('Service Worker: Registration Failed', err));
+        }
+
+        // eラーニングアクセスでポイント付与
+        if (typeof pointsManager !== 'undefined') {
+            // 1日1回のみポイント付与
+            const today = new Date().toDateString();
+            const lastAccess = localStorage.getItem('learningLastAccess');
+            
+            if (lastAccess !== today) {
+                pointsManager.onLearningAccess();
+                localStorage.setItem('learningLastAccess', today);
+            }
+        }
+
+        // ポイントモーダル表示
+        function showPointsModal() {
+            const modal = document.createElement('div');
+            modal.className = 'points-modal active';
+            modal.innerHTML = `
+                <div class="points-modal-content">
+                    <h2>💰 ポイントシステム</h2>
+                    <div class="points-info-item">
+                        <strong>現在の残高:</strong><br>
+                        <span class="points-display" style="font-size: 2em;">${pointsManager.getPoints().toLocaleString()}円</span>
+                    </div>
+                    <div class="points-info-item">
+                        <h3 style="color: #ff4444;">💸 ポイントが減る行動</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li class="points-loss">• クイズ回答: -100円</li>
+                            <li class="points-loss">• チャット送信: -100円</li>
+                            <li class="points-loss">• 用語検索: -50円</li>
+                        </ul>
+                    </div>
+                    <div class="points-info-item">
+                        <h3 style="color: #00ff88;">💰 ポイントが増える行動</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li class="points-gain">• eラーニング参加: +2000円</li>
+                            <li class="points-gain">• アンケート回答: +1000円</li>
+                            <li class="points-gain">• 物語閲覧: +1000円</li>
+                            <li class="points-gain">• 動画視聴完了: +1000円</li>
+                            <li class="points-gain">• 天気確認: +500円</li>
+                            <li class="points-gain">• 電車情報確認: +500円</li>
+                            <li class="points-gain">• マニュアル閲覧: +300円</li>
+                        </ul>
+                    </div>
+                    <button class="points-modal-close" onclick="this.parentElement.parentElement.remove()">閉じる</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            
+            // モーダル外クリックで閉じる
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

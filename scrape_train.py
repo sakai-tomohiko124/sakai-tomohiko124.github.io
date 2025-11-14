@@ -1,20 +1,45 @@
 import requests
 import json
+import os
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 
 URL = 'https://transit.yahoo.co.jp/diainfo/area/4'
 OUTPUT_FILE = 'train_info.json'
+DATA_RETENTION_HOURS = 6 # データ保持期間(時間)
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
     'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
 }
 
+def cleanup_old_data():
+    """6時間以上古いtrain_info.jsonファイルを削除"""
+    try:
+        if os.path.exists(OUTPUT_FILE):
+            file_mtime = datetime.fromtimestamp(os.path.getmtime(OUTPUT_FILE))
+            file_age = datetime.now() - file_mtime
+            hours_passed = file_age.total_seconds() / 3600
+            
+            if file_age > timedelta(hours=DATA_RETENTION_HOURS):
+                os.remove(OUTPUT_FILE)
+                print(f"古いデータファイル '{OUTPUT_FILE}' を削除しました({hours_passed:.1f}時間経過)")
+                return True
+            else:
+                print(f"データファイルは{hours_passed:.1f}時間経過({DATA_RETENTION_HOURS}時間以内のため保持)")
+        else:
+            print(f"データファイル '{OUTPUT_FILE}' が存在しません")
+    except Exception as e:
+        print(f"ファイル削除エラー: {e}")
+    return False
+
 def main():
     """
     Yahoo!路線情報のHTMLテーブルを直接解析して運行情報を取得する。
     """
+    # 古いデータファイルをクリーンアップ
+    cleanup_old_data()
+    
     lines_data = []
     try:
         response = requests.get(URL, headers=HEADERS, timeout=15)
@@ -61,6 +86,8 @@ def main():
     # 最終的なJSON構造を作成
     output_data = {
         "lastUpdated": datetime.now().isoformat(),
+        "generatedAt": datetime.now().isoformat(),
+        "expiresAt": (datetime.now() + timedelta(hours=DATA_RETENTION_HOURS)).isoformat(),
         "lines": lines_data
     }
 

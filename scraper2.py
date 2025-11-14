@@ -1,12 +1,14 @@
 import requests
 import json
-from datetime import datetime
+import os
+from datetime import datetime, timedelta
 
 # --- APIエンドポイント ---
 JMA_API_URL = "https://www.jma.go.jp/bosai/forecast/data/forecast/130000.json"
 WEATHERNEWS_API_URL = "https://site.weathernews.jp/lba/wxdata/api_data_ss1?lat=35.6812&lon=139.7671"
 OUTPUT_FILE = "weather_info.json"
 HOURLY_FORECAST_HOURS = 72 # 取得する時間ごと予報の時間数
+DATA_RETENTION_HOURS = 6 # データ保持期間(時間)
 
 # --- 天気コードの対応表 ---
 WEATHERNEWS_CODE_MAP = {
@@ -29,7 +31,30 @@ WEATHERNEWS_CODE_MAP = {
 def get_wni_weather_text(code):
     return WEATHERNEWS_CODE_MAP.get(str(code), f"コード{code}")
 
+def cleanup_old_data():
+    """6時間以上古いweather_info.jsonファイルを削除"""
+    try:
+        if os.path.exists(OUTPUT_FILE):
+            file_mtime = datetime.fromtimestamp(os.path.getmtime(OUTPUT_FILE))
+            file_age = datetime.now() - file_mtime
+            hours_passed = file_age.total_seconds() / 3600
+            
+            if file_age > timedelta(hours=DATA_RETENTION_HOURS):
+                os.remove(OUTPUT_FILE)
+                print(f"古いデータファイル '{OUTPUT_FILE}' を削除しました({hours_passed:.1f}時間経過)")
+                return True
+            else:
+                print(f"データファイルは{hours_passed:.1f}時間経過({DATA_RETENTION_HOURS}時間以内のため保持)")
+        else:
+            print(f"データファイル '{OUTPUT_FILE}' が存在しません")
+    except Exception as e:
+        print(f"ファイル削除エラー: {e}")
+    return False
+
 def main():
+    # 古いデータファイルをクリーンアップ
+    cleanup_old_data()
+    
     output_data = {}
     try:
         jma_resp = requests.get(JMA_API_URL, timeout=10)
@@ -156,6 +181,8 @@ def main():
         output_data = {
             "publishingOffice": publishing_office,
             "reportDatetime": report_datetime,
+            "generatedAt": datetime.now().isoformat(),
+            "expiresAt": (datetime.now() + timedelta(hours=DATA_RETENTION_HOURS)).isoformat(),
             "forecasts": daily_forecasts,
             "hourly_forecast": hourly_forecasts
         }

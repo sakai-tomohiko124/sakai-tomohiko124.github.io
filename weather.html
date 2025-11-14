@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>東京都の天気予報</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/responsive-header.css">
+    <script src="static/points.js"></script>
+    <script src="static/points-header.js"></script>
     <style>
         /* --- 基本スタイルと背景 --- */
         html, body {
@@ -429,6 +432,30 @@
         setInterval(fetchAndUpdateWeather, UPDATE_INTERVAL_MS);
     </script>
 	<script>
+		// LocalStorageの古いデータをクリーンアップ(6時間以上経過したデータを削除)
+		function cleanupOldWeatherData() {
+			try {
+				const DATA_RETENTION_HOURS = 6;
+				const lastCheck = localStorage.getItem('lastWeatherCheck');
+				
+				if (lastCheck) {
+					const checkDate = new Date(lastCheck);
+					const now = new Date();
+					const hoursDiff = (now - checkDate) / (1000 * 60 * 60);
+					
+					if (hoursDiff > DATA_RETENTION_HOURS) {
+						localStorage.removeItem('lastWeatherCheck');
+						console.log(`古い天気データを削除しました (${hoursDiff.toFixed(1)}時間経過)`);
+					}
+				}
+			} catch (error) {
+				console.error('データクリーンアップエラー:', error);
+			}
+		}
+		
+		// ページ読み込み時にクリーンアップ実行
+		cleanupOldWeatherData();
+		
 		// ハンバーガーメニュー機能
 		document.addEventListener('DOMContentLoaded', () => {
 			const hamburgerButton = document.getElementById('hamburger-menu-btn');
@@ -444,6 +471,19 @@
 						toc.classList.remove('open');
 					}
 				});
+			}
+
+			// 天気情報確認ポイント付与（1日1回）
+			if (typeof pointsManager !== 'undefined') {
+				const today = new Date().toDateString();
+				const lastWeatherCheck = localStorage.getItem('lastWeatherCheck');
+				
+				if (lastWeatherCheck !== today) {
+					setTimeout(() => {
+						pointsManager.onWeatherCheck();
+						localStorage.setItem('lastWeatherCheck', today);
+					}, 5000); // 5秒間ページに滞在でポイント付与
+				}
 			}
 		});
 	</script>

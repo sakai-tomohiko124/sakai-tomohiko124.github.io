@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アプリのアンケート</title>
+    <link rel="stylesheet" href="static/responsive-header.css">
+    <script src="static/points.js"></script>
+    <script src="static/points-header.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -407,7 +410,19 @@
     </main>
 
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){window.location='thanks.html';}"></iframe>
-    <script type="text/javascript">var submitted=false;</script>
+    <script type="text/javascript">
+        var submitted=false;
+        
+        // アンケート送信時のポイント付与
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('.survey-form-container');
+            if (form && typeof pointsManager !== 'undefined') {
+                form.addEventListener('submit', () => {
+                    pointsManager.onSurveyComplete();
+                });
+            }
+        });
+    </script>
 
     <footer class="futuristic-footer">
         <p>&copy; 2035年までに開発予定～そういう時はAREだ～</p>

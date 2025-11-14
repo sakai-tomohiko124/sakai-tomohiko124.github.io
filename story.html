@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>小説詳細ページ</title>
+	<link rel="stylesheet" href="static/responsive-header.css">
+	<script src="static/points.js"></script>
+	<script src="static/points-header.js"></script>
 	<style>
 		body {
 			font-family: 'Noto Sans JP', 'Roboto', sans-serif;
@@ -345,6 +348,30 @@
 					if (toc.classList.contains('open') && !toc.contains(e.target) && e.target !== hamburgerButton) {
 						toc.classList.remove('open');
 					}
+				});
+			}
+
+			// 物語読書ポイント付与
+			if (typeof pointsManager !== 'undefined') {
+				// ページに30秒以上滞在したらポイント付与
+				setTimeout(() => {
+					const storyKey = 'story_read_' + window.location.pathname;
+					if (!localStorage.getItem(storyKey)) {
+						pointsManager.onStoryRead();
+						localStorage.setItem(storyKey, 'true');
+					}
+				}, 30000);
+
+				// 外部リンククリックでボーナス
+				const externalLinks = document.querySelectorAll('a[target="_blank"]');
+				externalLinks.forEach(link => {
+					link.addEventListener('click', () => {
+						const linkKey = 'story_link_' + link.href;
+						if (!localStorage.getItem(linkKey)) {
+							pointsManager.addPoints(200, '物語リンククリック');
+							localStorage.setItem(linkKey, 'true');
+						}
+					});
 				});
 			}
 		});

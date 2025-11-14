@@ -7,6 +7,11 @@
     
     <!-- メインコンテンツの装飾用CSS -->
     <link rel="stylesheet" href="static/style2.css">
+    <link rel="stylesheet" href="static/responsive-header.css">
+    
+    <!-- ポイント管理システム -->
+    <script src="static/points.js"></script>
+    <script src="static/points-header.js"></script>
     
     <!-- Google FontsとFavicon -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
@@ -271,6 +276,20 @@
             navigator.serviceWorker.register('/sw.js')
                 .then(reg => console.log('Service Worker: Registered'))
                 .catch(err => console.error('Service Worker: Registration Failed', err));
+        }
+
+        // 用語検索時にポイント減算
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value.length > 2 && typeof pointsManager !== 'undefined') {
+                    // 検索が行われたらポイント減算（重複防止のため一定時間制限）
+                    if (!searchInput.dataset.lastSearch || Date.now() - searchInput.dataset.lastSearch > 5000) {
+                        pointsManager.onTermSearch();
+                        searchInput.dataset.lastSearch = Date.now();
+                    }
+                }
+            });
         }
 
         // メイン機能

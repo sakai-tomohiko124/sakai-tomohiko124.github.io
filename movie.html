@@ -1,10 +1,12 @@
-<!--ここには動画コンテンツを埋め込む 合計100種類を想定　試しに2つ加えてほしい-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>動画 — コンテンツ</title>
+    <link rel="stylesheet" href="static/responsive-header.css">
+    <script src="static/points.js"></script>
+    <script src="static/points-header.js"></script>
 
     <style>
 /* --- Provided futuristic CSS (trimmed/embedded) --- */
@@ -242,6 +244,26 @@ body{font-family:'Noto Sans JP',sans-serif;line-height:1.8;margin:0;padding:0;ba
                     }
                 });
             }
+
+            // 動画視聴完了を検知してポイント付与
+            const videos = document.querySelectorAll('.video-card iframe, .audio-card iframe');
+            const watchedVideos = JSON.parse(localStorage.getItem('watchedVideos') || '{}');
+
+            videos.forEach((iframe, index) => {
+                const videoId = `video_${index}`;
+                
+                // iframeの読み込み完了を監視
+                iframe.addEventListener('load', () => {
+                    // 動画が再生された後、一定時間経過したらポイント付与
+                    setTimeout(() => {
+                        if (!watchedVideos[videoId] && typeof pointsManager !== 'undefined') {
+                            watchedVideos[videoId] = true;
+                            localStorage.setItem('watchedVideos', JSON.stringify(watchedVideos));
+                            pointsManager.onVideoWatch();
+                        }
+                    }, 30000); // 30秒視聴でポイント付与
+                });
+            });
         });
     </script>
     <script src="static/security.js"></script>

@@ -5,6 +5,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>チャット</title>
+		<script src="static/points.js"></script>
+		<script src="static/points-header.js"></script>
+		<link rel="stylesheet" href="static/responsive-header.css">
 		<style>
 			html, body {
 				height: 100%;
@@ -592,12 +595,15 @@ function exportChat(format) {
 	a.href = url;
 	a.download = `chat_history_${user}.${format}`;
 	a.click();
-	URL.revokeObjectURL(url);
-}
-
 function sendMessage() {
 	const msg = document.getElementById('chat-input').value.trim();
 	if (!msg) return;
+	
+	// チャット送信時にポイントを消費
+	if (typeof pointsManager !== 'undefined') {
+		pointsManager.onChatSend();
+	}
+	
 	const user = localStorage.getItem('currentUser');
 	let chats = JSON.parse(localStorage.getItem('chats')||'{}');
 	if (!chats[user]) chats[user] = [];
@@ -608,6 +614,9 @@ function sendMessage() {
 	document.getElementById('chat-input').style.height = 'auto'; // リセット
 	document.getElementById('answer-options').innerHTML = '';
 	loadChat();
+	syncChats(user); // サーバー同期
+	autoReply(msg);
+}loadChat();
 	syncChats(user); // サーバー同期
 	autoReply(msg);
 }
