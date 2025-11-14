@@ -1,4 +1,7 @@
-name: Auto Commit and Push
+# このワークフローは無限ループを引き起こすため無効化されています
+# 必要に応じて[ci skip]や[skip ci]などのコミットメッセージフィルターを追加してください
+
+name: Auto Commit and Push (DISABLED)
 
 on:
   push:
@@ -11,8 +14,6 @@ permissions:
 jobs:
   auto-commit-push:
     runs-on: ubuntu-latest
-    # GitHub Actionsの自動コミットをスキップ(無限ループ防止)
-    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, 'github-actions[bot]')"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,8 +34,8 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit -m "Auto commit from GitHub Actions [skip ci]" || echo "No changes to commit"
+          git commit -m "Auto commit from GitHub Actions" || echo "No changes to commit"
 
       - name: Push changes
         run: |
-          git push || echo "Nothing to push"
+          git push

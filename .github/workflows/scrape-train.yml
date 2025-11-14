@@ -34,16 +34,17 @@ jobs:
       - name: Run train scraper
         # 実行するスクリプト名を指定
         run: python scrape_train.py
+        continue-on-error: true
 
       - name: Commit and push if changed
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git pull --rebase --autostash
-          git add train_info.json
+          git pull --rebase --autostash || true
+          git add train_info.json || true
           if [[ -n $(git status --porcelain) ]]; then
-            git commit -m "Update train_info.json"
-            git push
+            git commit -m "Update train_info.json [skip ci]"
+            git push || echo "Push failed"
           else
             echo "No changes to commit."
           fi

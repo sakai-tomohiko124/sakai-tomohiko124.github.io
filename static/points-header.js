@@ -2,14 +2,53 @@
 function insertPointsTab() {
     const rank = pointsManager ? pointsManager.getPointsRank() : { rank: 'ビギナー', color: '#888888' };
     
-    const pointsTab = document.createElement('div');
-    pointsTab.className = 'points-tab';
-    pointsTab.onclick = showPointsModal;
-    pointsTab.innerHTML = `
-        <div class="points-label">💰 保有ポイント <span class="rank-badge" style="background: ${rank.color};">${rank.rank}</span></div>
-        <div class="points-display">20000円</div>
+    // ポイントボタン(右上)
+    const pointsButton = document.createElement('button');
+    pointsButton.id = 'points-menu-btn';
+    pointsButton.className = 'points-menu-btn';
+    pointsButton.innerHTML = '💰';
+    pointsButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePointsPanel();
+    });
+    document.body.insertBefore(pointsButton, document.body.firstChild);
+
+    // ポイントパネル(右側スライド)
+    const pointsPanel = document.createElement('div');
+    pointsPanel.id = 'points-panel';
+    pointsPanel.className = 'points-panel';
+    pointsPanel.innerHTML = `
+        <div class="points-panel-header">
+            <h3>💰 ポイント情報</h3>
+        </div>
+        <div class="points-panel-balance">
+            <div class="points-label">保有ポイント</div>
+            <div class="points-display">20000円</div>
+            <span class="rank-badge" style="background: ${rank.color};">${rank.rank}</span>
+        </div>
+        <div class="points-panel-content">
+            <button class="points-detail-btn" onclick="showPointsModal()">📊 詳細情報を見る</button>
+            <button class="points-history-btn" onclick="viewPointsHistory()">📋 履歴を見る</button>
+        </div>
     `;
-    document.body.insertBefore(pointsTab, document.body.firstChild);
+    document.body.insertBefore(pointsPanel, document.body.firstChild);
+
+    // ボディクリックで閉じる
+    document.body.addEventListener('click', (e) => {
+        if (pointsPanel.classList.contains('open') && 
+            !pointsPanel.contains(e.target) && 
+            e.target !== pointsButton) {
+            pointsPanel.classList.remove('open');
+        }
+    });
+}
+
+// ポイントパネルの表示・非表示切り替え
+function togglePointsPanel() {
+    const panel = document.getElementById('points-panel');
+    if (panel) {
+        panel.classList.toggle('open');
+    }
 }
 
 // ポイントモーダルを表示
