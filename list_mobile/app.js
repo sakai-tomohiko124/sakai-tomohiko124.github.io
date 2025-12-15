@@ -25,6 +25,10 @@ function initApp() {
         // リスト表示
         displayEntries();
         updateStats();
+        renderHistory();
+
+        // リスナー登録
+        setupEventListeners();
         
         // 初回アクセス時のウェルカムガイド
         if (!localStorage.getItem('hasVisited')) {
@@ -78,10 +82,11 @@ function saveToLocalStorage() {
 
 // ==================== イベントリスナー ====================
 function setupEventListeners() {
-    // フォーム送信
+    // フォーム送信（HTMLのonsubmitがあるため冗長だがフォールバックで登録）
     const entryForm = document.getElementById('entryForm');
-    if (entryForm) {
+    if (entryForm && !entryForm.dataset.bound) {
         entryForm.addEventListener('submit', handleSubmit);
+        entryForm.dataset.bound = 'true';
     }
 }
 
@@ -125,6 +130,7 @@ function handleSubmit(e) {
     
     viewingList.push(formData);
     saveToLocalStorage();
+    addHistory(`新規追加: ${formData.plannedContent}`);
     
     // リスト表示を更新
     displayEntries();
@@ -271,6 +277,7 @@ function markComplete(id) {
     item.completedAt = new Date().toISOString();
     
     saveToLocalStorage();
+    addHistory(`完了: ${item.plannedContent}`);
     displayEntries();
     updateStats();
     
@@ -286,6 +293,7 @@ function deleteEntry(id) {
     const item = viewingList.find(i => i.id === id);
     viewingList = viewingList.filter(i => i.id !== id);
     saveToLocalStorage();
+    if (item) addHistory(`削除: ${item.plannedContent}`);
     displayEntries();
     updateStats();
     
@@ -390,6 +398,7 @@ function exportToExcel() {
         link.download = filename;
         link.click();
         
+        addHistory(`Excelエクスポート: ${filename}`);
         showNotification(`✅ ${filename} をダウンロードしました`, 'success');
         
     } catch (error) {
@@ -430,7 +439,7 @@ function generateCSV() {
 }
 
 // ==================== UI制御関数 ====================
-function switchTab(tabName) {
+function switchTab(tabName, btn) {
     // すべてのタブを非表示
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
@@ -449,7 +458,9 @@ function switchTab(tabName) {
     }
     
     // 対応するボタンをactiveに
-    event.target.closest('.tab-btn').classList.add('active');
+    if (btn) {
+        btn.classList.add('active');
+    }
 }
 
 function resetForm() {
@@ -469,8 +480,7 @@ function clearAllData() {
     confirmClearData();
 }
 
-function toggleFurigana() {
-    const btn = event.target.closest('button');
+function toggleFurigana(btn) {
     const enabled = btn.textContent.includes('ON') ? false : true;
     btn.textContent = enabled ? 'ふりがな: OFF' : 'ふりがな: ON';
     

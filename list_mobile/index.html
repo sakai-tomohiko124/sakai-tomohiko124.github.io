@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#667eea">
-    <title>📱 見るものリスト - スマホ版</title>
+    <title>📱 見るものリスト</title>
     
     <!-- SheetJS for Excel -->
     <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
@@ -930,9 +930,9 @@
     <!-- ヘッダー -->
     <div class="app-header">
         <h1>📱 見るものリスト</h1>
-        <p>スマホ版 - オフライン対応</p>
+        <p>オフライン対応</p>
         <div class="header-controls">
-            <button class="btn btn-small btn-secondary" onclick="toggleFurigana()">
+            <button class="btn btn-small btn-secondary" onclick="toggleFurigana(this)">
                 <span id="furiganaBtn">ふりがな</span>
             </button>
             <button class="btn btn-small btn-secondary" onclick="showWelcome()">
@@ -944,19 +944,19 @@
     <div class="container">
         <!-- タブナビゲーション -->
         <div class="tab-nav">
-            <button class="tab-btn active" onclick="switchTab('input')">
+            <button class="tab-btn active" onclick="switchTab('input', this)">
                 📝<br><span class="tab-text">入力</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('list')">
+            <button class="tab-btn" onclick="switchTab('list', this)">
                 📋<br><span class="tab-text">リスト</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('stats')">
+            <button class="tab-btn" onclick="switchTab('stats', this)">
                 📊<br><span class="tab-text">統計</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('history')">
+            <button class="tab-btn" onclick="switchTab('history', this)">
                 📜<br><span class="tab-text">履歴</span>
             </button>
-            <button class="tab-btn" onclick="switchTab('settings')">
+            <button class="tab-btn" onclick="switchTab('settings', this)">
                 ⚙️<br><span class="tab-text">設定</span>
             </button>
         </div>
@@ -1159,8 +1159,6 @@
             
             <div class="settings-section">
                 <h3>ℹ️ アプリ情報</h3>
-                <p><strong>バージョン:</strong> 2.0 (スマホ版)</p>
-                <p><strong>保存先:</strong> スマホ本体 (LocalStorage)</p>
                 <p><strong>データ件数:</strong> <span id="dataCount">0</span>件</p>
             </div>
         </div>
