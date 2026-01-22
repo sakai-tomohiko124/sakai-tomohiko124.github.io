@@ -1,26 +1,26 @@
 {
   "publishingOffice": "気象庁",
-  "reportDatetime": "2026-01-22T11:00:00+09:00",
-  "generatedAt": "2026-01-22T03:37:17.718354",
-  "expiresAt": "2026-01-22T09:37:17.718355",
+  "reportDatetime": "2026-01-22T17:00:00+09:00",
+  "generatedAt": "2026-01-22T09:08:07.184701",
+  "expiresAt": "2026-01-22T15:08:07.184703",
   "forecasts": [
     {
       "date": "2026-01-22",
       "weather": "晴れ",
-      "temp_min": "7",
-      "temp_max": "7",
+      "temp_min": "8",
+      "temp_max": "-1",
       "chance_of_rain": [
         "--",
         "--",
-        "0",
+        "--",
         "0"
       ]
     },
     {
       "date": "2026-01-23",
       "weather": "晴れ",
-      "temp_min": "-2",
-      "temp_max": "8",
+      "temp_min": "--",
+      "temp_max": "--",
       "chance_of_rain": [
         "0",
         "0",
@@ -43,65 +43,23 @@
   ],
   "hourly_forecast": [
     {
-      "iso_time": "2026-01-22T03:00:00",
-      "time": "03:00",
-      "weather": "晴れ",
-      "temp": "5",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-01-22T04:00:00",
-      "time": "04:00",
-      "weather": "晴れ",
-      "temp": "6",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-01-22T05:00:00",
-      "time": "05:00",
-      "weather": "晴れ",
-      "temp": "6",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-01-22T06:00:00",
-      "time": "06:00",
-      "weather": "晴れ",
-      "temp": "6",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-01-22T07:00:00",
-      "time": "07:00",
-      "weather": "晴れ",
-      "temp": "5",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-01-22T08:00:00",
-      "time": "08:00",
-      "weather": "晴れ",
-      "temp": "4",
-      "precip": 0
-    },
-    {
       "iso_time": "2026-01-22T09:00:00",
       "time": "09:00",
-      "weather": "コード500",
+      "weather": "晴れ",
       "temp": "4",
       "precip": 0
     },
     {
       "iso_time": "2026-01-22T10:00:00",
       "time": "10:00",
-      "weather": "コード500",
+      "weather": "晴れ",
       "temp": "3",
       "precip": 0
     },
     {
       "iso_time": "2026-01-22T11:00:00",
       "time": "11:00",
-      "weather": "コード500",
+      "weather": "晴れ",
       "temp": "2",
       "precip": 0
     },
@@ -116,7 +74,7 @@
       "iso_time": "2026-01-22T13:00:00",
       "time": "13:00",
       "weather": "コード500",
-      "temp": "2",
+      "temp": "1",
       "precip": 0
     },
     {
@@ -396,7 +354,7 @@
       "iso_time": "2026-01-24T05:00:00",
       "time": "05:00",
       "weather": "晴れ",
-      "temp": "11",
+      "temp": "12",
       "precip": 0
     },
     {
@@ -410,7 +368,7 @@
       "iso_time": "2026-01-24T07:00:00",
       "time": "07:00",
       "weather": "晴れ",
-      "temp": "9",
+      "temp": "10",
       "precip": 0
     },
     {
@@ -431,14 +389,14 @@
       "iso_time": "2026-01-24T10:00:00",
       "time": "10:00",
       "weather": "コード500",
-      "temp": "6",
+      "temp": "7",
       "precip": 0
     },
     {
       "iso_time": "2026-01-24T11:00:00",
       "time": "11:00",
       "weather": "コード500",
-      "temp": "5",
+      "temp": "6",
       "precip": 0
     },
     {
@@ -528,7 +486,7 @@
     {
       "iso_time": "2026-01-25T00:00:00",
       "time": "00:00",
-      "weather": "コード500",
+      "weather": "晴れ",
       "temp": "4",
       "precip": 0
     },
@@ -544,6 +502,48 @@
       "time": "02:00",
       "weather": "晴れ",
       "temp": "6",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T03:00:00",
+      "time": "03:00",
+      "weather": "晴れ",
+      "temp": "7",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T04:00:00",
+      "time": "04:00",
+      "weather": "晴れ",
+      "temp": "7",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T05:00:00",
+      "time": "05:00",
+      "weather": "コード500",
+      "temp": "7",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T06:00:00",
+      "time": "06:00",
+      "weather": "コード500",
+      "temp": "7",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T07:00:00",
+      "time": "07:00",
+      "weather": "コード500",
+      "temp": "6",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-01-25T08:00:00",
+      "time": "08:00",
+      "weather": "コード500",
+      "temp": "5",
       "precip": 0
     }
   ]
