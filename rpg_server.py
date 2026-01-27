@@ -10,7 +10,6 @@ from flask_cors import CORS
 import json
 import os
 from datetime import datetime
-import hashlib
 
 app = Flask(__name__, static_folder='static')
 CORS(app)  # クロスオリジン対応
@@ -214,7 +213,7 @@ def main():
     print("終了するには Ctrl+C を押してください")
     print("=" * 50)
     
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
 
 if __name__ == '__main__':
     main()

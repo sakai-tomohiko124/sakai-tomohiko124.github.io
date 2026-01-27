@@ -185,7 +185,7 @@ class RPGGame {
     }
     
     showMenu() {
-        if (confirm('メニューに戻りますか？（進行状況は保存されません）')) {
+        if (confirm('メニューに戻りますか？（未保存の進行状況は失われます）\n\n先にセーブすることをお勧めします。')) {
             this.showScreen('title-screen');
         }
     }
@@ -255,14 +255,17 @@ class RPGGame {
         
         // アイテムチェック
         if (room.items && room.items.length > 0) {
-            const item = room.items[0];
-            if (!this.inventory.includes(item)) {
-                this.inventory.push(item);
-                room.items.shift(); // アイテムを部屋から削除
-                const itemData = this.gameData.items[item];
-                this.addMessage(`${itemData.name}を見つけた！`, 'success');
-                this.updateInventory();
-                return;
+            // まだ拾っていないアイテムを見つける
+            for (let i = 0; i < room.items.length; i++) {
+                const item = room.items[i];
+                if (!this.inventory.includes(item)) {
+                    this.inventory.push(item);
+                    room.items.splice(i, 1); // アイテムを部屋から削除
+                    const itemData = this.gameData.items[item];
+                    this.addMessage(`${itemData.name}を見つけた！`, 'success');
+                    this.updateInventory();
+                    return;
+                }
             }
         }
         
