@@ -1,0 +1,104 @@
+{
+  "rooms": {
+    "entrance": {
+      "name": "エントランス",
+      "description": "ここは古びたダンジョンの入口だ。石造りの壁には苔が生えており、湿った空気が漂っている。東に薄暗い通路が続いている。",
+      "emoji": "🚪",
+      "exits": {
+        "east": "hall"
+      },
+      "items": [],
+      "puzzle": null
+    },
+    "hall": {
+      "name": "大広間",
+      "description": "広い部屋だ。天井は高く、柱が何本も立っている。北に宝箱が見える部屋があり、南には不思議な光を放つ扉がある。西は入口に戻る。",
+      "emoji": "🏛️",
+      "exits": {
+        "west": "entrance",
+        "north": "treasure_room",
+        "south": "puzzle_room"
+      },
+      "items": ["torch"],
+      "puzzle": null
+    },
+    "treasure_room": {
+      "name": "宝物庫",
+      "description": "小さな部屋だ。中央に古い宝箱が置かれている。埃をかぶっているが、何か貴重なものが入っているかもしれない。南に戻れる。",
+      "emoji": "💎",
+      "exits": {
+        "south": "hall"
+      },
+      "items": ["key"],
+      "puzzle": null
+    },
+    "puzzle_room": {
+      "name": "謎の部屋",
+      "description": "神秘的な部屋だ。壁一面に古代文字が刻まれた石碑がある。よく見ると謎が書かれているようだ。北は大広間、東は厳重な扉がある。",
+      "emoji": "🔮",
+      "exits": {
+        "north": "hall",
+        "east": "final_room"
+      },
+      "items": [],
+      "puzzle": "math_puzzle"
+    },
+    "final_room": {
+      "name": "脱出口",
+      "description": "ついに脱出口を見つけた！大きな扉には鍵穴がある。しかし、扉には最後の謎が刻まれている。これを解けば外に出られるはずだ。",
+      "emoji": "🚪✨",
+      "exits": {
+        "west": "puzzle_room"
+      },
+      "items": [],
+      "puzzle": "final_puzzle"
+    },
+    "secret_room": {
+      "name": "隠し部屋",
+      "description": "秘密の部屋だ！ここには古の知識が眠っている。壁には冒険者たちのメッセージが残されている。",
+      "emoji": "⭐",
+      "exits": {
+        "south": "treasure_room"
+      },
+      "items": ["scroll"],
+      "puzzle": null
+    }
+  },
+  "items": {
+    "torch": {
+      "name": "松明",
+      "description": "暗い場所を照らす松明。まだ火がついている。"
+    },
+    "key": {
+      "name": "金の鍵",
+      "description": "美しく装飾された金の鍵。最終の扉を開けることができそうだ。"
+    },
+    "scroll": {
+      "name": "古の巻物",
+      "description": "古代の知識が記された巻物。謎解きのヒントが書かれている。"
+    }
+  },
+  "puzzles": {
+    "math_puzzle": {
+      "title": "数列の謎",
+      "description": "石碑に謎が刻まれている:\n\n『3つの箱がある。\n第一の箱には2個、第二の箱には3個、第三の箱には5個の宝石が入っている。\n\nこのパターンで次に来る第四の箱の宝石の数は？』\n\n数字で答えよ。",
+      "type": "number",
+      "answer": "7",
+      "hint": "これはフィボナッチ数列のパターンだ。前の2つの数を足すと次の数になる: 2+3=5, 3+5=?"
+    },
+    "final_puzzle": {
+      "title": "スフィンクスの謎",
+      "description": "扉に古代の謎が刻まれている:\n\n『私は朝は4本足、昼は2本足、夜は3本足で歩く。\n\n私は何か？』\n\nカタカナで答えよ。",
+      "type": "text",
+      "answer": "ニンゲン",
+      "hint": "これは有名なスフィンクスの謎かけだ。人間の一生を考えてみよう。赤ちゃん（朝）は這って4本足、大人（昼）は2本足で立ち、老人（夜）は杖をついて3本足。"
+    },
+    "secret_puzzle": {
+      "title": "言葉遊びの謎",
+      "description": "『空を飛び、水に住み、地を這う。しかし生き物ではない。これは何か？』\n\nひらがなで答えよ。",
+      "type": "text",
+      "answer": "かげ",
+      "hint": "形を変えて、どこにでも現れるもの。太陽の位置によって姿を変える..."
+    }
+  }
+}
