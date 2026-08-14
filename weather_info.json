@@ -1,26 +1,26 @@
 {
   "publishingOffice": "気象庁",
-  "reportDatetime": "2026-08-14T11:00:00+09:00",
-  "generatedAt": "2026-08-14T04:48:27.673802",
-  "expiresAt": "2026-08-14T10:48:27.673804",
+  "reportDatetime": "2026-08-14T17:00:00+09:00",
+  "generatedAt": "2026-08-14T09:51:44.900794",
+  "expiresAt": "2026-08-14T15:51:44.900796",
   "forecasts": [
     {
       "date": "2026-08-14",
-      "weather": "くもり　時々　雨　所により　夕方　から　夜のはじめ頃　雷を伴い　非常に　激しく　降る",
-      "temp_min": "29",
-      "temp_max": "29",
+      "weather": "くもり　夜　雨　所により　夜のはじめ頃　まで　雷を伴い　非常に　激しく　降る",
+      "temp_min": "31",
+      "temp_max": "23",
       "chance_of_rain": [
         "--",
         "--",
-        "80",
+        "--",
         "70"
       ]
     },
     {
       "date": "2026-08-15",
       "weather": "くもり　明け方　まで　雨　所により　雷を伴い　激しく　降る",
-      "temp_min": "23",
-      "temp_max": "30",
+      "temp_min": "--",
+      "temp_max": "--",
       "chance_of_rain": [
         "60",
         "30",
@@ -43,60 +43,25 @@
   ],
   "hourly_forecast": [
     {
-      "iso_time": "2026-08-14T04:00:00",
-      "time": "04:00",
-      "weather": "くもり",
-      "temp": "29",
-      "precip": 0
-    },
-    {
-      "iso_time": "2026-08-14T05:00:00",
-      "time": "05:00",
-      "weather": "雨",
-      "temp": "29",
-      "precip": 1
-    },
-    {
-      "iso_time": "2026-08-14T06:00:00",
-      "time": "06:00",
-      "weather": "雨",
-      "temp": "28",
-      "precip": 1
-    },
-    {
-      "iso_time": "2026-08-14T07:00:00",
-      "time": "07:00",
-      "weather": "雨",
-      "temp": "27",
-      "precip": 1
-    },
-    {
-      "iso_time": "2026-08-14T08:00:00",
-      "time": "08:00",
-      "weather": "雨",
-      "temp": "27",
-      "precip": 1
-    },
-    {
       "iso_time": "2026-08-14T09:00:00",
       "time": "09:00",
-      "weather": "雨",
-      "temp": "26",
-      "precip": 1
+      "weather": "くもり",
+      "temp": "25",
+      "precip": 0
     },
     {
       "iso_time": "2026-08-14T10:00:00",
       "time": "10:00",
-      "weather": "雨",
-      "temp": "26",
-      "precip": 1
+      "weather": "くもり",
+      "temp": "25",
+      "precip": 0
     },
     {
       "iso_time": "2026-08-14T11:00:00",
       "time": "11:00",
-      "weather": "雨",
+      "weather": "くもり",
       "temp": "25",
-      "precip": 1
+      "precip": 0
     },
     {
       "iso_time": "2026-08-14T12:00:00",
@@ -122,16 +87,16 @@
     {
       "iso_time": "2026-08-14T15:00:00",
       "time": "15:00",
-      "weather": "くもり",
+      "weather": "雨",
       "temp": "25",
-      "precip": 0
+      "precip": 1
     },
     {
       "iso_time": "2026-08-14T16:00:00",
       "time": "16:00",
-      "weather": "くもり",
+      "weather": "雨",
       "temp": "25",
-      "precip": 0
+      "precip": 1
     },
     {
       "iso_time": "2026-08-14T17:00:00",
@@ -172,7 +137,7 @@
       "iso_time": "2026-08-14T22:00:00",
       "time": "22:00",
       "weather": "くもり",
-      "temp": "25",
+      "temp": "24",
       "precip": 0
     },
     {
@@ -235,14 +200,14 @@
       "iso_time": "2026-08-15T07:00:00",
       "time": "07:00",
       "weather": "くもり",
-      "temp": "28",
+      "temp": "29",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T08:00:00",
       "time": "08:00",
       "weather": "くもり",
-      "temp": "27",
+      "temp": "28",
       "precip": 0
     },
     {
@@ -283,42 +248,42 @@
     {
       "iso_time": "2026-08-15T14:00:00",
       "time": "14:00",
-      "weather": "くもり",
-      "temp": "24",
+      "weather": "晴れ",
+      "temp": "25",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T15:00:00",
       "time": "15:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "24",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T16:00:00",
       "time": "16:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "24",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T17:00:00",
       "time": "17:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "24",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T18:00:00",
       "time": "18:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "23",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T19:00:00",
       "time": "19:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "23",
       "precip": 0
     },
@@ -340,21 +305,21 @@
       "iso_time": "2026-08-15T22:00:00",
       "time": "22:00",
       "weather": "くもり",
-      "temp": "23",
+      "temp": "24",
       "precip": 0
     },
     {
       "iso_time": "2026-08-15T23:00:00",
       "time": "23:00",
       "weather": "くもり",
-      "temp": "25",
+      "temp": "26",
       "precip": 0
     },
     {
       "iso_time": "2026-08-16T00:00:00",
       "time": "00:00",
       "weather": "くもり",
-      "temp": "26",
+      "temp": "27",
       "precip": 0
     },
     {
@@ -368,7 +333,7 @@
       "iso_time": "2026-08-16T02:00:00",
       "time": "02:00",
       "weather": "くもり",
-      "temp": "28",
+      "temp": "29",
       "precip": 0
     },
     {
@@ -396,21 +361,21 @@
       "iso_time": "2026-08-16T06:00:00",
       "time": "06:00",
       "weather": "くもり",
-      "temp": "30",
+      "temp": "29",
       "precip": 0
     },
     {
       "iso_time": "2026-08-16T07:00:00",
       "time": "07:00",
       "weather": "くもり",
-      "temp": "29",
+      "temp": "28",
       "precip": 0
     },
     {
       "iso_time": "2026-08-16T08:00:00",
       "time": "08:00",
       "weather": "くもり",
-      "temp": "28",
+      "temp": "27",
       "precip": 0
     },
     {
@@ -459,7 +424,7 @@
       "iso_time": "2026-08-16T15:00:00",
       "time": "15:00",
       "weather": "くもり",
-      "temp": "24",
+      "temp": "25",
       "precip": 0
     },
     {
@@ -480,7 +445,7 @@
       "iso_time": "2026-08-16T18:00:00",
       "time": "18:00",
       "weather": "くもり",
-      "temp": "23",
+      "temp": "24",
       "precip": 0
     },
     {
@@ -493,14 +458,14 @@
     {
       "iso_time": "2026-08-16T20:00:00",
       "time": "20:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "23",
       "precip": 0
     },
     {
       "iso_time": "2026-08-16T21:00:00",
       "time": "21:00",
-      "weather": "くもり",
+      "weather": "晴れ",
       "temp": "23",
       "precip": 0
     },
@@ -543,7 +508,42 @@
       "iso_time": "2026-08-17T03:00:00",
       "time": "03:00",
       "weather": "くもり",
+      "temp": "30",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-08-17T04:00:00",
+      "time": "04:00",
+      "weather": "くもり",
+      "temp": "30",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-08-17T05:00:00",
+      "time": "05:00",
+      "weather": "くもり",
+      "temp": "31",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-08-17T06:00:00",
+      "time": "06:00",
+      "weather": "くもり",
+      "temp": "30",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-08-17T07:00:00",
+      "time": "07:00",
+      "weather": "くもり",
       "temp": "29",
+      "precip": 0
+    },
+    {
+      "iso_time": "2026-08-17T08:00:00",
+      "time": "08:00",
+      "weather": "くもり",
+      "temp": "28",
       "precip": 0
     }
   ]
