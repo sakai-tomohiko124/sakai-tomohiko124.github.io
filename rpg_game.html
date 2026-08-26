@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG風謎解きゲーム - Mystery Dungeon</title>
+    <link rel="stylesheet" href="static/rpg_game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- タイトル画面 -->
+        <div id="title-screen" class="screen active">
+            <div class="title-content">
+                <h1 class="game-title">Mystery Dungeon</h1>
+                <h2 class="game-subtitle">RPG風謎解きゲーム</h2>
+                <p class="game-description">謎を解き、ダンジョンから脱出せよ！</p>
+                <button id="start-btn" class="btn-primary">ゲームスタート</button>
+                <button id="load-btn" class="btn-secondary">コンティニュー</button>
+                <button id="instructions-btn" class="btn-secondary">操作説明</button>
+            </div>
+        </div>
+
+        <!-- 説明画面 -->
+        <div id="instructions-screen" class="screen">
+            <div class="instructions-content">
+                <h2>操作説明</h2>
+                <div class="instructions-text">
+                    <h3>ゲームの目的</h3>
+                    <p>謎を解きながらダンジョンを探索し、脱出を目指します。</p>
+                    
+                    <h3>基本操作</h3>
+                    <ul>
+                        <li><strong>移動:</strong> 方向ボタンをクリック</li>
+                        <li><strong>調べる:</strong> 「調べる」ボタンをクリック</li>
+                        <li><strong>アイテム使用:</strong> インベントリからアイテムを選択</li>
+                        <li><strong>謎解き:</strong> 各部屋で謎を解いて進行</li>
+                    </ul>
+                    
+                    <h3>ヒント</h3>
+                    <ul>
+                        <li>すべてのアイテムを調べましょう</li>
+                        <li>メモを取ることをお勧めします</li>
+                        <li>部屋の説明をよく読みましょう</li>
+                    </ul>
+                </div>
+                <button id="back-btn" class="btn-primary">戻る</button>
+            </div>
+        </div>
+
+        <!-- ゲーム画面 -->
+        <div id="game-screen" class="screen">
+            <!-- ステータスバー -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">場所:</span>
+                    <span id="current-room">エントランス</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">HP:</span>
+                    <span id="player-hp">100</span>
+                    <span class="status-label">/100</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">謎解き進行度:</span>
+                    <span id="progress">0</span>
+                    <span class="status-label">%</span>
+                </div>
+            </div>
+
+            <!-- メインゲームエリア -->
+            <div class="game-main">
+                <!-- 左パネル - 部屋の表示 -->
+                <div class="left-panel">
+                    <div class="room-display">
+                        <div id="room-image" class="room-image"></div>
+                        <div id="room-description" class="room-description">
+                            ここは古びたダンジョンの入口だ。暗い通路が四方に延びている。
+                        </div>
+                    </div>
+                    
+                    <!-- コントロールパネル -->
+                    <div class="controls">
+                        <div class="direction-controls">
+                            <button id="north-btn" class="direction-btn" data-direction="north">↑ 北</button>
+                            <div class="horizontal-controls">
+                                <button id="west-btn" class="direction-btn" data-direction="west">← 西</button>
+                                <button id="examine-btn" class="action-btn">🔍 調べる</button>
+                                <button id="east-btn" class="direction-btn" data-direction="east">東 →</button>
+                            </div>
+                            <button id="south-btn" class="direction-btn" data-direction="south">↓ 南</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右パネル - メッセージとインベントリ -->
+                <div class="right-panel">
+                    <!-- メッセージログ -->
+                    <div class="message-log">
+                        <h3>メッセージ</h3>
+                        <div id="message-content" class="message-content">
+                            <p class="message">ダンジョンへようこそ！謎を解いて脱出しましょう。</p>
+                        </div>
+                    </div>
+
+                    <!-- インベントリ -->
+                    <div class="inventory">
+                        <h3>所持アイテム</h3>
+                        <div id="inventory-content" class="inventory-content">
+                            <p class="empty-inventory">アイテムがありません</p>
+                        </div>
+                    </div>
+
+                    <!-- セーブ/ロードボタン -->
+                    <div class="game-actions">
+                        <button id="save-btn" class="btn-small">セーブ</button>
+                        <button id="menu-btn" class="btn-small">メニュー</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 謎解き画面 -->
+        <div id="puzzle-screen" class="screen">
+            <div class="puzzle-content">
+                <h2 id="puzzle-title">謎</h2>
+                <div id="puzzle-description" class="puzzle-description"></div>
+                <div id="puzzle-input" class="puzzle-input"></div>
+                <div class="puzzle-buttons">
+                    <button id="submit-puzzle" class="btn-primary">答える</button>
+                    <button id="cancel-puzzle" class="btn-secondary">戻る</button>
+                </div>
+                <div id="puzzle-hint" class="puzzle-hint" style="display:none;"></div>
+            </div>
+        </div>
+
+        <!-- ゲームクリア画面 -->
+        <div id="clear-screen" class="screen">
+            <div class="clear-content">
+                <h1 class="clear-title">🎉 ゲームクリア！ 🎉</h1>
+                <p class="clear-message">おめでとうございます！すべての謎を解き、ダンジョンから脱出しました！</p>
+                <div id="clear-stats" class="clear-stats"></div>
+                <button id="restart-btn" class="btn-primary">最初から</button>
+                <button id="title-btn" class="btn-secondary">タイトルへ</button>
+            </div>
+        </div>
+
+        <!-- ゲームオーバー画面 -->
+        <div id="gameover-screen" class="screen">
+            <div class="gameover-content">
+                <h1 class="gameover-title">Game Over</h1>
+                <p class="gameover-message">ゲームオーバーです。もう一度挑戦しますか？</p>
+                <button id="retry-btn" class="btn-primary">もう一度</button>
+                <button id="quit-btn" class="btn-secondary">タイトルへ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/rpg_game.js"></script>
+</body>
+</html>
